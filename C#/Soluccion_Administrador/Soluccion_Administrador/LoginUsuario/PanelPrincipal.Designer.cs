@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
             this.cbocategoria = new System.Windows.Forms.ComboBox();
             this.dtpvecipro = new System.Windows.Forms.DateTimePicker();
             this.dtpElaboPr = new System.Windows.Forms.DateTimePicker();
@@ -51,6 +52,7 @@
             this.txtbuscarPro = new System.Windows.Forms.TextBox();
             this.dgvProducto = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label24 = new System.Windows.Forms.Label();
             this.cbopuestoGA = new System.Windows.Forms.ComboBox();
             this.cboEmADM = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -70,6 +72,7 @@
             this.dgvAsociacion = new System.Windows.Forms.DataGridView();
             this.btnBuscaGerente = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
             this.cboEmpresaSuc = new System.Windows.Forms.ComboBox();
             this.lblid = new System.Windows.Forms.Label();
             this.txtDiresucu = new System.Windows.Forms.TextBox();
@@ -85,6 +88,7 @@
             this.btnBuscarSucursal = new System.Windows.Forms.Button();
             this.btnSucursal = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
             this.cboPuestoEN = new System.Windows.Forms.ComboBox();
             this.cboEmpresaEN = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -104,6 +108,7 @@
             this.btnBuscarEncargado = new System.Windows.Forms.Button();
             this.dgvEncargado = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
             this.cboEnvioOfertaCliente = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -131,8 +136,7 @@
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.dtvCliente = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.btnCerrarSession = new System.Windows.Forms.Button();
-            this.lblSession = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtPuestoId = new System.Windows.Forms.TextBox();
@@ -143,12 +147,8 @@
             this.btnBuscarPuesto = new System.Windows.Forms.Button();
             this.txtBuscarPuesto = new System.Windows.Forms.TextBox();
             this.dgvPuesto = new System.Windows.Forms.DataGridView();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
+            this.btnCerrarSession = new System.Windows.Forms.Button();
+            this.lblSession = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
@@ -215,6 +215,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Productos";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(761, 47);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(214, 25);
+            this.label23.TabIndex = 37;
+            this.label23.Text = "Menú Edición Producto";
             // 
             // cbocategoria
             // 
@@ -405,6 +415,16 @@
             this.tabPage2.Text = "Gerente Asociacion";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(711, 60);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(307, 25);
+            this.label24.TabIndex = 38;
+            this.label24.Text = "Menú Edición Gerente Asociación";
+            // 
             // cbopuestoGA
             // 
             this.cbopuestoGA.FormattingEnabled = true;
@@ -491,7 +511,6 @@
             // 
             // txtidAG
             // 
-            this.txtidAG.Enabled = false;
             this.txtidAG.Location = new System.Drawing.Point(801, 150);
             this.txtidAG.Name = "txtidAG";
             this.txtidAG.Size = new System.Drawing.Size(173, 20);
@@ -588,6 +607,16 @@
             this.tabPage3.Text = "Sucursal";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(750, 48);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(213, 25);
+            this.label25.TabIndex = 38;
+            this.label25.Text = "Menú Edición Sucursal";
+            // 
             // cboEmpresaSuc
             // 
             this.cboEmpresaSuc.FormattingEnabled = true;
@@ -614,7 +643,6 @@
             // 
             // txtIdsucu
             // 
-            this.txtIdsucu.Enabled = false;
             this.txtIdsucu.Location = new System.Drawing.Point(815, 171);
             this.txtIdsucu.Name = "txtIdsucu";
             this.txtIdsucu.Size = new System.Drawing.Size(153, 20);
@@ -743,6 +771,16 @@
             this.tabPage4.Text = "Encargado de Sucursal";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(683, 48);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(313, 25);
+            this.label26.TabIndex = 38;
+            this.label26.Text = "Menú Edición Encargado Sucursal";
+            // 
             // cboPuestoEN
             // 
             this.cboPuestoEN.FormattingEnabled = true;
@@ -829,7 +867,6 @@
             // 
             // txtidEC
             // 
-            this.txtidEC.Enabled = false;
             this.txtidEC.Location = new System.Drawing.Point(790, 142);
             this.txtidEC.Name = "txtidEC";
             this.txtidEC.ReadOnly = true;
@@ -938,6 +975,16 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Consumidor";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(738, 68);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(242, 25);
+            this.label27.TabIndex = 64;
+            this.label27.Text = "Menú Edición Consumidor";
             // 
             // cboEnvioOfertaCliente
             // 
@@ -1090,7 +1137,6 @@
             // 
             // txtIdCliente
             // 
-            this.txtIdCliente.Enabled = false;
             this.txtIdCliente.Location = new System.Drawing.Point(821, 117);
             this.txtIdCliente.Name = "txtIdCliente";
             this.txtIdCliente.ReadOnly = true;
@@ -1184,24 +1230,15 @@
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // btnCerrarSession
+            // label28
             // 
-            this.btnCerrarSession.Location = new System.Drawing.Point(765, 109);
-            this.btnCerrarSession.Name = "btnCerrarSession";
-            this.btnCerrarSession.Size = new System.Drawing.Size(103, 23);
-            this.btnCerrarSession.TabIndex = 2;
-            this.btnCerrarSession.Text = "Cerrar Sesion";
-            this.btnCerrarSession.UseVisualStyleBackColor = true;
-            this.btnCerrarSession.Click += new System.EventHandler(this.btnCerrarSession_Click);
-            // 
-            // lblSession
-            // 
-            this.lblSession.AutoSize = true;
-            this.lblSession.Location = new System.Drawing.Point(701, 72);
-            this.lblSession.Name = "lblSession";
-            this.lblSession.Size = new System.Drawing.Size(44, 13);
-            this.lblSession.TabIndex = 3;
-            this.lblSession.Text = "Session";
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(655, 73);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(197, 25);
+            this.label28.TabIndex = 50;
+            this.label28.Text = "Menú Edición Puesto";
             // 
             // label21
             // 
@@ -1223,7 +1260,6 @@
             // 
             // txtPuestoId
             // 
-            this.txtPuestoId.Enabled = false;
             this.txtPuestoId.Location = new System.Drawing.Point(706, 193);
             this.txtPuestoId.Name = "txtPuestoId";
             this.txtPuestoId.ReadOnly = true;
@@ -1295,65 +1331,24 @@
             this.dgvPuesto.TabIndex = 40;
             this.dgvPuesto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPuesto_CellContentClick);
             // 
-            // label23
+            // btnCerrarSession
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(761, 47);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(214, 25);
-            this.label23.TabIndex = 37;
-            this.label23.Text = "Menú Edición Producto";
+            this.btnCerrarSession.Location = new System.Drawing.Point(765, 109);
+            this.btnCerrarSession.Name = "btnCerrarSession";
+            this.btnCerrarSession.Size = new System.Drawing.Size(103, 23);
+            this.btnCerrarSession.TabIndex = 2;
+            this.btnCerrarSession.Text = "Cerrar Sesion";
+            this.btnCerrarSession.UseVisualStyleBackColor = true;
+            this.btnCerrarSession.Click += new System.EventHandler(this.btnCerrarSession_Click);
             // 
-            // label24
+            // lblSession
             // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(711, 60);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(307, 25);
-            this.label24.TabIndex = 38;
-            this.label24.Text = "Menú Edición Gerente Asociación";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(750, 48);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(213, 25);
-            this.label25.TabIndex = 38;
-            this.label25.Text = "Menú Edición Sucursal";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(683, 48);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(313, 25);
-            this.label26.TabIndex = 38;
-            this.label26.Text = "Menú Edición Encargado Sucursal";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(738, 68);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(242, 25);
-            this.label27.TabIndex = 64;
-            this.label27.Text = "Menú Edición Consumidor";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(655, 73);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(197, 25);
-            this.label28.TabIndex = 50;
-            this.label28.Text = "Menú Edición Puesto";
+            this.lblSession.AutoSize = true;
+            this.lblSession.Location = new System.Drawing.Point(701, 72);
+            this.lblSession.Name = "lblSession";
+            this.lblSession.Size = new System.Drawing.Size(44, 13);
+            this.lblSession.TabIndex = 3;
+            this.lblSession.Text = "Session";
             // 
             // PanelPrincipal
             // 
