@@ -42,6 +42,9 @@ namespace LoginUsuario
             CargarSucursal(dgvSucursal);
             CargarEncargado(dgvEncargado);
             cargarClienteDataGrid(dtvCliente);
+            CargarPuesto(dgvPuesto);
+
+
             //metodos de carga de combobox
             CargarComboBox(cbocategoria);
             CargarComboEmpresaSuc(cboEmpresaSuc);
@@ -52,6 +55,32 @@ namespace LoginUsuario
             cargarCboCliente(cboEnvioOfertaCliente);
 
         }
+
+        private void CargarPuesto(DataGridView dgvPuesto)
+        {
+            try
+            {
+
+                ora.Open();//se abre la conexion
+                OracleCommand comando = new OracleCommand("seleccionarToda_Puesto", ora);//se llama el procedimiento y la conexion
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = comando;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                dgvPuesto.DataSource = tabla;
+                ora.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
+                ora.Close();
+            }
+
+        }
+
         public void CargarCeldas(DataGridView dgv)//se cargan los pruductos en la grilla 
         {
             try
@@ -1098,9 +1127,111 @@ namespace LoginUsuario
                 MessageBox.Show("No se ha Eliminado el registro del consumidor");
             }
         }
+
+
+
+/*---------------------------------------------  Puesto  -------------------------------------------------------*/
+
+        //Muestra la información en el datagrid
+        private void dgvPuesto_CellContentClick(object sender, DataGridViewCellEventArgs e) 
+        {
+
+            posicion = dgvPuesto.CurrentRow.Index;
+            txtPuestoId.Text = dgvPuesto[0, posicion].Value.ToString();
+            txtPuestoNombre.Text = dgvPuesto[1, posicion].Value.ToString();
+          
+        }
+
+        //Crea nuevo puesto
+        private void btnNuevoPuesto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                if (txtPuestoNombre.Text.Equals(""))//verifica que los textbox esten llenos
+                {
+                    MessageBox.Show("El dato es obligatorio");//mensaje al usuario
+                }
+                else
+                {
+                    ora.Open();
+                    OracleCommand comando = new OracleCommand("INSERTAR_PUESTO", ora);
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtPuestoNombre.Text;
+
+                    comando.ExecuteNonQuery();
+                    MessageBox.Show("El puesto ha sido creado");
+                    ora.Close();
+                }
+                this.CargarPuesto(dgvPuesto);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No ha sido insertado ningun puesto");
+                ora.Close();
+            }
+        }
+
+
+
+        //Modifica Puesto
+        private void btnModificarPuesto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (txtPuestoNombre.Text.Equals(""))//verifica que los textbox esten llenos
+                {
+                    MessageBox.Show("El Nuevo nombre es obligatorio");//mensaje al usuario
+                }
+                else
+                {
+                    ora.Open();
+                    OracleCommand comando = new OracleCommand("actualizar_puesto", ora);
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+                    comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtPuestoId.Text); 
+                    comando.Parameters.Add("pue", OracleType.VarChar).Value = txtPuestoNombre.Text;
+                    comando.ExecuteNonQuery();
+                    MessageBox.Show("El puesto ha sido Actualizado");
+                    ora.Close();
+                }
+                this.CargarPuesto(dgvPuesto);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha Actualizado el puesto");
+            }
+
+        }
+
+
+        /*Eliminar Puesto*/
+        private void btnEliminarPuesto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ora.Open();
+                OracleCommand comando = new OracleCommand("eliminar_puesto", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtPuestoId.Text);
+                comando.ExecuteNonQuery();
+                MessageBox.Show("El puesto ha sido eliminado");
+                ora.Close();
+
+                this.CargarPuesto(dgvPuesto);
+                txtPuestoId.Clear();
+                txtPuestoNombre.Clear();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha eliminado el puesto");
+                this.CargarPuesto(dgvPuesto);
+            }
+        }
     }
-
-
 }
 
 

@@ -40,7 +40,7 @@
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(79, 77);
+            this.lblUsuario.Location = new System.Drawing.Point(104, 125);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(60, 18);
             this.lblUsuario.TabIndex = 1;
@@ -50,7 +50,7 @@
             // 
             this.lblContrasena.AutoSize = true;
             this.lblContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContrasena.Location = new System.Drawing.Point(79, 148);
+            this.lblContrasena.Location = new System.Drawing.Point(79, 186);
             this.lblContrasena.Name = "lblContrasena";
             this.lblContrasena.Size = new System.Drawing.Size(85, 18);
             this.lblContrasena.TabIndex = 2;
@@ -58,23 +58,24 @@
             // 
             // txt_Usuario
             // 
-            this.txt_Usuario.Location = new System.Drawing.Point(82, 107);
+            this.txt_Usuario.Location = new System.Drawing.Point(211, 126);
             this.txt_Usuario.Name = "txt_Usuario";
             this.txt_Usuario.Size = new System.Drawing.Size(117, 20);
             this.txt_Usuario.TabIndex = 3;
             // 
             // txt_contrasena
             // 
-            this.txt_contrasena.Location = new System.Drawing.Point(82, 183);
+            this.txt_contrasena.Location = new System.Drawing.Point(211, 187);
             this.txt_contrasena.Name = "txt_contrasena";
             this.txt_contrasena.Size = new System.Drawing.Size(117, 20);
             this.txt_contrasena.TabIndex = 4;
+            this.txt_contrasena.UseSystemPasswordChar = true;
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(64, 227);
+            this.btnIniciar.Location = new System.Drawing.Point(103, 260);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(75, 23);
+            this.btnIniciar.Size = new System.Drawing.Size(94, 35);
             this.btnIniciar.TabIndex = 5;
             this.btnIniciar.Text = "Conectar";
             this.btnIniciar.UseVisualStyleBackColor = true;
@@ -82,9 +83,9 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(160, 227);
+            this.btnSalir.Location = new System.Drawing.Point(234, 260);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(94, 35);
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -94,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 300);
+            this.ClientSize = new System.Drawing.Size(428, 374);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.txt_contrasena);
