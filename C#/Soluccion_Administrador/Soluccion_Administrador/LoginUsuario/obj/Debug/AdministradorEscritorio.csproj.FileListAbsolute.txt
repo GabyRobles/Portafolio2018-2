@@ -10,3 +10,17 @@ C:\Users\solita\Desktop\Soluccion_Administrador\Soluccion_Administrador\LoginUsu
 C:\Users\solita\Desktop\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.pdb
 C:\Users\solita\Desktop\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\Oracle.ManagedDataAccess.dll
 C:\Users\solita\Desktop\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\MaterialSkin.dll
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\LoginUsuario.exe.config
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.exe
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.pdb
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\LoginUsuario.exe
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\LoginUsuario.pdb
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\MaterialSkin.dll
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\AdministradorEscritorio.csprojResolveAssemblyReference.cache
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.Login.resources
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.PanelPrincipal.resources
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.Properties.Resources.resources
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\AdministradorEscritorio.csproj.GenerateResource.Cache
+C:\Users\Akihiko Sanada\Desktop\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\LoginUsuario.exe.config
+C:\Users\Akihiko Sanada\Desktop\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.exe
+C:\Users\Akihiko Sanada\Desktop\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.pdb

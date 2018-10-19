@@ -41,6 +41,7 @@ namespace LoginUsuario
             CargarGerente(dgvAsociacion);
             CargarSucursal(dgvSucursal);
             CargarEncargado(dgvEncargado);
+            cargarClienteDataGrid(dtvCliente);
             //metodos de carga de combobox
             CargarComboBox(cbocategoria);
             CargarComboEmpresaSuc(cboEmpresaSuc);
@@ -48,6 +49,7 @@ namespace LoginUsuario
             CargarComboENPuesto(cboPuestoEN);
             CargarComboBoxEmpAG(cboEmADM);
             CargarComboBoxEmpEN(cboEmpresaEN);
+            cargarCboCliente(cboEnvioOfertaCliente);
 
         }
         public void CargarCeldas(DataGridView dgv)//se cargan los pruductos en la grilla 
@@ -175,6 +177,33 @@ namespace LoginUsuario
                 throw;
             }
         }
+
+        //acá arreglar para que filtre
+        public void cargarCboCliente( ComboBox cboClienteLocal) {
+            try
+            {
+                ora.Open();//abrimos la conexion
+                OracleDataAdapter da = new OracleDataAdapter("select * from consumidor ", ora);//hacemos una consula en la db y lo capturamos en el da que es un adaptador
+                DataTable dt = new DataTable();//guardamos en un objeto de datatable lo encontrado
+                da.Fill(dt);//el adaptadr esta cargado en el data table
+
+                if (dt.Rows.Count > 0)//si lo que esta en la dt o datatable es mayor a 0
+                {
+                    cboEnvioOfertaCliente.DataSource = dt;//cargara el cbocategoria con la dt de table
+                    cboEnvioOfertaCliente.DisplayMember = "Envío";//lo que nos mostrara en el combobox
+                    cboEnvioOfertaCliente.ValueMember = "env_oferta"; //los nombre los asociara al id de cada nombre
+                }
+                ora.Close();//se cierra la conexion
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+        }
+
         public void CargarComboBoxEmpAG(ComboBox cbo)//se carga el combo box de empresas Gerente asociacion
         {
             try
@@ -488,7 +517,7 @@ namespace LoginUsuario
         private void cboEmpresa_SelectedIndexChanged(object sender, EventArgs e)
         {
             ora.Open();
-            string query = "select upper(NOMBRE)from EMPRESA where ID_EMPRESA > 1; ";
+            string query = "select upper(NOMBRE)from EMPRESA where ID_EMPRESA = 1; ";
             OracleCommand comando = new OracleCommand(query, ora);
             comando.CommandType = CommandType.Text;
             OracleDataAdapter adp = new OracleDataAdapter(comando);
@@ -858,7 +887,221 @@ namespace LoginUsuario
 
             cbocategoria.Text = dgvProducto[5, posicion].Value.ToString();
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //cargar los datos de la grilla.
+        private void dtvCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            posicion = dtvCliente.CurrentRow.Index;
+            txtIdCliente.Text = dtvCliente[0, posicion].Value.ToString();
+            txtNombreCliente.Text = dtvCliente[1, posicion].Value.ToString();
+            txtApellidoCliente.Text = dtvCliente[2, posicion].Value.ToString();
+            txtRutCliente.Text = dtvCliente[3, posicion].Value.ToString();
+            txtCorreoCliente.Text = dtvCliente[5, posicion].Value.ToString();
+            txtContrasenaCliente.Text = dtvCliente[6, posicion].Value.ToString();
+            txtPuntajeCliente.Text = dtvCliente[7, posicion].Value.ToString();
+            txtTelefono.Text = dtvCliente[8, posicion].Value.ToString();
+            
+            DateTime curDate;
+            if (DateTime.TryParse(dtvCliente[4, posicion].Value.ToString(), out curDate))
+            {
+                dtNacimientoCliente.Value = curDate;
+            }
+            
+
+            cboEnvioOfertaCliente.Text = dtvCliente[9, posicion].Value.ToString();
+        }
+
+        public void cargarClienteDataGrid(DataGridView dto) {
+            try
+            {
+
+                ora.Open();//se abre la conexion
+                OracleCommand comando = new OracleCommand("seleccionarToda_CONSUMIDOR", ora);//se llama el procedimiento y la conexion
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = comando;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                dtvCliente.DataSource = tabla;
+                ora.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
+                ora.Close();
+            }
+
+
+        }
+
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ora.Open();
+
+                OracleCommand comando = new OracleCommand("seleccionar_Consumidor", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("idge", OracleType.Number).Value = Convert.ToInt32(txtBuscarCliente.Text);
+                if (comando.Parameters != null)
+                {
+                    MessageBox.Show("Consumidor No encontrado");
+                    comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                    comando.ExecuteNonQuery();
+                    OracleDataAdapter adaptador = new OracleDataAdapter();
+                    adaptador.SelectCommand = comando;
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+                    dtvCliente.DataSource = tabla;
+                    ora.Close();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Dato no encontrado");
+                OracleCommand comando = new OracleCommand("seleccionarToda_Consumidor", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando = new OracleCommand("seleccionarToda_Consumidor", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = comando;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                dtvCliente.DataSource = tabla;
+                ora.Close();
+            }
+        }
+
+        private void btnNuevoCliente_Click(object sender, EventArgs e)
+        {
+            //CargarEncargado(dgvEncargado);
+            try
+            {
+
+                if (txtNombreCliente.Text.Equals("") && txtApellidoCliente.Equals("") && txtRutCliente.Equals("") && txtCorreoCliente.Equals("") && txtContrasenaCliente.Equals("") && txtPuntajeCliente.Equals("") && txtTelefono.Equals(""))
+                {
+                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                }
+                else
+                {
+                    // "INSERTAR_CONSUMIDOR" (nombre in VARCHAR2,ape in VARCHAR2,rut in VARCHAR2,fechnac in date,correo in VARCHAR2,pass in VARCHAR2, 
+                    //pto in NUMBER,tele in VARCHAR2,envofe in CHAR)
+                    ora.Open();
+                    OracleCommand comando = new OracleCommand("insertar_consumidor", ora);
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+                    comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNombreCliente.Text;
+                    comando.Parameters.Add("ape", OracleType.VarChar).Value = txtApellidoCliente.Text;
+                    comando.Parameters.Add("rut", OracleType.VarChar).Value = txtRutCliente.Text;
+                    comando.Parameters.Add("fechnac", OracleType.Number).Value = dtNacimientoCliente.Text;
+                    comando.Parameters.Add("correo", OracleType.VarChar).Value = txtCorreoCliente.Text;
+                    comando.Parameters.Add("pass", OracleType.VarChar).Value = txtContrasenaCliente.Text;
+                    comando.Parameters.Add("pto", OracleType.VarChar).Value = txtPuntajeCliente.Text;
+                    comando.Parameters.Add("tele", OracleType.VarChar).Value = txtTelefono.Text;
+                    //falta cbo.
+
+
+                    comando.ExecuteNonQuery();
+                    MessageBox.Show("El Archivo ha sido Actualizado");
+                    ora.Close();
+                }
+                this.CargarEncargado(dgvEncargado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha Actualizado el registro");
+            }
+        }
+
+        private void btnModificarCliente_Click(object sender, EventArgs e)
+        {
+            //CargarEncargado(dgvEncargado);
+            try
+            {
+
+                if (txtNombreCliente.Text.Equals("") && txtApellidoCliente.Equals("") && txtRutCliente.Equals("") && txtCorreoCliente.Equals("") && txtContrasenaCliente.Equals("") && txtPuntajeCliente.Equals("") && txtTelefono.Equals("") )
+                {
+                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                }
+                else
+                {
+                    // "ACTUALIZAR_CONSUMIDOR" (idpue in NUMBER,nombre in VARCHAR2,ape in VARCHAR2,rut in VARCHAR2,fechnac in date,correo in VARCHAR2,pass in VARCHAR2,
+                    //pto in NUMBER,tele in VARCHAR2,envofe in CHAR)
+                    ora.Open();
+                    OracleCommand comando = new OracleCommand("actualizar_consumidor", ora);
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+                    comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtIdCliente.Text);
+                    comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNombreCliente.Text;
+                    comando.Parameters.Add("ape", OracleType.VarChar).Value = txtApellidoCliente.Text;
+                    comando.Parameters.Add("rut", OracleType.VarChar).Value = txtRutCliente.Text;
+                    comando.Parameters.Add("fechnac", OracleType.Number).Value = dtNacimientoCliente.Text;
+                    comando.Parameters.Add("correo", OracleType.VarChar).Value = txtCorreoCliente.Text;
+                    comando.Parameters.Add("pass", OracleType.VarChar).Value = txtContrasenaCliente.Text;
+                    comando.Parameters.Add("pto", OracleType.VarChar).Value = txtPuntajeCliente.Text;
+                    comando.Parameters.Add("tele", OracleType.VarChar).Value = txtTelefono.Text;
+                    //falta cbo.
+
+
+                    comando.ExecuteNonQuery();
+                    MessageBox.Show("El Archivo ha sido Actualizado");
+                    ora.Close();
+                }
+                this.CargarEncargado(dgvEncargado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha Actualizado el registro");
+            }
+        }
+
+        //falta terminar esto, está casi listo
+        private void btnEliminarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ora.Open();
+                OracleCommand comando = new OracleCommand("eliminar_consumidor", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtIdCliente.Text);
+                comando.ExecuteNonQuery();
+                MessageBox.Show("El Consumidor ha sido Eliminado");
+                ora.Close();
+
+                this.cargarClienteDataGrid(dtvCliente);
+                txtIdCliente.Clear();
+                txtNombreCliente.Clear();
+                txtApellidoCliente.Clear();
+                txtRutCliente.Clear();
+                //limpiar datetimepicker fecha de nacimineto
+                txtCorreoCliente.Clear();
+                txtContrasenaCliente.Clear();
+                txtPuntajeCliente.Clear();
+                txtTelefono.Clear();
+                //luimpiar combo box envío
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha Eliminado el registro del consumidor");
+            }
+        }
     }
 
 
 }
+
+
+
