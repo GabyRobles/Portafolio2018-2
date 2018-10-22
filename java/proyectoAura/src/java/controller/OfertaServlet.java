@@ -143,32 +143,35 @@ public class OfertaServlet extends HttpServlet {
     private void crearOferta(HttpServletRequest request, HttpServletResponse response) {
         try {
             OfertaBean oferta = new OfertaBean();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         
-            String nombre = request.getParameter("nameOferta");
+            String nombre = request.getParameter("nombreOferta");
+            Integer idProducto = Integer.valueOf(request.getParameter("idProducto"));
+            Integer idCat = Integer.valueOf(request.getParameter("idCat"));
             String tipoOferta = request.getParameter("tipo");
             String imagen = request.getParameter("imagenURL");
             Integer precio = Integer.valueOf(request.getParameter("precio"));
             Integer idEncargado = Integer.valueOf(request.getParameter("idEncargado"));
-            Integer idCat = Integer.valueOf(request.getParameter("idCat"));
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            Integer idSucur = Integer.valueOf(request.getParameter("cbSucurcales"));
+            
             Date fechaIni = formatter.parse(request.getParameter("fechaIni"));
             Date fechaTerm = formatter.parse(request.getParameter("fechaTerm"));
 
-            oferta.create(nombre, tipoOferta, imagen, Integer.SIZE, fechaIni, fechaTerm, Integer.MAX_VALUE, Integer.SIZE, Integer.MIN_VALUE, Integer.BYTES);
-        } catch (NumberFormatException | ParseException e) {
+            oferta.create(nombre, tipoOferta, imagen, precio, fechaIni, fechaTerm, idEncargado, idSucur, idProducto, idCat);
+            response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
+        } catch (IOException | NumberFormatException | SQLException | ParseException e) {
             System.out.println("Error al crear la oferta" + e.getLocalizedMessage());
         }
     }
 
     private void showEditar(HttpServletRequest request, HttpServletResponse response) {
         try {
-            Integer idOferta = Integer.valueOf(request.getParameter("id"));
+            Integer idOferta = Integer.valueOf(request.getParameter("idOferta"));
             OfertaBean bean = new OfertaBean();
             Oferta oferta = bean.findById(idOferta);
             request.setAttribute("oferta", oferta);
             request.getRequestDispatcher("Trabajador/Encargado/DetalleOferta.jsp").forward(request, response);
-        } catch (IOException | NumberFormatException | ServletException e) {
+        } catch (IOException | NullPointerException | NumberFormatException | SQLException | ServletException e) {
             System.out.println("Error al redirccionar: " + e.getMessage());
         }
 
@@ -177,22 +180,25 @@ public class OfertaServlet extends HttpServlet {
     private void editarOferta(HttpServletRequest request, HttpServletResponse response) {
         try {
             OfertaBean oferta = new OfertaBean();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         
             Integer idOferta = Integer.valueOf(request.getParameter("id"));
 
-            String nombre = request.getParameter("nameOferta");
+            String nombre = request.getParameter("nombreOferta");
+            Integer idProducto = Integer.valueOf(request.getParameter("idProducto"));
+            Integer idCat = Integer.valueOf(request.getParameter("idCat"));
             String tipoOferta = request.getParameter("tipo");
             String imagen = request.getParameter("imagenURL");
             Integer precio = Integer.valueOf(request.getParameter("precio"));
             Integer idEncargado = Integer.valueOf(request.getParameter("idEncargado"));
-            Integer idCat = Integer.valueOf(request.getParameter("idCat"));
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            Integer idSucur = Integer.valueOf(request.getParameter("cbSucurcales"));
+            
             Date fechaIni = formatter.parse(request.getParameter("fechaIni"));
             Date fechaTerm = formatter.parse(request.getParameter("fechaTerm"));
 
-            oferta.update(idOferta, nombre, tipoOferta, imagen, Integer.SIZE, fechaIni, fechaTerm, Integer.MAX_VALUE, Integer.SIZE, Integer.MIN_VALUE, Integer.BYTES);
-        } catch (NumberFormatException | ParseException e) {
+            oferta.update(idOferta, nombre, tipoOferta, imagen, precio, fechaIni, fechaTerm, idEncargado, idSucur, idProducto, idCat);
+            response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
+        } catch (IOException | NumberFormatException | SQLException | ParseException e) {
             System.out.println("Error al editar: " + e.getLocalizedMessage());
         }
     }
@@ -201,9 +207,10 @@ public class OfertaServlet extends HttpServlet {
         try {    
             OfertaBean oferta = new OfertaBean();
         
-            Integer idOferta = Integer.valueOf(request.getParameter("id"));
+            Integer idOferta = Integer.valueOf(request.getParameter("idOferta"));
             oferta.delete(idOferta);
-        } catch (NumberFormatException e) {
+            response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
+        } catch (IOException | NumberFormatException | SQLException e) {
             System.out.println("Error no se pudo eliminar: " + e.getLocalizedMessage());
         }
     }

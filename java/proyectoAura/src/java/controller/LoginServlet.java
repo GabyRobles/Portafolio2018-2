@@ -135,7 +135,7 @@ public class LoginServlet extends HttpServlet {
             String tipo = trabajadorBean.recuperarTipoTrabajador(correo);
 
             if (trabajadorBean.validarContrasena(correo, contrasena)) {
-                request.getSession(true).setAttribute("usuario", trabajadorBean.findByCorreo(correo));
+                request.getSession().setAttribute("usuario", trabajadorBean.findByCorreo(correo));
                 switch (tipo) {
                     case "Encargado tienda":
                         //hipervínculo

@@ -5,8 +5,11 @@
  */
 package bean;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.ParameterMode;
@@ -25,18 +28,21 @@ public class OfertaBean {
     private List<Oferta> lista; 
     
     public OfertaBean(){
-        lista = findAll();
+        try {
+            lista = findAll();
+        } catch (NullPointerException | SQLException ex) {
+        }
     }
     
-    public Oferta findById(Integer id){
+    public Oferta findById(Integer id) throws SQLException, NullPointerException{
         return (Oferta) em.createNamedQuery("Oferta.findByIdOferta").setParameter("idOferta", id).getSingleResult();
     }
     
-    public Oferta findByNombre(String nombre){
+    public Oferta findByNombre(String nombre) throws SQLException, NullPointerException{
         return (Oferta) em.createNamedQuery("Oferta.findByNombre").setParameter("nombre", nombre).getSingleResult();
     }
     
-    public List<Oferta> findAll(){
+    public List<Oferta> findAll()throws SQLException, NullPointerException{
         return em.createNamedQuery("Oferta.findAll").getResultList();
     }
 
@@ -48,7 +54,8 @@ public class OfertaBean {
         this.lista = lista;
     }
     
-    public void create(String nombre, String tipoOferta, String imagen, Integer precioOferta, Date fechaIni, Date fechaTerm, Integer idTrabajador, Integer idSucursal, Integer idProducto, Integer idCategoria){
+    public void create(String nombre, String tipoOferta, String imagen, Integer precioOferta, Date fechaIni, Date fechaTerm, Integer idTrabajador, Integer idSucursal, Integer idProducto, Integer idCategoria)
+    throws SQLException{
         //definir procedimiento
         StoredProcedureQuery storedProcedureQuery= em.createStoredProcedureQuery("OPERACIONES_CRUD.INSERTAR_OFERTA");
         storedProcedureQuery.registerStoredProcedureParameter("nombre", String.class, ParameterMode.IN);
@@ -79,7 +86,8 @@ public class OfertaBean {
     
     }
     
-    public void update(Integer idOfer, String nombre, String tipoOferta, String imagen, Integer precioOferta, Date fechaIni, Date fechaTerm, Integer idTrabajador, Integer idSucursal, Integer idProducto, Integer idCategoria){
+    public void update(Integer idOfer, String nombre, String tipoOferta, String imagen, Integer precioOferta, Date fechaIni, Date fechaTerm, Integer idTrabajador, Integer idSucursal, Integer idProducto, Integer idCategoria)
+    throws SQLException{
         //definir procedimiento
         StoredProcedureQuery storedProcedureQuery= em.createStoredProcedureQuery("OPERACIONES_CRUD.ACTUALIZAR_OFERTA");
         storedProcedureQuery.registerStoredProcedureParameter("idpue", Integer.class, ParameterMode.IN);
@@ -110,8 +118,8 @@ public class OfertaBean {
     
     }
     
-    public void delete(Integer idOferta){
-        StoredProcedureQuery storedProcedureQuery= em.createStoredProcedureQuery("OPERACIONES_CRUD.ELIMINAR_OFERTA");
+    public void delete(Integer idOferta) throws SQLException{
+        StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("OPERACIONES_CRUD.ELIMINAR_OFERTA");
         storedProcedureQuery.registerStoredProcedureParameter("idofer", Integer.class, ParameterMode.IN);
         storedProcedureQuery.setParameter("idofer", idOferta);
         storedProcedureQuery.execute();
