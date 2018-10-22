@@ -24,6 +24,8 @@
                     <h5>todas las</h5>
                     <h2>categorias</h2>
                     <hr style="border: 1px solid gray; "/>
+                    <button class="btn-lg btn-warning" style="border-radius: 7px">recibe tu descuento</button>
+                    <hr style="border: 1px solid gray; "/>
                     <c:forEach items="${categorias}" var="categoria">
                         <a href="#">${categoria.getNombre()}</a><br/>
                     </c:forEach>

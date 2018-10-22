@@ -20,6 +20,10 @@
         <servlet-name>OfertaServlet</servlet-name>
         <servlet-class>controller.OfertaServlet</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>ValoracionServlet</servlet-name>
+        <servlet-class>controller.ValoracionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -43,6 +47,11 @@
         <servlet-name>OfertaServlet</servlet-name>
         <url-pattern>/OfertaServlet</url-pattern>
         <url-pattern>/OfertaServlet/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValoracionServlet</servlet-name>
+        <url-pattern>/ValoracionServlet</url-pattern>
+        <url-pattern>/ValoracionServlet/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
