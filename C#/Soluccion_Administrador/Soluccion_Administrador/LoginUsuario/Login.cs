@@ -34,7 +34,7 @@ namespace LoginUsuario
             MaterialSkinManager m = MaterialSkinManager.Instance;
             m.AddFormToManage(this);
             m.Theme = MaterialSkinManager.Themes.LIGHT;
-            m.ColorScheme = new ColorScheme(Primary.Amber400, Primary.Amber500, Primary.Amber200, Accent.Green100, TextShade.BLACK);
+            m.ColorScheme = new ColorScheme(Primary.DeepPurple500, Primary.DeepPurple400, Primary.DeepPurple500, Accent.Green100, TextShade.WHITE);
 
         }
 
@@ -88,6 +88,11 @@ namespace LoginUsuario
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
