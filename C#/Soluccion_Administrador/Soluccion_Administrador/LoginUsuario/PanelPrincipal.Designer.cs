@@ -147,14 +147,44 @@
             this.btnBuscarPuesto = new System.Windows.Forms.Button();
             this.txtBuscarPuesto = new System.Windows.Forms.TextBox();
             this.dgvPuesto = new System.Windows.Forms.DataGridView();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
+            this.btnGenerarBI = new System.Windows.Forms.Button();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.cbotrabajadorOferta = new System.Windows.Forms.ComboBox();
+            this.cboSucOfert = new System.Windows.Forms.ComboBox();
+            this.cboprodOfert = new System.Windows.Forms.ComboBox();
+            this.cbocateOfert = new System.Windows.Forms.ComboBox();
+            this.txtIdOferta = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.dtpFechaIni = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaTer = new System.Windows.Forms.DateTimePicker();
+            this.btnEliminarOferta = new System.Windows.Forms.Button();
+            this.btnModificarOferta = new System.Windows.Forms.Button();
+            this.btnNuevaOferta = new System.Windows.Forms.Button();
+            this.lblIdProductoOf = new System.Windows.Forms.Label();
+            this.lblProducto = new System.Windows.Forms.Label();
+            this.lblIdCategoriaOferta = new System.Windows.Forms.Label();
+            this.lblIdTrabajador = new System.Windows.Forms.Label();
+            this.lblIdSucursal = new System.Windows.Forms.Label();
+            this.txtNombreOferta = new System.Windows.Forms.TextBox();
+            this.txtTipoOferta = new System.Windows.Forms.TextBox();
+            this.txtUrlOferta = new System.Windows.Forms.TextBox();
+            this.txtPrecioOferta = new System.Windows.Forms.TextBox();
+            this.lblNombreOferta = new System.Windows.Forms.Label();
+            this.lblTipoOferta = new System.Windows.Forms.Label();
+            this.lblUrl = new System.Windows.Forms.Label();
+            this.lblPrecioOfert = new System.Windows.Forms.Label();
+            this.lblIdOferta = new System.Windows.Forms.Label();
+            this.lblTituloOferta = new System.Windows.Forms.Label();
+            this.txtBuscarOferta = new System.Windows.Forms.TextBox();
+            this.dgvOferta = new System.Windows.Forms.DataGridView();
+            this.btnBuscarOferta = new System.Windows.Forms.Button();
             this.btnCerrarSession = new System.Windows.Forms.Button();
             this.lblSession = new System.Windows.Forms.Label();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.btnGenerarBI = new System.Windows.Forms.Button();
-            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
-            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
@@ -169,6 +199,8 @@
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPuesto)).BeginInit();
             this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOferta)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -189,6 +221,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Location = new System.Drawing.Point(12, 152);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -719,7 +752,7 @@
             this.dgvSucursal.Location = new System.Drawing.Point(28, 48);
             this.dgvSucursal.Name = "dgvSucursal";
             this.dgvSucursal.ReadOnly = true;
-            this.dgvSucursal.Size = new System.Drawing.Size(662, 372);
+            this.dgvSucursal.Size = new System.Drawing.Size(333, 372);
             this.dgvSucursal.TabIndex = 3;
             this.dgvSucursal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSucursal_CellClick);
             // 
@@ -997,6 +1030,9 @@
             // cboEnvioOfertaCliente
             // 
             this.cboEnvioOfertaCliente.FormattingEnabled = true;
+            this.cboEnvioOfertaCliente.Items.AddRange(new object[] {
+            "S",
+            "N"});
             this.cboEnvioOfertaCliente.Location = new System.Drawing.Point(821, 353);
             this.cboEnvioOfertaCliente.Name = "cboEnvioOfertaCliente";
             this.cboEnvioOfertaCliente.Size = new System.Drawing.Size(144, 21);
@@ -1335,9 +1371,356 @@
             this.dgvPuesto.Location = new System.Drawing.Point(128, 73);
             this.dgvPuesto.Name = "dgvPuesto";
             this.dgvPuesto.ReadOnly = true;
-            this.dgvPuesto.Size = new System.Drawing.Size(311, 346);
+            this.dgvPuesto.Size = new System.Drawing.Size(249, 346);
             this.dgvPuesto.TabIndex = 40;
             this.dgvPuesto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPuesto_CellContentClick);
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.label30);
+            this.tabPage7.Controls.Add(this.label29);
+            this.tabPage7.Controls.Add(this.dtpHasta);
+            this.tabPage7.Controls.Add(this.dtpDesde);
+            this.tabPage7.Controls.Add(this.btnGenerarBI);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(1033, 447);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Archivo BI";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(355, 227);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(35, 13);
+            this.label30.TabIndex = 4;
+            this.label30.Text = "Hasta";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(355, 125);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(38, 13);
+            this.label29.TabIndex = 3;
+            this.label29.Text = "Desde";
+            // 
+            // dtpHasta
+            // 
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHasta.Location = new System.Drawing.Point(358, 243);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(99, 20);
+            this.dtpHasta.TabIndex = 2;
+            // 
+            // dtpDesde
+            // 
+            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDesde.Location = new System.Drawing.Point(358, 141);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(99, 20);
+            this.dtpDesde.TabIndex = 1;
+            // 
+            // btnGenerarBI
+            // 
+            this.btnGenerarBI.Location = new System.Drawing.Point(531, 189);
+            this.btnGenerarBI.Name = "btnGenerarBI";
+            this.btnGenerarBI.Size = new System.Drawing.Size(75, 23);
+            this.btnGenerarBI.TabIndex = 0;
+            this.btnGenerarBI.Text = "Generar";
+            this.btnGenerarBI.UseVisualStyleBackColor = true;
+            this.btnGenerarBI.Click += new System.EventHandler(this.btnGenerarBI_Click);
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.cbotrabajadorOferta);
+            this.tabPage8.Controls.Add(this.cboSucOfert);
+            this.tabPage8.Controls.Add(this.cboprodOfert);
+            this.tabPage8.Controls.Add(this.cbocateOfert);
+            this.tabPage8.Controls.Add(this.txtIdOferta);
+            this.tabPage8.Controls.Add(this.label31);
+            this.tabPage8.Controls.Add(this.dtpFechaIni);
+            this.tabPage8.Controls.Add(this.dtpFechaTer);
+            this.tabPage8.Controls.Add(this.btnEliminarOferta);
+            this.tabPage8.Controls.Add(this.btnModificarOferta);
+            this.tabPage8.Controls.Add(this.btnNuevaOferta);
+            this.tabPage8.Controls.Add(this.lblIdProductoOf);
+            this.tabPage8.Controls.Add(this.lblProducto);
+            this.tabPage8.Controls.Add(this.lblIdCategoriaOferta);
+            this.tabPage8.Controls.Add(this.lblIdTrabajador);
+            this.tabPage8.Controls.Add(this.lblIdSucursal);
+            this.tabPage8.Controls.Add(this.txtNombreOferta);
+            this.tabPage8.Controls.Add(this.txtTipoOferta);
+            this.tabPage8.Controls.Add(this.txtUrlOferta);
+            this.tabPage8.Controls.Add(this.txtPrecioOferta);
+            this.tabPage8.Controls.Add(this.lblNombreOferta);
+            this.tabPage8.Controls.Add(this.lblTipoOferta);
+            this.tabPage8.Controls.Add(this.lblUrl);
+            this.tabPage8.Controls.Add(this.lblPrecioOfert);
+            this.tabPage8.Controls.Add(this.lblIdOferta);
+            this.tabPage8.Controls.Add(this.lblTituloOferta);
+            this.tabPage8.Controls.Add(this.txtBuscarOferta);
+            this.tabPage8.Controls.Add(this.dgvOferta);
+            this.tabPage8.Controls.Add(this.btnBuscarOferta);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(1033, 447);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "Oferta";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // cbotrabajadorOferta
+            // 
+            this.cbotrabajadorOferta.FormattingEnabled = true;
+            this.cbotrabajadorOferta.Location = new System.Drawing.Point(888, 139);
+            this.cbotrabajadorOferta.Name = "cbotrabajadorOferta";
+            this.cbotrabajadorOferta.Size = new System.Drawing.Size(121, 21);
+            this.cbotrabajadorOferta.TabIndex = 136;
+            // 
+            // cboSucOfert
+            // 
+            this.cboSucOfert.FormattingEnabled = true;
+            this.cboSucOfert.Location = new System.Drawing.Point(888, 168);
+            this.cboSucOfert.Name = "cboSucOfert";
+            this.cboSucOfert.Size = new System.Drawing.Size(121, 21);
+            this.cboSucOfert.TabIndex = 135;
+            // 
+            // cboprodOfert
+            // 
+            this.cboprodOfert.FormattingEnabled = true;
+            this.cboprodOfert.Location = new System.Drawing.Point(888, 202);
+            this.cboprodOfert.Name = "cboprodOfert";
+            this.cboprodOfert.Size = new System.Drawing.Size(121, 21);
+            this.cboprodOfert.TabIndex = 134;
+            // 
+            // cbocateOfert
+            // 
+            this.cbocateOfert.FormattingEnabled = true;
+            this.cbocateOfert.Location = new System.Drawing.Point(888, 242);
+            this.cbocateOfert.Name = "cbocateOfert";
+            this.cbocateOfert.Size = new System.Drawing.Size(121, 21);
+            this.cbocateOfert.TabIndex = 133;
+            // 
+            // txtIdOferta
+            // 
+            this.txtIdOferta.Location = new System.Drawing.Point(672, 105);
+            this.txtIdOferta.Name = "txtIdOferta";
+            this.txtIdOferta.Size = new System.Drawing.Size(125, 20);
+            this.txtIdOferta.TabIndex = 132;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(811, 242);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(54, 13);
+            this.label31.TabIndex = 130;
+            this.label31.Text = "Categoría";
+            // 
+            // dtpFechaIni
+            // 
+            this.dtpFechaIni.CustomFormat = "yyyy-MM-dd";
+            this.dtpFechaIni.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaIni.Location = new System.Drawing.Point(770, 302);
+            this.dtpFechaIni.Name = "dtpFechaIni";
+            this.dtpFechaIni.Size = new System.Drawing.Size(173, 20);
+            this.dtpFechaIni.TabIndex = 129;
+            // 
+            // dtpFechaTer
+            // 
+            this.dtpFechaTer.CustomFormat = "yyyy-MM-dd";
+            this.dtpFechaTer.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaTer.Location = new System.Drawing.Point(770, 339);
+            this.dtpFechaTer.Name = "dtpFechaTer";
+            this.dtpFechaTer.Size = new System.Drawing.Size(173, 20);
+            this.dtpFechaTer.TabIndex = 128;
+            // 
+            // btnEliminarOferta
+            // 
+            this.btnEliminarOferta.Location = new System.Drawing.Point(858, 390);
+            this.btnEliminarOferta.Name = "btnEliminarOferta";
+            this.btnEliminarOferta.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarOferta.TabIndex = 127;
+            this.btnEliminarOferta.Text = "Eliminar";
+            this.btnEliminarOferta.UseVisualStyleBackColor = true;
+            this.btnEliminarOferta.Click += new System.EventHandler(this.btnEliminarOferta_Click);
+            // 
+            // btnModificarOferta
+            // 
+            this.btnModificarOferta.Location = new System.Drawing.Point(749, 390);
+            this.btnModificarOferta.Name = "btnModificarOferta";
+            this.btnModificarOferta.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarOferta.TabIndex = 126;
+            this.btnModificarOferta.Text = "Modificar";
+            this.btnModificarOferta.UseVisualStyleBackColor = true;
+            this.btnModificarOferta.Click += new System.EventHandler(this.btnModificarOferta_Click_1);
+            // 
+            // btnNuevaOferta
+            // 
+            this.btnNuevaOferta.Location = new System.Drawing.Point(638, 390);
+            this.btnNuevaOferta.Name = "btnNuevaOferta";
+            this.btnNuevaOferta.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevaOferta.TabIndex = 125;
+            this.btnNuevaOferta.Text = "Nuevo";
+            this.btnNuevaOferta.UseVisualStyleBackColor = true;
+            this.btnNuevaOferta.Click += new System.EventHandler(this.btnNuevaOferta_Click);
+            // 
+            // lblIdProductoOf
+            // 
+            this.lblIdProductoOf.AutoSize = true;
+            this.lblIdProductoOf.Location = new System.Drawing.Point(811, 202);
+            this.lblIdProductoOf.Name = "lblIdProductoOf";
+            this.lblIdProductoOf.Size = new System.Drawing.Size(50, 13);
+            this.lblIdProductoOf.TabIndex = 123;
+            this.lblIdProductoOf.Text = "Producto";
+            // 
+            // lblProducto
+            // 
+            this.lblProducto.AutoSize = true;
+            this.lblProducto.Location = new System.Drawing.Point(649, 302);
+            this.lblProducto.Name = "lblProducto";
+            this.lblProducto.Size = new System.Drawing.Size(80, 13);
+            this.lblProducto.TabIndex = 122;
+            this.lblProducto.Text = "Fecha de Inicio";
+            // 
+            // lblIdCategoriaOferta
+            // 
+            this.lblIdCategoriaOferta.AutoSize = true;
+            this.lblIdCategoriaOferta.Location = new System.Drawing.Point(649, 339);
+            this.lblIdCategoriaOferta.Name = "lblIdCategoriaOferta";
+            this.lblIdCategoriaOferta.Size = new System.Drawing.Size(93, 13);
+            this.lblIdCategoriaOferta.TabIndex = 121;
+            this.lblIdCategoriaOferta.Text = "Fecha de Termino";
+            // 
+            // lblIdTrabajador
+            // 
+            this.lblIdTrabajador.AutoSize = true;
+            this.lblIdTrabajador.Location = new System.Drawing.Point(811, 142);
+            this.lblIdTrabajador.Name = "lblIdTrabajador";
+            this.lblIdTrabajador.Size = new System.Drawing.Size(58, 13);
+            this.lblIdTrabajador.TabIndex = 118;
+            this.lblIdTrabajador.Text = "Trabajador";
+            // 
+            // lblIdSucursal
+            // 
+            this.lblIdSucursal.AutoSize = true;
+            this.lblIdSucursal.Location = new System.Drawing.Point(813, 168);
+            this.lblIdSucursal.Name = "lblIdSucursal";
+            this.lblIdSucursal.Size = new System.Drawing.Size(48, 13);
+            this.lblIdSucursal.TabIndex = 117;
+            this.lblIdSucursal.Text = "Sucursal";
+            // 
+            // txtNombreOferta
+            // 
+            this.txtNombreOferta.Location = new System.Drawing.Point(672, 131);
+            this.txtNombreOferta.Name = "txtNombreOferta";
+            this.txtNombreOferta.Size = new System.Drawing.Size(125, 20);
+            this.txtNombreOferta.TabIndex = 116;
+            // 
+            // txtTipoOferta
+            // 
+            this.txtTipoOferta.Location = new System.Drawing.Point(672, 157);
+            this.txtTipoOferta.Name = "txtTipoOferta";
+            this.txtTipoOferta.Size = new System.Drawing.Size(125, 20);
+            this.txtTipoOferta.TabIndex = 115;
+            // 
+            // txtUrlOferta
+            // 
+            this.txtUrlOferta.Location = new System.Drawing.Point(672, 183);
+            this.txtUrlOferta.Name = "txtUrlOferta";
+            this.txtUrlOferta.Size = new System.Drawing.Size(125, 20);
+            this.txtUrlOferta.TabIndex = 114;
+            // 
+            // txtPrecioOferta
+            // 
+            this.txtPrecioOferta.Location = new System.Drawing.Point(884, 108);
+            this.txtPrecioOferta.Name = "txtPrecioOferta";
+            this.txtPrecioOferta.Size = new System.Drawing.Size(125, 20);
+            this.txtPrecioOferta.TabIndex = 113;
+            // 
+            // lblNombreOferta
+            // 
+            this.lblNombreOferta.AutoSize = true;
+            this.lblNombreOferta.Location = new System.Drawing.Point(591, 137);
+            this.lblNombreOferta.Name = "lblNombreOferta";
+            this.lblNombreOferta.Size = new System.Drawing.Size(44, 13);
+            this.lblNombreOferta.TabIndex = 112;
+            this.lblNombreOferta.Text = "Nombre";
+            // 
+            // lblTipoOferta
+            // 
+            this.lblTipoOferta.AutoSize = true;
+            this.lblTipoOferta.Location = new System.Drawing.Point(591, 160);
+            this.lblTipoOferta.Name = "lblTipoOferta";
+            this.lblTipoOferta.Size = new System.Drawing.Size(75, 13);
+            this.lblTipoOferta.TabIndex = 111;
+            this.lblTipoOferta.Text = "Tipo de Oferta";
+            // 
+            // lblUrl
+            // 
+            this.lblUrl.AutoSize = true;
+            this.lblUrl.Location = new System.Drawing.Point(591, 186);
+            this.lblUrl.Name = "lblUrl";
+            this.lblUrl.Size = new System.Drawing.Size(82, 13);
+            this.lblUrl.TabIndex = 110;
+            this.lblUrl.Text = "URL de Imagen";
+            // 
+            // lblPrecioOfert
+            // 
+            this.lblPrecioOfert.AutoSize = true;
+            this.lblPrecioOfert.Location = new System.Drawing.Point(811, 108);
+            this.lblPrecioOfert.Name = "lblPrecioOfert";
+            this.lblPrecioOfert.Size = new System.Drawing.Size(69, 13);
+            this.lblPrecioOfert.TabIndex = 109;
+            this.lblPrecioOfert.Text = "Precio Oferta";
+            // 
+            // lblIdOferta
+            // 
+            this.lblIdOferta.AutoSize = true;
+            this.lblIdOferta.Location = new System.Drawing.Point(591, 108);
+            this.lblIdOferta.Name = "lblIdOferta";
+            this.lblIdOferta.Size = new System.Drawing.Size(18, 13);
+            this.lblIdOferta.TabIndex = 108;
+            this.lblIdOferta.Text = "ID";
+            // 
+            // lblTituloOferta
+            // 
+            this.lblTituloOferta.AutoSize = true;
+            this.lblTituloOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloOferta.Location = new System.Drawing.Point(733, 19);
+            this.lblTituloOferta.Name = "lblTituloOferta";
+            this.lblTituloOferta.Size = new System.Drawing.Size(190, 25);
+            this.lblTituloOferta.TabIndex = 107;
+            this.lblTituloOferta.Text = "Menú Edición Oferta";
+            // 
+            // txtBuscarOferta
+            // 
+            this.txtBuscarOferta.Location = new System.Drawing.Point(97, 19);
+            this.txtBuscarOferta.Name = "txtBuscarOferta";
+            this.txtBuscarOferta.Size = new System.Drawing.Size(470, 20);
+            this.txtBuscarOferta.TabIndex = 106;
+            // 
+            // dgvOferta
+            // 
+            this.dgvOferta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOferta.Location = new System.Drawing.Point(15, 47);
+            this.dgvOferta.Name = "dgvOferta";
+            this.dgvOferta.Size = new System.Drawing.Size(552, 382);
+            this.dgvOferta.TabIndex = 105;
+            this.dgvOferta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOferta_CellContentClick);
+            // 
+            // btnBuscarOferta
+            // 
+            this.btnBuscarOferta.Location = new System.Drawing.Point(15, 17);
+            this.btnBuscarOferta.Name = "btnBuscarOferta";
+            this.btnBuscarOferta.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarOferta.TabIndex = 104;
+            this.btnBuscarOferta.Text = "Buscar";
+            this.btnBuscarOferta.UseVisualStyleBackColor = true;
+            this.btnBuscarOferta.Click += new System.EventHandler(this.btnBuscarOferta_Click);
             // 
             // btnCerrarSession
             // 
@@ -1358,64 +1741,6 @@
             this.lblSession.TabIndex = 3;
             this.lblSession.Text = "Session";
             // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.label30);
-            this.tabPage7.Controls.Add(this.label29);
-            this.tabPage7.Controls.Add(this.dtpHasta);
-            this.tabPage7.Controls.Add(this.dtpDesde);
-            this.tabPage7.Controls.Add(this.btnGenerarBI);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1033, 447);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Archivo BI";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // btnGenerarBI
-            // 
-            this.btnGenerarBI.Location = new System.Drawing.Point(531, 189);
-            this.btnGenerarBI.Name = "btnGenerarBI";
-            this.btnGenerarBI.Size = new System.Drawing.Size(75, 23);
-            this.btnGenerarBI.TabIndex = 0;
-            this.btnGenerarBI.Text = "Generar";
-            this.btnGenerarBI.UseVisualStyleBackColor = true;
-            this.btnGenerarBI.Click += new System.EventHandler(this.btnGenerarBI_Click);
-            // 
-            // dtpDesde
-            // 
-            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDesde.Location = new System.Drawing.Point(358, 141);
-            this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(99, 20);
-            this.dtpDesde.TabIndex = 1;
-            // 
-            // dtpHasta
-            // 
-            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpHasta.Location = new System.Drawing.Point(358, 243);
-            this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(99, 20);
-            this.dtpHasta.TabIndex = 2;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(355, 125);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(38, 13);
-            this.label29.TabIndex = 3;
-            this.label29.Text = "Desde";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(355, 227);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(35, 13);
-            this.label30.TabIndex = 4;
-            this.label30.Text = "Hasta";
-            // 
             // PanelPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1427,6 +1752,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PanelPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Plataforma de Administrador";
             this.Load += new System.EventHandler(this.PanelPrincipal_Load);
             this.tabControl1.ResumeLayout(false);
@@ -1450,6 +1776,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPuesto)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOferta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1583,5 +1912,35 @@
         private System.Windows.Forms.Button btnGenerarBI;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TextBox txtIdOferta;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.DateTimePicker dtpFechaIni;
+        private System.Windows.Forms.DateTimePicker dtpFechaTer;
+        private System.Windows.Forms.Button btnEliminarOferta;
+        private System.Windows.Forms.Button btnModificarOferta;
+        private System.Windows.Forms.Button btnNuevaOferta;
+        private System.Windows.Forms.Label lblIdProductoOf;
+        private System.Windows.Forms.Label lblProducto;
+        private System.Windows.Forms.Label lblIdCategoriaOferta;
+        private System.Windows.Forms.Label lblIdTrabajador;
+        private System.Windows.Forms.Label lblIdSucursal;
+        private System.Windows.Forms.TextBox txtNombreOferta;
+        private System.Windows.Forms.TextBox txtTipoOferta;
+        private System.Windows.Forms.TextBox txtUrlOferta;
+        private System.Windows.Forms.TextBox txtPrecioOferta;
+        private System.Windows.Forms.Label lblNombreOferta;
+        private System.Windows.Forms.Label lblTipoOferta;
+        private System.Windows.Forms.Label lblUrl;
+        private System.Windows.Forms.Label lblPrecioOfert;
+        private System.Windows.Forms.Label lblIdOferta;
+        private System.Windows.Forms.Label lblTituloOferta;
+        private System.Windows.Forms.TextBox txtBuscarOferta;
+        private System.Windows.Forms.DataGridView dgvOferta;
+        private System.Windows.Forms.Button btnBuscarOferta;
+        private System.Windows.Forms.ComboBox cbotrabajadorOferta;
+        private System.Windows.Forms.ComboBox cboSucOfert;
+        private System.Windows.Forms.ComboBox cboprodOfert;
+        private System.Windows.Forms.ComboBox cbocateOfert;
     }
 }

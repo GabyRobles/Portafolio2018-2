@@ -53,8 +53,12 @@ namespace LoginUsuario
             CargarComboENPuesto(cboPuestoEN);
             CargarComboBoxEmpAG(cboEmADM);
             CargarComboBoxEmpEN(cboEmpresaEN);
-            cargarCboCliente(cboEnvioOfertaCliente);
-
+            //cargarCboCliente(cboEnvioOfertaCliente);
+            CargarOferta(dgvOferta);
+            CargarComboOfertaTrabajador(cbotrabajadorOferta);
+            CargarComboOfertaSucursal(cboSucOfert);
+            CargarComboOfertaProducto(cboprodOfert);
+            CargarComboOfertaCategoria(cbocateOfert);
         }
 
         private void CargarPuesto(DataGridView dgvPuesto)
@@ -72,6 +76,7 @@ namespace LoginUsuario
                 adaptador.Fill(tabla);
                 dgvPuesto.DataSource = tabla;
                 ora.Close();
+
             }
             catch (Exception ex)
             {
@@ -81,6 +86,31 @@ namespace LoginUsuario
             }
 
         }
+        public void CargarOferta(DataGridView dgv)//metodo que carga la grilla de oferta
+        {
+            try
+            {
+
+                ora.Open();
+                OracleCommand comando = new OracleCommand("seleccionarToda_Oferta", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = comando;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                dgv.DataSource = tabla;
+                ora.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
+                ora.Close();
+            }
+
+        }
+
 
         public void CargarCeldas(DataGridView dgv)//se cargan los pruductos en la grilla 
         {
@@ -1254,6 +1284,297 @@ namespace LoginUsuario
             archivotxt.Close();
             ora.Close();
         }
+
+        private void btnBuscarOferta_Click(object sender, EventArgs e)
+        {
+            try
+            {//buscar Oferta
+                ora.Open();
+
+                OracleCommand comando = new OracleCommand("seleccionar_Oferta", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("idofe", OracleType.Number).Value = Convert.ToInt32(txtBuscarOferta.Text);
+                if (comando.Parameters != null)
+                {
+                    MessageBox.Show("Oferta No encontrada");
+                    comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                    comando.ExecuteNonQuery();
+                    OracleDataAdapter adaptador = new OracleDataAdapter();
+                    adaptador.SelectCommand = comando;
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+                    dtvCliente.DataSource = tabla;
+                    ora.Close();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Dato no encontrado");
+                OracleCommand comando = new OracleCommand("seleccionarToda_Oferta", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando = new OracleCommand("seleccionarToda_Oferta", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = comando;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                dtvCliente.DataSource = tabla;
+                ora.Close();
+            }
+        }
+        //nueva oferta
+        private void btnNuevaOferta_Click(object sender, EventArgs e)
+        {
+            int idcate = Convert.ToInt32(cbocateOfert.SelectedValue.ToString());
+            int idprod= Convert.ToInt32(cboprodOfert.SelectedValue.ToString());
+            int idtraba= Convert.ToInt32(cbotrabajadorOferta.SelectedValue.ToString());
+            int idsuc= Convert.ToInt32(cboSucOfert.SelectedValue.ToString());
+
+            try
+            {
+                if (txtNombreOferta.Text.Equals("") && txtTipoOferta.Equals("") && txtUrlOferta.Equals("") && txtPrecioOferta.Equals("")
+                    && dtpFechaIni.Equals("")
+                    && dtpFechaTer.Equals(""))//verifica que los txt esten llenos
+                {
+                    MessageBox.Show("Todos los Datos Son Obligatorios");//mensaje al usuario
+                }
+                else
+                {
+                    ora.Open();
+                    OracleCommand comando = new OracleCommand("INSERTAR_OFERTA", ora);
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    comando.Parameters.Add("nom", OracleType.VarChar).Value = txtNombreOferta.Text;
+                    comando.Parameters.Add("tipofe", OracleType.VarChar).Value = txtNombreOferta.Text;
+                    comando.Parameters.Add("img", OracleType.VarChar).Value = txtUrlOferta.Text;
+                    comando.Parameters.Add("prec", OracleType.Number).Value = Convert.ToInt32(txtPrecioOferta.Text);
+                    comando.Parameters.Add("idtra", OracleType.Number).Value = idtraba;
+                    comando.Parameters.Add("idsuc", OracleType.Number).Value = idsuc;
+                    comando.Parameters.Add("idprod", OracleType.Number).Value = idprod;
+                    comando.Parameters.Add("feini", OracleType.Number).Value = dtpFechaIni.Text;
+                    comando.Parameters.Add("feter", OracleType.Number).Value = dtpFechaTer.Text;
+                    comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
+
+                    comando.ExecuteNonQuery();
+                    MessageBox.Show("El Archivo ha sido insertado");
+                    ora.Close();
+                }
+                this.CargarSucursal(dgvSucursal);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha sido insertado el registro");
+                ora.Close();
+            }
+        }
+        
+        //modificar oferta
+        private void btnModificarOferta_Click_1(object sender, EventArgs e)
+        {
+            int idcate = Convert.ToInt32(cbocateOfert.SelectedValue.ToString());
+            int idprod = Convert.ToInt32(cboprodOfert.SelectedValue.ToString());
+            int idtraba = Convert.ToInt32(cbotrabajadorOferta.SelectedValue.ToString());
+            int idsuc = Convert.ToInt32(cboSucOfert.SelectedValue.ToString());
+
+            try
+            {
+                if (txtIdOferta.Text.Equals("") && txtNombreOferta.Text.Equals("") && txtTipoOferta.Equals("") && txtUrlOferta.Equals("")
+                    && txtPrecioOferta.Equals("")
+                    && dtpFechaIni.Equals("") && dtpFechaTer.Equals(""))//verifica que los txt esten llenos
+                {
+                    MessageBox.Show("Todos los Datos Son Obligatorios");//mensaje al usuario
+                }
+                else
+                {
+                    ora.Open();
+                    OracleCommand comando = new OracleCommand("ACTUALIZAR_OFERTA", ora);
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    comando.Parameters.Add("idofe", OracleType.Number).Value = Convert.ToInt32(txtIdOferta.Text);
+                    comando.Parameters.Add("nom", OracleType.VarChar).Value = txtNombreOferta.Text;
+                    comando.Parameters.Add("tipofe", OracleType.VarChar).Value = txtNombreOferta.Text;
+                    comando.Parameters.Add("img", OracleType.VarChar).Value = txtUrlOferta.Text;
+                    comando.Parameters.Add("prec", OracleType.Number).Value = Convert.ToInt32(txtPrecioOferta.Text);
+                    comando.Parameters.Add("idtra", OracleType.Number).Value = idtraba;
+                    comando.Parameters.Add("idsuc", OracleType.Number).Value = idsuc;
+                    comando.Parameters.Add("idprod", OracleType.Number).Value = idprod;
+                    comando.Parameters.Add("feini", OracleType.Number).Value = dtpFechaIni.Text;
+                    comando.Parameters.Add("feter", OracleType.Number).Value = dtpFechaTer.Text;
+                    comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
+                    comando.ExecuteNonQuery();
+                    MessageBox.Show("El Archivo ha sido actualizado");
+                    ora.Close();
+                }
+                this.CargarSucursal(dgvSucursal);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha actualizado el registro");
+                ora.Close();
+            }
+        }
+        //eliminar oferta
+        private void btnEliminarOferta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ora.Open();
+                OracleCommand comando = new OracleCommand("ELIMINAR_OFERTA", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("idofe", OracleType.Number).Value = Convert.ToInt32(txtIdOferta.Text);
+                comando.ExecuteNonQuery();
+                MessageBox.Show("El Archivo ha sido Eliminado");
+                ora.Close();
+
+                this.CargarSucursal(dgvSucursal);
+                txtidAG.Clear();
+                txtnomAG.Clear();
+                txtcorrAG.Clear();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha Eliminado el registro");
+            }
+        }
+
+        private void dgvOferta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            posicion = dgvOferta.CurrentRow.Index;
+          
+            txtIdOferta.Text = dgvOferta[0, posicion].Value.ToString();
+            txtNombreOferta.Text = dgvOferta[1, posicion].Value.ToString();
+            txtTipoOferta.Text = dgvOferta[2, posicion].Value.ToString();
+            txtPrecioOferta.Text = dgvOferta[4, posicion].Value.ToString();
+            txtUrlOferta.Text= dgvOferta[3, posicion].Value.ToString();
+            cbotrabajadorOferta.Text = dgvOferta[5, posicion].Value.ToString();
+            cboSucOfert.Text = dgvOferta[6, posicion].Value.ToString();
+            cboprodOfert.Text = dgvOferta[7, posicion].Value.ToString();
+            cbocateOfert.Text = dgvOferta[10, posicion].Value.ToString();
+
+            DateTime curDate;
+            if (DateTime.TryParse(dgvOferta[8, posicion].Value.ToString(), out curDate))
+            {
+                dtpFechaIni.Value = curDate;
+            }
+
+            DateTime curDates;
+            if (DateTime.TryParse(dgvOferta[9, posicion].Value.ToString(), out curDates))
+            {
+                dtpFechaTer.Value = curDates;
+            }
+
+
+        }
+
+
+        public void CargarComboOfertaTrabajador(ComboBox cbo)//carga los puesto de encargado de local
+        {
+            try
+            {
+                ora.Open();
+                OracleDataAdapter da = new OracleDataAdapter("select * from trabajador", ora);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    cbotrabajadorOferta.DataSource = dt;
+                    cbotrabajadorOferta.DisplayMember = "nombre";
+                    cbotrabajadorOferta.ValueMember = "id_trabajador";
+                }
+                ora.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Datos no encontrados" + ex.ToString());
+            }
+
+        }
+
+        public void CargarComboOfertaSucursal(ComboBox cbo)//carga los puesto de encargado de local
+        {
+            try
+            {
+                ora.Open();
+                OracleDataAdapter da = new OracleDataAdapter("select * from sucursal", ora);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    cboSucOfert.DataSource = dt;
+                    cboSucOfert.DisplayMember = "nombre";
+                    cboSucOfert.ValueMember = "id_sucursal";
+                }
+                ora.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Datos no encontrados" + ex.ToString());
+            }
+
+        }
+
+
+
+        public void CargarComboOfertaProducto(ComboBox cbo)//carga los puesto de encargado de local
+        {
+            try
+            {
+                ora.Open();
+                OracleDataAdapter da = new OracleDataAdapter("select * from producto", ora);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    cboprodOfert.DataSource = dt;
+                    cboprodOfert.DisplayMember = "nombre";
+                    cboprodOfert.ValueMember = "id_producto";
+                }
+                ora.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Datos no encontrados" + ex.ToString());
+            }
+
+        }
+
+        public void CargarComboOfertaCategoria(ComboBox cbo)//carga los puesto de encargado de local
+        {
+            try
+            {
+                ora.Open();
+                OracleDataAdapter da = new OracleDataAdapter("select * from categoria", ora);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    cbocateOfert.DataSource = dt;
+                    cbocateOfert.DisplayMember = "nombre";
+                    cbocateOfert.ValueMember = "id_categoria";
+                }
+                ora.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Datos no encontrados" + ex.ToString());
+            }
+
+        }
+
+
     }
 }
 
