@@ -10,6 +10,7 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inicio de Sesión</title>
+        <link rel="icon" href="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png">
         <style>
             <%@include file="css/style.css" %>
         </style>
@@ -19,7 +20,7 @@
             <div class="login-form">
                 <div class="main-div">
                     <div class="panel">
-                        <img class="logo" src="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png" height="100%"/>
+                        <img class="logo" src="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png"/>
                         <h1>Mis Ofertas</h1>
                         <h2>Inicio de sesión de Consumidores</h2>
                         <p>Por favor ingrese su correo y contraseña</p>

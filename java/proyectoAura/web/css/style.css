@@ -4,10 +4,14 @@
     Author     : SOA
 */
 body {
-    background-image:url(https://s3.amazonaws.com/proyectoaura-storage/img/onda-1.png), url(https://s3.amazonaws.com/proyectoaura-storage/img/onda-2.png); 
+    background-image:url(https://s3.amazonaws.com/proyectoaura-storage/img/footer.png); 
     background-position:bottom ; 
-    background-size:120%;
+    background-size:100%;
     background-repeat: no-repeat;
+}
+
+.logo{
+    height: 116px;
 }
 
 .panel h2{ 
