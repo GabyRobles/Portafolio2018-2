@@ -64,4 +64,11 @@ public class ConsumidorBean {
        }
        return validacion;
    }
+   
+   public void sumarPuntos(Consumidor consumidor, int puntaje){//suma y envia puntaje a la entidad
+       Integer puntos;
+       puntos = consumidor.getPuntaje();
+       puntos += puntaje;
+       consumidor.setPuntaje(puntos);
+   }
 }

@@ -3,10 +3,25 @@
     Created on : 14-10-2018, 19:32:12
     Author     : SOA
 */
-body {background-image:url(https://s3.amazonaws.com/proyectoaura-storage/img/onda-1.png), url(https://s3.amazonaws.com/proyectoaura-storage/img/onda-2.png); background-position:bottom ; background-size:120% ;background-repeat: no-repeat}
+body {
+    background-image:url(https://s3.amazonaws.com/proyectoaura-storage/img/onda-1.png), url(https://s3.amazonaws.com/proyectoaura-storage/img/onda-2.png); 
+    background-position:bottom ; 
+    background-size:120%;
+    background-repeat: no-repeat;
+}
 
-.panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
-.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+.panel h2{ 
+    color:#444444; 
+    font-size:18px; 
+    margin:0 0 8px 0;
+}
+
+.panel p { 
+    color:#777777; 
+    font-size:14px; 
+    margin-bottom:30px; 
+    line-height:24px;
+}
 .login-form .form-control {
   background: #f7f7f7 none repeat scroll 0 0;
   border: 1px solid #d4d4d4;
@@ -55,5 +70,12 @@ body {background-image:url(https://s3.amazonaws.com/proyectoaura-storage/img/ond
 .login-form .btn.btn-primary.reset {
   background: #ff9900 none repeat scroll 0 0;
 }
-.back { text-align: left; margin-top:10px;}
-.back a {color: #444444; font-size: 13px;text-decoration: none;}
+.back { 
+    text-align: left; 
+    margin-top:10px;
+}
+.back a {
+    color: #444444; 
+    font-size: 13px;
+    text-decoration: none;
+}
