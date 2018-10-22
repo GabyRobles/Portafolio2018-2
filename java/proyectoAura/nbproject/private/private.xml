@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nico_/Desktop/proyecto%20Aura/Portafolio2018/java/proyectoAura/src/java/model/Oferta.java</file>
-            <file>file:/C:/Users/nico_/Desktop/proyecto%20Aura/Portafolio2018/java/proyectoAura/web/Login.jsp</file>
-            <file>file:/C:/Users/nico_/Desktop/proyecto%20Aura/Portafolio2018/java/proyectoAura/src/java/controller/LoginServlet.java</file>
-            <file>file:/C:/Users/nico_/Desktop/proyecto%20Aura/Portafolio2018/java/proyectoAura/src/java/controller/OfertaServlet.java</file>
-            <file>file:/C:/Users/nico_/Desktop/proyecto%20Aura/Portafolio2018/java/proyectoAura/web/Trabajador/Encargado/Ofertas.jsp</file>
-            <file>file:/C:/Users/nico_/Desktop/proyecto%20Aura/Portafolio2018/java/proyectoAura/web/Trabajador/Encargado/CrearOferta.jsp</file>
-            <file>file:/C:/Users/nico_/Desktop/proyecto%20Aura/Portafolio2018/java/proyectoAura/src/java/bean/OfertaBean.java</file>
-            <file>file:/C:/Users/nico_/Desktop/proyecto%20Aura/Portafolio2018/java/proyectoAura/src/java/bean/ConsumidorBean.java</file>
+            <file>file:/C:/Users/maria/Documents/GitHub/Portafolio2018-2/java/proyectoAura/web/Trabajador/Login.jsp</file>
+            <file>file:/C:/Users/maria/Documents/GitHub/Portafolio2018-2/java/proyectoAura/web/CerrarSesion.jsp</file>
+            <file>file:/C:/Users/maria/Documents/GitHub/Portafolio2018-2/java/proyectoAura/web/Consumidor/Home.jsp</file>
+            <file>file:/C:/Users/maria/Documents/GitHub/Portafolio2018-2/java/proyectoAura/web/Login.jsp</file>
+            <file>file:/C:/Users/maria/Documents/GitHub/Portafolio2018-2/java/proyectoAura/web/Consumidor/SumarPuntaje.jsp</file>
         </group>
     </open-files>
 </project-private>

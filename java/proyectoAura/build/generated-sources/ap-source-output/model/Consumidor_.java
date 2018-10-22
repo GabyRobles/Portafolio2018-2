@@ -9,7 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import model.Cupon;
 import model.Valoracion;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-21T20:36:05")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-22T16:21:45")
 @StaticMetamodel(Consumidor.class)
 public class Consumidor_ { 
 
