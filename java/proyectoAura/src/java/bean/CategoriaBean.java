@@ -5,47 +5,36 @@
  */
 package bean;
 
-
 import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import model.Producto;
-
+import model.Categoria;
 
 /**
  *
  * @author nico_
  */
-public class ProductoBean {
+public class CategoriaBean {
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProyectoAuraPU");
     EntityManager em = factory.createEntityManager();
-    private List<Producto> lista;
+    private List<Categoria> lista;
     
-    public ProductoBean(){
+    public CategoriaBean(){
         try {
             lista = findAll();
         } catch (SQLException | NullPointerException ex) {
             System.out.println("Error: "+ex.getMessage());
         }
     }
-
-    public List<Producto> getLista() {
-        return lista;
-    }
-
-    public void setLista(List<Producto> lista) {
-        this.lista = lista;
+    
+    public Categoria findByNombre(String nombre) throws SQLException, NullPointerException{
+        return (Categoria) em.createNamedQuery("Categoria.findByNombre").setParameter("nombre", nombre).getSingleResult();
     }
     
-    public Producto findByNombre(String nombre)throws SQLException, NullPointerException{
-        return (Producto) em.createNamedQuery("Producto.findByNombre").setParameter("nombre", nombre).getSingleResult();
+    public List<Categoria> findAll() throws SQLException, NullPointerException{
+        return em.createNamedQuery("Categoria.findAll").getResultList();
     }
-    
-    public List<Producto> findAll()throws SQLException, NullPointerException{
-        return em.createNamedQuery("Producto.findAll").getResultList();
-    }
-    
     
 }

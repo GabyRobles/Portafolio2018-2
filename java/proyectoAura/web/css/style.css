@@ -3,7 +3,7 @@
     Created on : 14-10-2018, 19:32:12
     Author     : SOA
 */
-.LoginForm{background-image:url(img/onda-1.png);background-repeat:no-repeat; background-position:bottom ; background-size:cover ;}
+body {background-image:url(https://s3.amazonaws.com/proyectoaura-storage/img/onda-1.png), url(https://s3.amazonaws.com/proyectoaura-storage/img/onda-2.png); background-position:bottom ; background-size:120% ;background-repeat: no-repeat}
 
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
 .panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
@@ -17,10 +17,12 @@
 }
 .main-div {
   background: #ffffff none repeat scroll 0 0;
-  border-radius: 2px;
+  border: solid 1px #ccccff;
+  border-radius: 5px;
   margin: 10px auto 30px;
-  max-width: 38%;
+  max-width: 45%;
   padding: 50px 70px 70px 71px;
+  box-shadow: 10px 10px 5px grey;
 }
 
 .login-form .form-group {
@@ -46,7 +48,7 @@
   text-align: left; margin-bottom:30px;
 }
 .botto-text {
-  color: #ffffff;
+  color: #000000;
   font-size: 14px;
   margin: auto;
 }

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import bean.CategoriaBean;
 import bean.ConsumidorBean;
 import bean.TrabajadorBean;
 import java.io.IOException;
@@ -117,8 +118,10 @@ public class LoginServlet extends HttpServlet {
             String correo = request.getParameter("email");
             String contrasena = request.getParameter("psw");
             ConsumidorBean consumidorBean = new ConsumidorBean();
+            CategoriaBean categoria = new CategoriaBean();
             if (consumidorBean.validarContrasena(correo, contrasena)) {
-                request.getSession(true).setAttribute("usuario", consumidorBean.findByCorreo(correo));
+                request.getSession().setAttribute("usuario", consumidorBean.findByCorreo(correo));
+                request.setAttribute("categorias", categoria.findAll());
                 request.getRequestDispatcher("/Consumidor/Home.jsp").forward(request, response);
             }
         } catch (IOException | ServletException | SQLException e) {
