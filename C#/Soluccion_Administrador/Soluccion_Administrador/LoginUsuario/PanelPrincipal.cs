@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using System.IO;
 
 namespace LoginUsuario
 {
@@ -1230,6 +1231,28 @@ namespace LoginUsuario
                 MessageBox.Show("No se ha eliminado el puesto");
                 this.CargarPuesto(dgvPuesto);
             }
+        }
+
+        private void btnGenerarBI_Click(object sender, EventArgs e)
+        {
+            ora.Open();
+           // OracleDataAdapter consulta = new OracleDataAdapter("select cont_correos,cont_consumidor,cont_oferta,cont_cupones from registro where between'" + dtpDesde + "'and '" + dtpHasta + "'", ora);
+             OracleDataAdapter consulta = new OracleDataAdapter("select cont_correos,cont_consumidor,cont_oferta,cont_cupones from registro", ora);
+            DataTable dt = new DataTable();//guardamos en un objeto de datatable lo encontrado
+            consulta.Fill(dt);
+            string dataFiller = string.Empty;
+            StreamWriter archivotxt = new StreamWriter("C:\\Users\\Akihiko Sanada\\Desktop\\ejemplo.txt");
+            foreach (DataRow item in dt.Rows)
+            {
+                foreach (decimal registro in item.ItemArray)
+                {
+                    dataFiller = dataFiller + registro.ToString() + ";";
+                }
+                archivotxt.WriteLine(dataFiller);
+                dataFiller = string.Empty;
+            }
+            archivotxt.Close();
+            ora.Close();
         }
     }
 }

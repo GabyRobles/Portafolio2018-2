@@ -149,6 +149,12 @@
             this.dgvPuesto = new System.Windows.Forms.DataGridView();
             this.btnCerrarSession = new System.Windows.Forms.Button();
             this.lblSession = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.btnGenerarBI = new System.Windows.Forms.Button();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
@@ -162,6 +168,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtvCliente)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPuesto)).BeginInit();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -181,6 +188,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(12, 152);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1227,7 +1235,7 @@
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage6.Size = new System.Drawing.Size(1033, 447);
             this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "tabPage6";
+            this.tabPage6.Text = "Puesto";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // label28
@@ -1350,6 +1358,62 @@
             this.lblSession.TabIndex = 3;
             this.lblSession.Text = "Session";
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.label30);
+            this.tabPage7.Controls.Add(this.label29);
+            this.tabPage7.Controls.Add(this.dtpHasta);
+            this.tabPage7.Controls.Add(this.dtpDesde);
+            this.tabPage7.Controls.Add(this.btnGenerarBI);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(1033, 447);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Archivo BI";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // btnGenerarBI
+            // 
+            this.btnGenerarBI.Location = new System.Drawing.Point(499, 197);
+            this.btnGenerarBI.Name = "btnGenerarBI";
+            this.btnGenerarBI.Size = new System.Drawing.Size(75, 23);
+            this.btnGenerarBI.TabIndex = 0;
+            this.btnGenerarBI.Text = "Generar";
+            this.btnGenerarBI.UseVisualStyleBackColor = true;
+            this.btnGenerarBI.Click += new System.EventHandler(this.btnGenerarBI_Click);
+            // 
+            // dtpDesde
+            // 
+            this.dtpDesde.Location = new System.Drawing.Point(238, 131);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(200, 20);
+            this.dtpDesde.TabIndex = 1;
+            // 
+            // dtpHasta
+            // 
+            this.dtpHasta.Location = new System.Drawing.Point(238, 266);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(200, 20);
+            this.dtpHasta.TabIndex = 2;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(235, 115);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(38, 13);
+            this.label29.TabIndex = 3;
+            this.label29.Text = "Desde";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(235, 250);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(35, 13);
+            this.label30.TabIndex = 4;
+            this.label30.Text = "Hasta";
+            // 
             // PanelPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1382,6 +1446,8 @@
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPuesto)).EndInit();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1509,5 +1575,11 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.DateTimePicker dtpHasta;
+        private System.Windows.Forms.DateTimePicker dtpDesde;
+        private System.Windows.Forms.Button btnGenerarBI;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label29;
     }
 }
