@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Consumidor;
 
 /**
  *
@@ -63,8 +64,13 @@ public class ConsumidorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        String action = request.getParameter("action");//llamadode la acción
+        switch(action){
+            case"sumarPuntajes":this.sumarPuntaje(request, response);
+                        break;
+            
+        }
+    }   
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -125,10 +131,18 @@ public class ConsumidorServlet extends HttpServlet {
         
             System.out.println("No se puede crear el usuario: "+ex.getMessage());
             
+        }  
+    }
+    
+    private void sumarPuntaje(HttpServletRequest request, HttpServletResponse response){// llamado al metodo sumar Puntos creado en ConsumidorBean
+        ConsumidorBean consumidor = new ConsumidorBean();
+        Consumidor usuario = (Consumidor)request.getSession().getAttribute("usuario");
+        
+        try{
+            consumidor.sumarPuntos(usuario, 10);//El usuario recibira por defecto 10 puntos
+        }catch(Exception ex){
+            System.out.println("No se puede agregar el puntaje");
         }
-        
-       
-        
     }
 
 }
