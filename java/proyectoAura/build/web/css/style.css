@@ -1,8 +1,13 @@
+*,*:after, *:before{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-style: normal;
+    font-family: 'Roboto', sans-serif;
+}
 
-/* 
-    Created on : 14-10-2018, 19:32:12
-    Author     : SOA
-*/
 body {
     background-image:url(https://s3.amazonaws.com/proyectoaura-storage/img/footer.png); 
     background-position:bottom ; 
