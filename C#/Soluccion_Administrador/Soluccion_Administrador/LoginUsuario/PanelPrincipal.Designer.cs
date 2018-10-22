@@ -1374,7 +1374,7 @@
             // 
             // btnGenerarBI
             // 
-            this.btnGenerarBI.Location = new System.Drawing.Point(499, 197);
+            this.btnGenerarBI.Location = new System.Drawing.Point(531, 189);
             this.btnGenerarBI.Name = "btnGenerarBI";
             this.btnGenerarBI.Size = new System.Drawing.Size(75, 23);
             this.btnGenerarBI.TabIndex = 0;
@@ -1384,22 +1384,24 @@
             // 
             // dtpDesde
             // 
-            this.dtpDesde.Location = new System.Drawing.Point(238, 131);
+            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDesde.Location = new System.Drawing.Point(358, 141);
             this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(200, 20);
+            this.dtpDesde.Size = new System.Drawing.Size(99, 20);
             this.dtpDesde.TabIndex = 1;
             // 
             // dtpHasta
             // 
-            this.dtpHasta.Location = new System.Drawing.Point(238, 266);
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHasta.Location = new System.Drawing.Point(358, 243);
             this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(200, 20);
+            this.dtpHasta.Size = new System.Drawing.Size(99, 20);
             this.dtpHasta.TabIndex = 2;
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(235, 115);
+            this.label29.Location = new System.Drawing.Point(355, 125);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(38, 13);
             this.label29.TabIndex = 3;
@@ -1408,7 +1410,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(235, 250);
+            this.label30.Location = new System.Drawing.Point(355, 227);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(35, 13);
             this.label30.TabIndex = 4;

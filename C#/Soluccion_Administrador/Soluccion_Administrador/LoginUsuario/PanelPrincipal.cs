@@ -1234,10 +1234,10 @@ namespace LoginUsuario
         }
 
         private void btnGenerarBI_Click(object sender, EventArgs e)
-        {
+        {   
             ora.Open();
-           // OracleDataAdapter consulta = new OracleDataAdapter("select cont_correos,cont_consumidor,cont_oferta,cont_cupones from registro where between'" + dtpDesde + "'and '" + dtpHasta + "'", ora);
-             OracleDataAdapter consulta = new OracleDataAdapter("select cont_correos,cont_consumidor,cont_oferta,cont_cupones from registro", ora);
+            OracleDataAdapter consulta = new OracleDataAdapter("select cont_correos,cont_consumidor,cont_oferta,cont_cupones from registro where fecha >= to_date('" + dtpDesde.Value.ToString("dd/MM/yy").Replace('-', '/') + "', 'DD/MM/YY') and fecha < to_date('" + dtpHasta.Value.ToString("dd/MM/yy").Replace('-', '/') + "', 'DD/MM/YY')", ora);
+           // OracleDataAdapter consulta = new OracleDataAdapter("select cont_correos,cont_consumidor,cont_oferta,cont_cupones from registro", ora);
             DataTable dt = new DataTable();//guardamos en un objeto de datatable lo encontrado
             consulta.Fill(dt);
             string dataFiller = string.Empty;
