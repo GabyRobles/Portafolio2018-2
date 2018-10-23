@@ -26,10 +26,10 @@
                         <form action="${pageContext.request.contextPath}/LoginServlet/Trabajador" method="post" class="formulario">
                             <center>
                                 <div class="form-group">
-                                    <input class="form-control" type="email" placeholder="Correo" id="email" name="email"/>
+                                    <input class="form-control" type="email" placeholder="nombre@ejemplo.com" id="validationDefaultUsername" name="email" aria-describedby="inputGroupPrepend1" required/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="Contraseña" id="psw" name="psw"/>
+                                    <input class="form-control" type="password" placeholder="Contraseña" id="validationDefaultPassword" name="psw" aria-describedby="inputGroupPrepend2" required/>
                                 </div>
                                 <button type="submit" class="btnInicioSesion">Iniciar Sesión</button>
                             </center>

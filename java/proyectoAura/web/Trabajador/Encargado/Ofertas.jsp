@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Ofertas
-    Created on : 11-10-2018, 13:40:19
-    Author     : nico_
---%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +9,12 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Ofertas</title>
+         
         <style>
             <%@include file="../../css/trabajadorStyle.css" %>
         </style>
     </head>
     <body>
-        <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3">
                     <%@include file="../../Plantillas/MenuTrabajador.jspf" %>
@@ -54,7 +50,6 @@
                     </table>
                 </div>
             </div>
-        </div>
 
     </body>
 </html>
