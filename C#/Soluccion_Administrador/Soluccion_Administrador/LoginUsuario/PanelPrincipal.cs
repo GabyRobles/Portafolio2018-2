@@ -39,7 +39,12 @@ namespace LoginUsuario
         //seleccionarToda_Encargado
         private void PanelPrincipal_Load(object sender, EventArgs e)
         {
-                                   
+            txtidpro.Enabled = false;
+            txtidEC.Enabled = false;
+            txtIdsucu.Enabled = false;
+            txtidAG.Enabled = false;
+            txtIdOferta.Enabled = false;
+
             //carga de las grillas
             CargarCeldas(dgvProducto);
             CargarGerente(dgvAsociacion);
@@ -395,6 +400,8 @@ namespace LoginUsuario
         {
             try
             {
+                //capturamos el valor del combobox
+                int idempresa = Convert.ToInt32(cboEmpresaSuc.SelectedValue.ToString());
 
                 if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))//verifica que los txxbox esten llenos
                 {
@@ -402,16 +409,14 @@ namespace LoginUsuario
                 }
                 else
                 {
-                    //capturamos el valor del combobox
-                    int idempresa = Convert.ToInt32(cboEmpresaSuc.SelectedValue.ToString());
-
+                   
+                    //"INSERTAR_SUCURSAL" (nombre in VARCHAR2,direccion in VARCHAR2,idsc in number)
                     ora.Open();
-                    OracleCommand comando = new OracleCommand("Insertar_sucursal", ora);
+                    OracleCommand comando = new OracleCommand("INSERTAR_SUCURSAL", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
-                    
                     comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNomsucu.Text;
                     comando.Parameters.Add("direccion", OracleType.VarChar).Value = txtDiresucu.Text;
-                    comando.Parameters.Add("idsc", OracleType.VarChar).Value = idempresa;
+                    comando.Parameters.Add("idsc", OracleType.Number).Value = idempresa;
                     comando.ExecuteNonQuery();
                     MessageBox.Show("El Archivo ha sido Insertado");
                     ora.Close();
@@ -421,7 +426,7 @@ namespace LoginUsuario
             catch (Exception ex)
             {
                 MessageBox.Show("No se ha siddo Insertado el registro");
-                ora.Close();
+                
             }
         }
 
@@ -437,22 +442,24 @@ namespace LoginUsuario
                 {
 
                     //capturar los valores de los combobox
-                    int idpuesto = Convert.ToInt32(cboPuestoEN.SelectedValue.ToString());
-                    int idempresa = Convert.ToInt32(cboPuestoEN.SelectedValue.ToString());
+
                     ora.Open();
                     OracleCommand comando = new OracleCommand("INSERTAR_TRABAJADOR", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNomsucu.Text;
-                    comando.Parameters.Add("crro", OracleType.VarChar).Value = txtDiresucu.Text;
-                    comando.Parameters.Add("pss", OracleType.VarChar).Value = txtDiresucu.Text;
-                    comando.Parameters.Add("idp", OracleType.VarChar).Value = idpuesto;
-                    comando.Parameters.Add("idemp", OracleType.VarChar).Value = idempresa;
+                    comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtnomEC.Text;
+                    comando.Parameters.Add("crro", OracleType.VarChar).Value = txtcorrEC.Text;
+                    comando.Parameters.Add("pss", OracleType.VarChar).Value = txtpsEC.Text;
+                    int idpuesto = Convert.ToInt32(cboPuestoEN.SelectedValue.ToString());
+                    int idempresa = Convert.ToInt32(cboPuestoEN.SelectedValue.ToString());
+                    comando.Parameters.Add("idp", OracleType.Number).Value = idpuesto;
+                    comando.Parameters.Add("idemp", OracleType.Number).Value = idempresa;
                     comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido insertado");
+                   
                     ora.Close();
+                    MessageBox.Show("El Archivo ha sido insertado");
                 }
-                this.CargarSucursal(dgvSucursal);
+                this.CargarEncargado(dgvEncargado);
             }
             catch (Exception ex)
             {
@@ -474,8 +481,9 @@ namespace LoginUsuario
                 }
                 else
                 {
+                    //  "ACTUALIZAR_SUCURSAL" (idsuc in INTEGER, nom in VARCHAR2, dir in VARCHAR2) 
                     ora.Open();
-                    OracleCommand comando = new OracleCommand("actualizar_sucursal", ora);
+                    OracleCommand comando = new OracleCommand("ACTUALIZAR_SUCURSAL", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
                     comando.Parameters.Add("idsuc", OracleType.Number).Value = Convert.ToInt32(txtIdsucu.Text);
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtNomsucu.Text;
@@ -497,11 +505,12 @@ namespace LoginUsuario
         {
             try
             {
+                //seleccionar_Sucursal (idsu in number,registros out sys_refcursor) 
                 ora.Open();
 
                 OracleCommand comando = new OracleCommand("seleccionar_Sucursal", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando.Parameters.Add("idge", OracleType.Number).Value = Convert.ToInt32(txtSucursal.Text);
+                comando.Parameters.Add("idsu", OracleType.Number).Value = Convert.ToInt32(txtSucursal.Text);
                     if (comando.Parameters != null)
                     {
                         comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
@@ -520,17 +529,8 @@ namespace LoginUsuario
             {
 
                 MessageBox.Show("Dato no encontrado");
-                OracleCommand comando = new OracleCommand("seleccionarToda_Sucursal", ora);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando = new OracleCommand("seleccionarToda_Sucursal", ora);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
-                OracleDataAdapter adaptador = new OracleDataAdapter();
-                adaptador.SelectCommand = comando;
-                DataTable tabla = new DataTable();
-                adaptador.Fill(tabla);
-                dgvSucursal.DataSource = tabla;
-                ora.Close();
+                this.CargarSucursal(dgvSucursal);
+
             }
             
         }
@@ -598,11 +598,12 @@ namespace LoginUsuario
             //seleccionar_Gerente
             try
             {
+                //seleccionar_Gerente(idge in number, registros out sys_refcursor)
                 ora.Open();
 
                 OracleCommand comando = new OracleCommand("seleccionar_Gerente", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando.Parameters.Add("idge", OracleType.Number).Value = Convert.ToInt32(txtidAG.Text);
+                comando.Parameters.Add("idge", OracleType.Number).Value = Convert.ToInt32(txtbuscargeente.Text);
                 if (comando.Parameters != null)
                 {
                     comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
@@ -702,9 +703,10 @@ namespace LoginUsuario
                 }
                 else
                 {
+                    //"ACTUALIZAR_TRABAJADOR" ( idtra in number, nom in VARCHAR2, cor in VARCHAR2, pass in VARCHAR2)
                     // idtra in number, nom in VARCHAR2, cor in VARCHAR2, pass in VARCHAR2
                     ora.Open();
-                    OracleCommand comando = new OracleCommand("actualizar_trabajador", ora);
+                    OracleCommand comando = new OracleCommand("ACTUALIZAR_TRABAJADOR", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
                     comando.Parameters.Add("idtra", OracleType.Number).Value = Convert.ToInt32(txtidEC.Text);
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtnomEC.Text;
@@ -725,16 +727,17 @@ namespace LoginUsuario
         private void button5_Click(object sender, EventArgs e)
         {
             try
-            {
+            {//  "ELIMINAR_TRABAJADOR" (idtra in number)
+
                 ora.Open();
-                OracleCommand comando = new OracleCommand("eliminar_trabajador", ora);
+                OracleCommand comando = new OracleCommand("ELIMINAR_TRABAJADOR", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idtra", OracleType.Number).Value = Convert.ToInt32(txtidEC.Text);
                 comando.ExecuteNonQuery();
                 MessageBox.Show("El Archivo ha sido Eliminado");
                 ora.Close();
 
-                this.CargarSucursal(dgvSucursal);
+                this.CargarEncargado(dgvEncargado); 
                 txtidEC.Clear();
                 txtnomEC.Clear();
                 txtcorrEC.Clear();
@@ -751,11 +754,12 @@ namespace LoginUsuario
         {
             try
             {
+                //seleccionar_Producto (idge in number,registros out sys_refcursor) 
                 ora.Open();
 
                 OracleCommand comando = new OracleCommand("SELECCIONAR_PRODUCTO", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando.Parameters.Add("idsu", OracleType.Number).Value = Convert.ToInt32(txtbuscarPro.Text);
+                comando.Parameters.Add("idge", OracleType.Number).Value = Convert.ToInt32(txtbuscarPro.Text);
                 if (comando.Parameters != null)
                 {
                     comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
@@ -773,17 +777,7 @@ namespace LoginUsuario
             catch (Exception ex)
             {
                 MessageBox.Show("Dato no encontrado");
-                OracleCommand comando = new OracleCommand("seleccionarToda_producto", ora);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando = new OracleCommand("seleccionarToda_producto", ora);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
-                OracleDataAdapter adaptador = new OracleDataAdapter();
-                adaptador.SelectCommand = comando;
-                DataTable tabla = new DataTable();
-                adaptador.Fill(tabla);
-                dgvProducto.DataSource = tabla;
-                ora.Close();
+                this.CargarCeldas(dgvProducto);
             }
         }
 
@@ -792,6 +786,7 @@ namespace LoginUsuario
             //seleccionar_Gerente
             try
             {
+                //seleccionar_Encargado (idge in number,registros out sys_refcursor)
                 ora.Open();
 
                 OracleCommand comando = new OracleCommand("seleccionar_Encargado", ora);
@@ -808,12 +803,12 @@ namespace LoginUsuario
                     dgvEncargado.DataSource = tabla;
                     ora.Close();
                 }
-                this.CargarEncargado(dgvEncargado);
+                
 
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Dato no encontrado");
                 this.CargarEncargado(dgvEncargado);
             }
         }
@@ -822,6 +817,7 @@ namespace LoginUsuario
         {
             try
             {
+               
 
                 if (txtnomAG.Text.Equals("") && txtcorrAG.Equals("") && txtcontAG.Equals(""))
                 {
@@ -829,30 +825,35 @@ namespace LoginUsuario
                 }
                 else
                 {//"INSERTAR_TRABAJADOR" (nombre in VARCHAR2,crro in VARCHAR2,pss in VARCHAR2,idp in number,idemp in NUMBER)
-                    // nombre,crro,pss,idp,idemp
-                    ora.Open();
+                 // nombre,crro,pss,idp,idemp
+
                     //capturamos el valor del combobox
-                    int idempresa = Convert.ToInt32(cboEmADM.SelectedValue.ToString());
-                    int idpu = Convert.ToInt32(cbopuestoGA.SelectedValue.ToString());
+
+                    ora.Open();
                     OracleCommand comando = new OracleCommand("INSERTAR_TRABAJADOR", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
-                   comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtnomAG.Text;
-                    comando.Parameters.Add("crro", OracleType.VarChar).Value = txtcorrAG.Text;
-                    comando.Parameters.Add("pass", OracleType.VarChar).Value = txtcontAG.Text;
-                    comando.Parameters.Add("idp", OracleType.Number).Value = idempresa;
-                    comando.Parameters.Add("idemp", OracleType.Number).Value = idpu;
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido insertado");
-                    ora.Close();
 
+                    comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtnomAG.Text;
+                    comando.Parameters.Add("crro", OracleType.VarChar).Value = txtcorrAG.Text;
+                    comando.Parameters.Add("pss", OracleType.VarChar).Value = txtcontAG.Text;
+                    int idpuesto = Convert.ToInt32(cbopuestoGA.SelectedValue.ToString());
+                    int idempresa = Convert.ToInt32(cboEmADM.SelectedValue.ToString());
+                    comando.Parameters.Add("idp", OracleType.Number).Value = idpuesto;
+                    comando.Parameters.Add("idemp", OracleType.Number).Value = idempresa;
+                    comando.ExecuteNonQuery();
+
+                    ora.Close();
+                    MessageBox.Show("El Archivo ha sido insertado");
                 }
                 this.CargarGerente(dgvAsociacion);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha insertado el registro");
+                MessageBox.Show("No se ha sido insertado el registro");
+                ora.Close();
             }
-            
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -872,18 +873,17 @@ namespace LoginUsuario
                     ora.Open();
                     OracleCommand comando = new OracleCommand("INSERTAR_PRODUCTO", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
-                                        comando.Parameters.Add("nombre", OracleType.VarChar).Value =txtnomAG.Text;
-                    comando.Parameters.Add("prec", OracleType.VarChar).Value = Convert.ToInt32(txtprecioPro.Text.ToString());
-                    comando.Parameters.Add("pass", OracleType.VarChar).Value = txtcontAG.Text;
-                    comando.Parameters.Add("fecelb", OracleType.Number).Value = dtpElaboPr.Text;
-                    comando.Parameters.Add("fechven", OracleType.Number).Value = dtpvecipro.Text;
+                    comando.Parameters.Add("nombre", OracleType.VarChar).Value =txtnomPro.Text;
+                    comando.Parameters.Add("prec", OracleType.Number).Value = Convert.ToInt32(txtprecioPro.Text.ToString());
+                    comando.Parameters.Add("fecelb", OracleType.DateTime).Value = dtpElaboPr.Text;
+                    comando.Parameters.Add("fechven", OracleType.DateTime).Value = dtpvecipro.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
                     comando.ExecuteNonQuery();
                     MessageBox.Show("El Archivo ha sido insertado");
                     ora.Close();
+                    }
+                this.CargarCeldas(dgvProducto); 
 
-                }
-                this.CargarGerente(dgvAsociacion);
             }
             catch (Exception ex)
             {
@@ -905,7 +905,38 @@ namespace LoginUsuario
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            try
+            {
 
+                if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
+                {
+                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                }
+                else
+                {
+
+                    //"ACTUALIZAR_PRODUCTO"(ID_PRODUCTO in NUMBER, NOMBRE in VARCHAR2, PRECIO in NUMBER, FECHA_ELAB in DATE, FECHA_VEN in DATE, ID_CATEGORIA in NUMBER)
+                    ora.Open();
+                    OracleCommand comando = new OracleCommand("ACTUALIZAR_PRODUCTO", ora);
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+                    comando.Parameters.Add("ID_PRODUCTOS", OracleType.VarChar).Value = Convert.ToInt32(txtidpro.Text);
+                    comando.Parameters.Add("NOM", OracleType.VarChar).Value = txtnomPro.Text;
+                    comando.Parameters.Add("PREC", OracleType.Number).Value = Convert.ToInt32(txtprecioPro.Text.ToString());
+                    comando.Parameters.Add("FECHA_EL", OracleType.DateTime).Value = dtpElaboPr.Text;
+                    comando.Parameters.Add("FECHA_VE", OracleType.DateTime).Value = dtpvecipro.Text;
+                    //capturamos el combobox
+                    int idcate = Convert.ToInt32(cbocategoria.SelectedValue.ToString());
+                    comando.Parameters.Add("ID_CATE", OracleType.Number).Value = idcate;
+                    comando.ExecuteNonQuery();
+                    ora.Close();
+                }
+                this.CargarCeldas(dgvProducto);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha Actualizado el registro");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)//eliminar producto
@@ -941,15 +972,15 @@ namespace LoginUsuario
             txtnomPro.Text = dgvProducto[1, posicion].Value.ToString();
             txtprecioPro.Text = dgvProducto[2, posicion].Value.ToString();
 
-            DateTime curDate;
-            if (DateTime.TryParse(dgvProducto[3, posicion].Value.ToString(), out curDate))
+            DateTime curDatess;
+            if (DateTime.TryParse(dgvProducto[3, posicion].Value.ToString(), out curDatess))
             {
-                dtpElaboPr.Value = curDate;
+                dtpElaboPr.Value = curDatess;
             }
-            DateTime curDates;
-            if (DateTime.TryParse(dgvProducto[4, posicion].Value.ToString(), out curDates))
+            DateTime curDatees;
+            if (DateTime.TryParse(dgvProducto[4, posicion].Value.ToString(), out curDatees))
             {
-                dtpvecipro.Value = curDates;
+                dtpvecipro.Value = curDatees;
             }
 
             cbocategoria.Text = dgvProducto[5, posicion].Value.ToString();
@@ -1014,7 +1045,7 @@ namespace LoginUsuario
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             try
-            {
+            {//seleccionar_Consumidor (idge in number,registros out sys_refcursor) 
                 ora.Open();
 
                 OracleCommand comando = new OracleCommand("seleccionar_Consumidor", ora);
@@ -1022,7 +1053,7 @@ namespace LoginUsuario
                 comando.Parameters.Add("idge", OracleType.Number).Value = Convert.ToInt32(txtBuscarCliente.Text);
                 if (comando.Parameters != null)
                 {
-                    MessageBox.Show("Consumidor No encontrado");
+                    MessageBox.Show("Consumidor encontrado");
                     comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
                     comando.ExecuteNonQuery();
                     OracleDataAdapter adaptador = new OracleDataAdapter();
@@ -1039,17 +1070,7 @@ namespace LoginUsuario
             {
 
                 MessageBox.Show("Dato no encontrado");
-                OracleCommand comando = new OracleCommand("seleccionarToda_Consumidor", ora);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando = new OracleCommand("seleccionarToda_Consumidor", ora);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
-                OracleDataAdapter adaptador = new OracleDataAdapter();
-                adaptador.SelectCommand = comando;
-                DataTable tabla = new DataTable();
-                adaptador.Fill(tabla);
-                dtvCliente.DataSource = tabla;
-                ora.Close();
+                this.cargarClienteDataGrid(dtvCliente);
             }
         }
 
@@ -1073,19 +1094,18 @@ namespace LoginUsuario
                     comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNombreCliente.Text;
                     comando.Parameters.Add("ape", OracleType.VarChar).Value = txtApellidoCliente.Text;
                     comando.Parameters.Add("rut", OracleType.VarChar).Value = txtRutCliente.Text;
-                    comando.Parameters.Add("fechnac", OracleType.Number).Value = dtNacimientoCliente.Text;
+                    comando.Parameters.Add("fechnac", OracleType.DateTime).Value = dtNacimientoCliente.Text;
                     comando.Parameters.Add("correo", OracleType.VarChar).Value = txtCorreoCliente.Text;
                     comando.Parameters.Add("pass", OracleType.VarChar).Value = txtContrasenaCliente.Text;
-                    comando.Parameters.Add("pto", OracleType.VarChar).Value = txtPuntajeCliente.Text;
+                    comando.Parameters.Add("pto", OracleType.Number).Value = Convert.ToInt32(txtPuntajeCliente.Text);
                     comando.Parameters.Add("tele", OracleType.VarChar).Value = txtTelefono.Text;
-                    //falta cbo.
-
+                    comando.Parameters.Add("envofe", OracleType.VarChar).Value = cboEnvioOfertaCliente.Text;
 
                     comando.ExecuteNonQuery();
                     MessageBox.Show("El Archivo ha sido Actualizado");
                     ora.Close();
                 }
-                this.CargarEncargado(dgvEncargado);
+                cargarClienteDataGrid(dtvCliente);
             }
             catch (Exception ex)
             {
@@ -1224,9 +1244,9 @@ namespace LoginUsuario
                     MessageBox.Show("El Nuevo nombre es obligatorio");//mensaje al usuario
                 }
                 else
-                {
+                {// "ACTUALIZAR_PUESTO" (idpue in NUMBER,pue in VARCHAR2)
                     ora.Open();
-                    OracleCommand comando = new OracleCommand("actualizar_puesto", ora);
+                    OracleCommand comando = new OracleCommand("ACTUALIZAR_PUESTO", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
                     comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtPuestoId.Text); 
                     comando.Parameters.Add("pue", OracleType.VarChar).Value = txtPuestoNombre.Text;
@@ -1249,8 +1269,9 @@ namespace LoginUsuario
         {
             try
             {
+                //"ELIMINAR_PUESTO" (idpue in NUMBER)
                 ora.Open();
-                OracleCommand comando = new OracleCommand("eliminar_puesto", ora);
+                OracleCommand comando = new OracleCommand("ELIMINAR_PUESTO", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtPuestoId.Text);
                 comando.ExecuteNonQuery();
@@ -1298,20 +1319,21 @@ namespace LoginUsuario
             {//buscar Oferta
                 ora.Open();
 
-                OracleCommand comando = new OracleCommand("seleccionar_Oferta", ora);
+                OracleCommand comando = new OracleCommand("SELECCIONAR_OFERTA", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idofe", OracleType.Number).Value = Convert.ToInt32(txtBuscarOferta.Text);
                 if (comando.Parameters != null)
                 {
-                    MessageBox.Show("Oferta No encontrada");
+                    
                     comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
                     comando.ExecuteNonQuery();
                     OracleDataAdapter adaptador = new OracleDataAdapter();
                     adaptador.SelectCommand = comando;
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
-                    dtvCliente.DataSource = tabla;
+                    dgvOferta.DataSource = tabla;
                     ora.Close();
+                    MessageBox.Show("Oferta encontrada");
                 }
 
 
@@ -1320,27 +1342,15 @@ namespace LoginUsuario
             {
 
                 MessageBox.Show("Dato no encontrado");
-                OracleCommand comando = new OracleCommand("seleccionarToda_Oferta", ora);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando = new OracleCommand("seleccionarToda_Oferta", ora);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
-                OracleDataAdapter adaptador = new OracleDataAdapter();
-                adaptador.SelectCommand = comando;
-                DataTable tabla = new DataTable();
-                adaptador.Fill(tabla);
-                dtvCliente.DataSource = tabla;
+                this.CargarOferta(dgvOferta);
                 ora.Close();
             }
         }
         //nueva oferta
         private void btnNuevaOferta_Click(object sender, EventArgs e)
         {
-            int idcate = Convert.ToInt32(cbocateOfert.SelectedValue.ToString());
-            int idprod= Convert.ToInt32(cboprodOfert.SelectedValue.ToString());
-            int idtraba= Convert.ToInt32(cbotrabajadorOferta.SelectedValue.ToString());
-            int idsuc= Convert.ToInt32(cboSucOfert.SelectedValue.ToString());
 
+            //"INSERTAR_OFERTA" (nombre in VARCHAR2,tpo in VARCHAR2,img in VARCHAR2,prof in NUMBER,idtr in NUMBER,idsuc in NUMBER,idproin in number,fechini in date,fechater in date,idcat in number)
             try
             {
                 if (txtNombreOferta.Text.Equals("") && txtTipoOferta.Equals("") && txtUrlOferta.Equals("") && txtPrecioOferta.Equals("")
@@ -1351,26 +1361,32 @@ namespace LoginUsuario
                 }
                 else
                 {
+                    // "INSERTAR_OFERTA" (nombre in VARCHAR2,tpo in VARCHAR2,img in VARCHAR2,prof in NUMBER,idtr in NUMBER,idsuc in NUMBER,idproin in NUMBER,fechini in DATE,fechater in DATE,idcat in NUMBER)
+
                     ora.Open();
                     OracleCommand comando = new OracleCommand("INSERTAR_OFERTA", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
 
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtNombreOferta.Text;
-                    comando.Parameters.Add("tipofe", OracleType.VarChar).Value = txtNombreOferta.Text;
+                    comando.Parameters.Add("tpo", OracleType.VarChar).Value = txtTipoOferta.Text;
                     comando.Parameters.Add("img", OracleType.VarChar).Value = txtUrlOferta.Text;
-                    comando.Parameters.Add("prec", OracleType.Number).Value = Convert.ToInt32(txtPrecioOferta.Text);
-                    comando.Parameters.Add("idtra", OracleType.Number).Value = idtraba;
+                    comando.Parameters.Add("prof", OracleType.Number).Value = Convert.ToInt32(txtPrecioOferta.Text);
+                    int idcate = Convert.ToInt32(cbocateOfert.SelectedValue.ToString());
+                    int idprod = Convert.ToInt32(cboprodOfert.SelectedValue.ToString());
+                    int idtraba = Convert.ToInt32(cbotrabajadorOferta.SelectedValue.ToString());
+                    int idsuc = Convert.ToInt32(cboSucOfert.SelectedValue.ToString());
+                    comando.Parameters.Add("idtr", OracleType.Number).Value = idtraba;
                     comando.Parameters.Add("idsuc", OracleType.Number).Value = idsuc;
-                    comando.Parameters.Add("idprod", OracleType.Number).Value = idprod;
-                    comando.Parameters.Add("feini", OracleType.Number).Value = dtpFechaIni.Text;
-                    comando.Parameters.Add("feter", OracleType.Number).Value = dtpFechaTer.Text;
+                    comando.Parameters.Add("idproin", OracleType.Number).Value = idprod;
+                    comando.Parameters.Add("fechini", OracleType.DateTime).Value = dtpFechaIni.Text;
+                    comando.Parameters.Add("fechater", OracleType.DateTime).Value = dtpFechaTer.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
 
                     comando.ExecuteNonQuery();
                     MessageBox.Show("El Archivo ha sido insertado");
                     ora.Close();
                 }
-                this.CargarSucursal(dgvSucursal);
+                this.CargarOferta(dgvOferta); 
             }
             catch (Exception ex)
             {
@@ -1393,35 +1409,42 @@ namespace LoginUsuario
                     && txtPrecioOferta.Equals("")
                     && dtpFechaIni.Equals("") && dtpFechaTer.Equals(""))//verifica que los txt esten llenos
                 {
+
+
                     MessageBox.Show("Todos los Datos Son Obligatorios");//mensaje al usuario
                 }
                 else
                 {
+                    // "ACTUALIZAR_OFERTA" (idpue in NUMBER,nombre in VARCHAR2,tpo in VARCHAR2,img in VARCHAR2,prof in NUMBER,idtr in NUMBER,idsuc in NUMBER,idproin in number,fechini in date,fechater in date,idcat in number)
                     ora.Open();
                     OracleCommand comando = new OracleCommand("ACTUALIZAR_OFERTA", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    comando.Parameters.Add("idofe", OracleType.Number).Value = Convert.ToInt32(txtIdOferta.Text);
-                    comando.Parameters.Add("nom", OracleType.VarChar).Value = txtNombreOferta.Text;
-                    comando.Parameters.Add("tipofe", OracleType.VarChar).Value = txtNombreOferta.Text;
+                    comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtIdOferta.Text);
+                    comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNombreOferta.Text;
+                    comando.Parameters.Add("tpo", OracleType.VarChar).Value = txtTipoOferta.Text;
                     comando.Parameters.Add("img", OracleType.VarChar).Value = txtUrlOferta.Text;
-                    comando.Parameters.Add("prec", OracleType.Number).Value = Convert.ToInt32(txtPrecioOferta.Text);
-                    comando.Parameters.Add("idtra", OracleType.Number).Value = idtraba;
+                    comando.Parameters.Add("prof", OracleType.Number).Value = Convert.ToInt32(txtPrecioOferta.Text);
+                    comando.Parameters.Add("idtr", OracleType.Number).Value = idtraba;
                     comando.Parameters.Add("idsuc", OracleType.Number).Value = idsuc;
-                    comando.Parameters.Add("idprod", OracleType.Number).Value = idprod;
-                    comando.Parameters.Add("feini", OracleType.Number).Value = dtpFechaIni.Text;
-                    comando.Parameters.Add("feter", OracleType.Number).Value = dtpFechaTer.Text;
+                    comando.Parameters.Add("idproin", OracleType.Number).Value = idprod;
+                    comando.Parameters.Add("fechini", OracleType.DateTime).Value = dtpFechaIni.Text;
+                    comando.Parameters.Add("fechater", OracleType.DateTime).Value = dtpFechaTer.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
                     comando.ExecuteNonQuery();
                     MessageBox.Show("El Archivo ha sido actualizado");
                     ora.Close();
+                    txtNombreOferta.Clear();
+                    txtIdOferta.Clear();
+                    txtTipoOferta.Clear();
+                    txtUrlOferta.Clear();
                 }
-                this.CargarSucursal(dgvSucursal);
+                this.CargarOferta(dgvOferta); 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("No se ha actualizado el registro");
-                ora.Close();
+              
             }
         }
         //eliminar oferta
@@ -1437,8 +1460,8 @@ namespace LoginUsuario
                 MessageBox.Show("El Archivo ha sido Eliminado");
                 ora.Close();
 
-                this.CargarSucursal(dgvSucursal);
-                txtidAG.Clear();
+                this.CargarOferta(dgvOferta); 
+                txtIdOferta.Clear();
                 txtnomAG.Clear();
                 txtcorrAG.Clear();
 
@@ -1463,16 +1486,16 @@ namespace LoginUsuario
             cboprodOfert.Text = dgvOferta[7, posicion].Value.ToString();
             cbocateOfert.Text = dgvOferta[10, posicion].Value.ToString();
 
-            DateTime curDate;
-            if (DateTime.TryParse(dgvOferta[8, posicion].Value.ToString(), out curDate))
+            DateTime curData;
+            if (DateTime.TryParse(dgvOferta[8, posicion].Value.ToString(), out curData))
             {
-                dtpFechaIni.Value = curDate;
+                dtpFechaIni.Value = curData;
             }
 
-            DateTime curDates;
-            if (DateTime.TryParse(dgvOferta[9, posicion].Value.ToString(), out curDates))
+            DateTime curDatas;
+            if (DateTime.TryParse(dgvOferta[9, posicion].Value.ToString(), out curDatas))
             {
-                dtpFechaTer.Value = curDates;
+                dtpFechaTer.Value = curDatas;
             }
 
 
@@ -1581,7 +1604,37 @@ namespace LoginUsuario
 
         }
 
+        private void btnBuscarPuesto_Click(object sender, EventArgs e)
+        {
+            try
+            {//seleccionar_puesto (idge in number,registros out sys_refcursor) 
+                ora.Open();
 
+                OracleCommand comando = new OracleCommand("seleccionar_puesto", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("idge", OracleType.Number).Value = Convert.ToInt32(txtBuscarPuesto.Text);
+                if (comando.Parameters != null)
+                {
+                    MessageBox.Show("Informacion encontrada");
+                    comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                    comando.ExecuteNonQuery();
+                    OracleDataAdapter adaptador = new OracleDataAdapter();
+                    adaptador.SelectCommand = comando;
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+                    dgvPuesto.DataSource = tabla;
+                    ora.Close();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Dato no encontrado");
+                this.CargarPuesto(dgvPuesto);
+            }
+        }
     }
 }
 

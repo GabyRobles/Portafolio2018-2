@@ -68,7 +68,7 @@
             this.btnmodiGA = new System.Windows.Forms.Button();
             this.btnelimGA = new System.Windows.Forms.Button();
             this.btnGerente = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtbuscargeente = new System.Windows.Forms.TextBox();
             this.dgvAsociacion = new System.Windows.Forms.DataGridView();
             this.btnBuscaGerente = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -223,7 +223,7 @@
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.ItemSize = new System.Drawing.Size(60, 18);
-            this.tabControl1.Location = new System.Drawing.Point(12, 152);
+            this.tabControl1.Location = new System.Drawing.Point(12, 149);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1041, 473);
@@ -371,9 +371,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(838, 364);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(838, 354);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(86, 33);
             this.button1.TabIndex = 21;
             this.button1.Text = "Modificar";
             this.button1.UseVisualStyleBackColor = true;
@@ -381,9 +384,12 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(939, 364);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(939, 354);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(74, 33);
             this.button2.TabIndex = 20;
             this.button2.Text = "Eliminar";
             this.button2.UseVisualStyleBackColor = true;
@@ -391,9 +397,12 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(734, 364);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.Location = new System.Drawing.Point(734, 354);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(77, 33);
             this.button3.TabIndex = 19;
             this.button3.Text = "Nuevo";
             this.button3.UseVisualStyleBackColor = true;
@@ -401,9 +410,12 @@
             // 
             // btnBuscarProducto
             // 
-            this.btnBuscarProducto.Location = new System.Drawing.Point(16, 11);
+            this.btnBuscarProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarProducto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBuscarProducto.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarProducto.Image")));
+            this.btnBuscarProducto.Location = new System.Drawing.Point(16, 6);
             this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(75, 25);
+            this.btnBuscarProducto.Size = new System.Drawing.Size(75, 30);
             this.btnBuscarProducto.TabIndex = 2;
             this.btnBuscarProducto.Text = "Buscar";
             this.btnBuscarProducto.UseVisualStyleBackColor = true;
@@ -446,7 +458,7 @@
             this.tabPage2.Controls.Add(this.btnmodiGA);
             this.tabPage2.Controls.Add(this.btnelimGA);
             this.tabPage2.Controls.Add(this.btnGerente);
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.txtbuscargeente);
             this.tabPage2.Controls.Add(this.dgvAsociacion);
             this.tabPage2.Controls.Add(this.btnBuscaGerente);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -596,7 +608,7 @@
             this.btnGerente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGerente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnGerente.Image = ((System.Drawing.Image)(resources.GetObject("btnGerente.Image")));
-            this.btnGerente.Location = new System.Drawing.Point(737, 380);
+            this.btnGerente.Location = new System.Drawing.Point(737, 379);
             this.btnGerente.Name = "btnGerente";
             this.btnGerente.Size = new System.Drawing.Size(80, 34);
             this.btnGerente.TabIndex = 3;
@@ -604,12 +616,12 @@
             this.btnGerente.UseVisualStyleBackColor = true;
             this.btnGerente.Click += new System.EventHandler(this.btnGerente_Click);
             // 
-            // textBox2
+            // txtbuscargeente
             // 
-            this.textBox2.Location = new System.Drawing.Point(113, 27);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(410, 20);
-            this.textBox2.TabIndex = 2;
+            this.txtbuscargeente.Location = new System.Drawing.Point(113, 27);
+            this.txtbuscargeente.Name = "txtbuscargeente";
+            this.txtbuscargeente.Size = new System.Drawing.Size(410, 20);
+            this.txtbuscargeente.TabIndex = 2;
             // 
             // dgvAsociacion
             // 
@@ -771,7 +783,7 @@
             this.dgvSucursal.Location = new System.Drawing.Point(28, 48);
             this.dgvSucursal.Name = "dgvSucursal";
             this.dgvSucursal.ReadOnly = true;
-            this.dgvSucursal.Size = new System.Drawing.Size(371, 372);
+            this.dgvSucursal.Size = new System.Drawing.Size(409, 372);
             this.dgvSucursal.TabIndex = 3;
             this.dgvSucursal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSucursal_CellClick);
             // 
@@ -979,7 +991,7 @@
             this.btnNuevoEncargado.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoEncargado.Image")));
             this.btnNuevoEncargado.Location = new System.Drawing.Point(706, 361);
             this.btnNuevoEncargado.Name = "btnNuevoEncargado";
-            this.btnNuevoEncargado.Size = new System.Drawing.Size(75, 33);
+            this.btnNuevoEncargado.Size = new System.Drawing.Size(93, 33);
             this.btnNuevoEncargado.TabIndex = 19;
             this.btnNuevoEncargado.Text = "Nuevo";
             this.btnNuevoEncargado.UseVisualStyleBackColor = true;
@@ -1416,6 +1428,7 @@
             this.btnBuscarPuesto.TabIndex = 42;
             this.btnBuscarPuesto.Text = "Buscar";
             this.btnBuscarPuesto.UseVisualStyleBackColor = true;
+            this.btnBuscarPuesto.Click += new System.EventHandler(this.btnBuscarPuesto_Click);
             // 
             // txtBuscarPuesto
             // 
@@ -1432,7 +1445,7 @@
             this.dgvPuesto.Location = new System.Drawing.Point(128, 73);
             this.dgvPuesto.Name = "dgvPuesto";
             this.dgvPuesto.ReadOnly = true;
-            this.dgvPuesto.Size = new System.Drawing.Size(249, 346);
+            this.dgvPuesto.Size = new System.Drawing.Size(246, 346);
             this.dgvPuesto.TabIndex = 40;
             this.dgvPuesto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPuesto_CellContentClick);
             // 
@@ -1800,9 +1813,12 @@
             // 
             // btnCerrarSession
             // 
-            this.btnCerrarSession.Location = new System.Drawing.Point(765, 97);
+            this.btnCerrarSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSession.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCerrarSession.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSession.Image")));
+            this.btnCerrarSession.Location = new System.Drawing.Point(870, 85);
             this.btnCerrarSession.Name = "btnCerrarSession";
-            this.btnCerrarSession.Size = new System.Drawing.Size(112, 35);
+            this.btnCerrarSession.Size = new System.Drawing.Size(164, 35);
             this.btnCerrarSession.TabIndex = 2;
             this.btnCerrarSession.Text = "Cerrar Sesion";
             this.btnCerrarSession.UseVisualStyleBackColor = true;
@@ -1811,11 +1827,12 @@
             // lblSession
             // 
             this.lblSession.AutoSize = true;
+            this.lblSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSession.Location = new System.Drawing.Point(638, 97);
             this.lblSession.Name = "lblSession";
-            this.lblSession.Size = new System.Drawing.Size(44, 13);
+            this.lblSession.Size = new System.Drawing.Size(109, 25);
             this.lblSession.TabIndex = 3;
-            this.lblSession.Text = "Session";
+            this.lblSession.Text = "Bienvenido";
             // 
             // PanelPrincipal
             // 
@@ -1873,7 +1890,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button btnGerente;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtbuscargeente;
         private System.Windows.Forms.DataGridView dgvAsociacion;
         private System.Windows.Forms.Button btnBuscaGerente;
         private System.Windows.Forms.DataGridView dgvSucursal;
