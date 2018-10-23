@@ -19,12 +19,15 @@ namespace LoginUsuario
         //atributos
         int posicion;
         Login login;
-       
+        
        //String de Conexion con AWS de Amazon
         OracleConnection ora = new OracleConnection("DATA SOURCE=aura.cckolbo3d8nz.us-east-1.rds.amazonaws.com:1521/Auradb;USER ID=ADMAURA;PASSWORD= admin123");
 
         public PanelPrincipal()
         {
+           
+            
+
             InitializeComponent();
             //Cambiar los valores de colores del materil skin
             MaterialSkinManager m = MaterialSkinManager.Instance;
@@ -387,12 +390,6 @@ namespace LoginUsuario
 
         }
 
-        private void btnNuevoProducto_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void btnSucursal_Click(object sender, EventArgs e)//boton de actualizar 
         {
@@ -495,8 +492,6 @@ namespace LoginUsuario
                 ora.Close();
             }
         }
-
-
 
         private void btnBuscarSucursal_Click(object sender, EventArgs e)
         {
@@ -895,6 +890,18 @@ namespace LoginUsuario
                 MessageBox.Show("No se ha insertado el registro");
             }
         }
+
+        private void button1_MouseEnter(object sender, EventArgs e)  
+        {
+            //this.button1.BackColor =Color.FromArgb("#8BC34A"); 
+            this.button1.BackColor = System.Drawing.ColorTranslator.FromHtml("#8BC34A");
+        }  
+        private void button1_MouseLeave(object sender, EventArgs e)  
+        {  
+            this.button1.BackColor = SystemColors.Control;  
+        } 
+
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {

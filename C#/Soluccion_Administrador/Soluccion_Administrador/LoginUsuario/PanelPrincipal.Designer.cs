@@ -222,6 +222,7 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
+            this.tabControl1.ItemSize = new System.Drawing.Size(60, 18);
             this.tabControl1.Location = new System.Drawing.Point(12, 152);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -370,7 +371,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(814, 364);
+            this.button1.Location = new System.Drawing.Point(838, 364);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 21;
@@ -390,7 +391,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(690, 364);
+            this.button3.Location = new System.Drawing.Point(734, 364);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 19;
@@ -566,9 +567,12 @@
             // 
             // btnmodiGA
             // 
-            this.btnmodiGA.Location = new System.Drawing.Point(828, 391);
+            this.btnmodiGA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnmodiGA.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnmodiGA.Image = ((System.Drawing.Image)(resources.GetObject("btnmodiGA.Image")));
+            this.btnmodiGA.Location = new System.Drawing.Point(825, 380);
             this.btnmodiGA.Name = "btnmodiGA";
-            this.btnmodiGA.Size = new System.Drawing.Size(75, 23);
+            this.btnmodiGA.Size = new System.Drawing.Size(88, 34);
             this.btnmodiGA.TabIndex = 5;
             this.btnmodiGA.Text = "Modificar";
             this.btnmodiGA.UseVisualStyleBackColor = true;
@@ -576,9 +580,12 @@
             // 
             // btnelimGA
             // 
-            this.btnelimGA.Location = new System.Drawing.Point(925, 391);
+            this.btnelimGA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnelimGA.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnelimGA.Image = ((System.Drawing.Image)(resources.GetObject("btnelimGA.Image")));
+            this.btnelimGA.Location = new System.Drawing.Point(919, 380);
             this.btnelimGA.Name = "btnelimGA";
-            this.btnelimGA.Size = new System.Drawing.Size(75, 23);
+            this.btnelimGA.Size = new System.Drawing.Size(78, 34);
             this.btnelimGA.TabIndex = 4;
             this.btnelimGA.Text = "Eliminar";
             this.btnelimGA.UseVisualStyleBackColor = true;
@@ -586,9 +593,12 @@
             // 
             // btnGerente
             // 
-            this.btnGerente.Location = new System.Drawing.Point(723, 391);
+            this.btnGerente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGerente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGerente.Image = ((System.Drawing.Image)(resources.GetObject("btnGerente.Image")));
+            this.btnGerente.Location = new System.Drawing.Point(737, 380);
             this.btnGerente.Name = "btnGerente";
-            this.btnGerente.Size = new System.Drawing.Size(75, 23);
+            this.btnGerente.Size = new System.Drawing.Size(80, 34);
             this.btnGerente.TabIndex = 3;
             this.btnGerente.Text = "Nuevo";
             this.btnGerente.UseVisualStyleBackColor = true;
@@ -615,9 +625,12 @@
             // 
             // btnBuscaGerente
             // 
-            this.btnBuscaGerente.Location = new System.Drawing.Point(32, 27);
+            this.btnBuscaGerente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscaGerente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBuscaGerente.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscaGerente.Image")));
+            this.btnBuscaGerente.Location = new System.Drawing.Point(32, 18);
             this.btnBuscaGerente.Name = "btnBuscaGerente";
-            this.btnBuscaGerente.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscaGerente.Size = new System.Drawing.Size(75, 32);
             this.btnBuscaGerente.TabIndex = 0;
             this.btnBuscaGerente.Text = "Buscar";
             this.btnBuscaGerente.UseVisualStyleBackColor = true;
@@ -726,9 +739,12 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(927, 374);
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.Location = new System.Drawing.Point(927, 369);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(70, 25);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 30);
             this.btnEliminar.TabIndex = 5;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -736,9 +752,12 @@
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(819, 374);
+            this.btnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnActualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizar.Image")));
+            this.btnActualizar.Location = new System.Drawing.Point(819, 369);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(88, 25);
+            this.btnActualizar.Size = new System.Drawing.Size(90, 30);
             this.btnActualizar.TabIndex = 4;
             this.btnActualizar.Text = "Modificar";
             this.btnActualizar.UseVisualStyleBackColor = true;
@@ -752,7 +771,7 @@
             this.dgvSucursal.Location = new System.Drawing.Point(28, 48);
             this.dgvSucursal.Name = "dgvSucursal";
             this.dgvSucursal.ReadOnly = true;
-            this.dgvSucursal.Size = new System.Drawing.Size(333, 372);
+            this.dgvSucursal.Size = new System.Drawing.Size(371, 372);
             this.dgvSucursal.TabIndex = 3;
             this.dgvSucursal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSucursal_CellClick);
             // 
@@ -765,9 +784,12 @@
             // 
             // btnBuscarSucursal
             // 
-            this.btnBuscarSucursal.Location = new System.Drawing.Point(28, 19);
+            this.btnBuscarSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarSucursal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBuscarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarSucursal.Image")));
+            this.btnBuscarSucursal.Location = new System.Drawing.Point(28, 6);
             this.btnBuscarSucursal.Name = "btnBuscarSucursal";
-            this.btnBuscarSucursal.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarSucursal.Size = new System.Drawing.Size(75, 36);
             this.btnBuscarSucursal.TabIndex = 1;
             this.btnBuscarSucursal.Text = "Buscar";
             this.btnBuscarSucursal.UseVisualStyleBackColor = true;
@@ -775,9 +797,12 @@
             // 
             // btnSucursal
             // 
-            this.btnSucursal.Location = new System.Drawing.Point(729, 374);
+            this.btnSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSucursal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnSucursal.Image")));
+            this.btnSucursal.Location = new System.Drawing.Point(727, 369);
             this.btnSucursal.Name = "btnSucursal";
-            this.btnSucursal.Size = new System.Drawing.Size(75, 25);
+            this.btnSucursal.Size = new System.Drawing.Size(77, 30);
             this.btnSucursal.TabIndex = 0;
             this.btnSucursal.Text = "Nuevo";
             this.btnSucursal.UseVisualStyleBackColor = true;
@@ -923,9 +948,12 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(805, 371);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.Location = new System.Drawing.Point(805, 361);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(87, 33);
             this.button4.TabIndex = 21;
             this.button4.Text = "Modificar";
             this.button4.UseVisualStyleBackColor = true;
@@ -933,9 +961,12 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(912, 371);
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.Location = new System.Drawing.Point(907, 361);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(80, 33);
             this.button5.TabIndex = 20;
             this.button5.Text = "Eliminar";
             this.button5.UseVisualStyleBackColor = true;
@@ -943,9 +974,12 @@
             // 
             // btnNuevoEncargado
             // 
-            this.btnNuevoEncargado.Location = new System.Drawing.Point(706, 371);
+            this.btnNuevoEncargado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoEncargado.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNuevoEncargado.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoEncargado.Image")));
+            this.btnNuevoEncargado.Location = new System.Drawing.Point(706, 361);
             this.btnNuevoEncargado.Name = "btnNuevoEncargado";
-            this.btnNuevoEncargado.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevoEncargado.Size = new System.Drawing.Size(75, 33);
             this.btnNuevoEncargado.TabIndex = 19;
             this.btnNuevoEncargado.Text = "Nuevo";
             this.btnNuevoEncargado.UseVisualStyleBackColor = true;
@@ -960,9 +994,12 @@
             // 
             // btnBuscarEncargado
             // 
-            this.btnBuscarEncargado.Location = new System.Drawing.Point(28, 20);
+            this.btnBuscarEncargado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarEncargado.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBuscarEncargado.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarEncargado.Image")));
+            this.btnBuscarEncargado.Location = new System.Drawing.Point(28, 6);
             this.btnBuscarEncargado.Name = "btnBuscarEncargado";
-            this.btnBuscarEncargado.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarEncargado.Size = new System.Drawing.Size(75, 37);
             this.btnBuscarEncargado.TabIndex = 2;
             this.btnBuscarEncargado.Text = "Buscar";
             this.btnBuscarEncargado.UseVisualStyleBackColor = true;
@@ -1196,9 +1233,12 @@
             // 
             // btnModificarCliente
             // 
-            this.btnModificarCliente.Location = new System.Drawing.Point(821, 402);
+            this.btnModificarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificarCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnModificarCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarCliente.Image")));
+            this.btnModificarCliente.Location = new System.Drawing.Point(821, 393);
             this.btnModificarCliente.Name = "btnModificarCliente";
-            this.btnModificarCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarCliente.Size = new System.Drawing.Size(84, 32);
             this.btnModificarCliente.TabIndex = 41;
             this.btnModificarCliente.Text = "Modificar";
             this.btnModificarCliente.UseVisualStyleBackColor = true;
@@ -1206,9 +1246,12 @@
             // 
             // btnEliminarCliente
             // 
-            this.btnEliminarCliente.Location = new System.Drawing.Point(925, 402);
+            this.btnEliminarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminarCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarCliente.Image")));
+            this.btnEliminarCliente.Location = new System.Drawing.Point(925, 393);
             this.btnEliminarCliente.Name = "btnEliminarCliente";
-            this.btnEliminarCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarCliente.Size = new System.Drawing.Size(77, 32);
             this.btnEliminarCliente.TabIndex = 40;
             this.btnEliminarCliente.Text = "Eliminar";
             this.btnEliminarCliente.UseVisualStyleBackColor = true;
@@ -1216,9 +1259,12 @@
             // 
             // btnNuevoCliente
             // 
-            this.btnNuevoCliente.Location = new System.Drawing.Point(721, 402);
+            this.btnNuevoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNuevoCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoCliente.Image")));
+            this.btnNuevoCliente.Location = new System.Drawing.Point(721, 393);
             this.btnNuevoCliente.Name = "btnNuevoCliente";
-            this.btnNuevoCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevoCliente.Size = new System.Drawing.Size(79, 32);
             this.btnNuevoCliente.TabIndex = 39;
             this.btnNuevoCliente.Text = "Nuevo";
             this.btnNuevoCliente.UseVisualStyleBackColor = true;
@@ -1226,16 +1272,19 @@
             // 
             // txtBuscarCliente
             // 
-            this.txtBuscarCliente.Location = new System.Drawing.Point(188, 35);
+            this.txtBuscarCliente.Location = new System.Drawing.Point(120, 32);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(424, 20);
+            this.txtBuscarCliente.Size = new System.Drawing.Size(561, 20);
             this.txtBuscarCliente.TabIndex = 38;
             // 
             // btnBuscarCliente
             // 
-            this.btnBuscarCliente.Location = new System.Drawing.Point(80, 33);
+            this.btnBuscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBuscarCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarCliente.Image")));
+            this.btnBuscarCliente.Location = new System.Drawing.Point(16, 25);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarCliente.Size = new System.Drawing.Size(84, 30);
             this.btnBuscarCliente.TabIndex = 37;
             this.btnBuscarCliente.Text = "Buscar";
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
@@ -1319,9 +1368,12 @@
             // 
             // btnModificarPuesto
             // 
-            this.btnModificarPuesto.Location = new System.Drawing.Point(720, 348);
+            this.btnModificarPuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificarPuesto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnModificarPuesto.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarPuesto.Image")));
+            this.btnModificarPuesto.Location = new System.Drawing.Point(720, 337);
             this.btnModificarPuesto.Name = "btnModificarPuesto";
-            this.btnModificarPuesto.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarPuesto.Size = new System.Drawing.Size(81, 34);
             this.btnModificarPuesto.TabIndex = 45;
             this.btnModificarPuesto.Text = "Modificar";
             this.btnModificarPuesto.UseVisualStyleBackColor = true;
@@ -1329,9 +1381,12 @@
             // 
             // btnEliminarPuesto
             // 
-            this.btnEliminarPuesto.Location = new System.Drawing.Point(817, 348);
+            this.btnEliminarPuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarPuesto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminarPuesto.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarPuesto.Image")));
+            this.btnEliminarPuesto.Location = new System.Drawing.Point(817, 337);
             this.btnEliminarPuesto.Name = "btnEliminarPuesto";
-            this.btnEliminarPuesto.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarPuesto.Size = new System.Drawing.Size(82, 34);
             this.btnEliminarPuesto.TabIndex = 44;
             this.btnEliminarPuesto.Text = "Eliminar";
             this.btnEliminarPuesto.UseVisualStyleBackColor = true;
@@ -1339,9 +1394,12 @@
             // 
             // btnNuevoPuesto
             // 
-            this.btnNuevoPuesto.Location = new System.Drawing.Point(621, 348);
+            this.btnNuevoPuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoPuesto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNuevoPuesto.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoPuesto.Image")));
+            this.btnNuevoPuesto.Location = new System.Drawing.Point(619, 337);
             this.btnNuevoPuesto.Name = "btnNuevoPuesto";
-            this.btnNuevoPuesto.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevoPuesto.Size = new System.Drawing.Size(77, 34);
             this.btnNuevoPuesto.TabIndex = 43;
             this.btnNuevoPuesto.Text = "Nuevo";
             this.btnNuevoPuesto.UseVisualStyleBackColor = true;
@@ -1349,9 +1407,12 @@
             // 
             // btnBuscarPuesto
             // 
-            this.btnBuscarPuesto.Location = new System.Drawing.Point(65, 13);
+            this.btnBuscarPuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarPuesto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBuscarPuesto.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarPuesto.Image")));
+            this.btnBuscarPuesto.Location = new System.Drawing.Point(49, 9);
             this.btnBuscarPuesto.Name = "btnBuscarPuesto";
-            this.btnBuscarPuesto.Size = new System.Drawing.Size(75, 25);
+            this.btnBuscarPuesto.Size = new System.Drawing.Size(91, 30);
             this.btnBuscarPuesto.TabIndex = 42;
             this.btnBuscarPuesto.Text = "Buscar";
             this.btnBuscarPuesto.UseVisualStyleBackColor = true;
@@ -1425,9 +1486,12 @@
             // 
             // btnGenerarBI
             // 
-            this.btnGenerarBI.Location = new System.Drawing.Point(531, 189);
+            this.btnGenerarBI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarBI.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGenerarBI.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarBI.Image")));
+            this.btnGenerarBI.Location = new System.Drawing.Point(503, 183);
             this.btnGenerarBI.Name = "btnGenerarBI";
-            this.btnGenerarBI.Size = new System.Drawing.Size(75, 23);
+            this.btnGenerarBI.Size = new System.Drawing.Size(102, 30);
             this.btnGenerarBI.TabIndex = 0;
             this.btnGenerarBI.Text = "Generar";
             this.btnGenerarBI.UseVisualStyleBackColor = true;
@@ -1540,9 +1604,12 @@
             // 
             // btnEliminarOferta
             // 
-            this.btnEliminarOferta.Location = new System.Drawing.Point(858, 390);
+            this.btnEliminarOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarOferta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarOferta.Image")));
+            this.btnEliminarOferta.Location = new System.Drawing.Point(858, 380);
             this.btnEliminarOferta.Name = "btnEliminarOferta";
-            this.btnEliminarOferta.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarOferta.Size = new System.Drawing.Size(85, 33);
             this.btnEliminarOferta.TabIndex = 127;
             this.btnEliminarOferta.Text = "Eliminar";
             this.btnEliminarOferta.UseVisualStyleBackColor = true;
@@ -1550,9 +1617,12 @@
             // 
             // btnModificarOferta
             // 
-            this.btnModificarOferta.Location = new System.Drawing.Point(749, 390);
+            this.btnModificarOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificarOferta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnModificarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarOferta.Image")));
+            this.btnModificarOferta.Location = new System.Drawing.Point(749, 380);
             this.btnModificarOferta.Name = "btnModificarOferta";
-            this.btnModificarOferta.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarOferta.Size = new System.Drawing.Size(90, 33);
             this.btnModificarOferta.TabIndex = 126;
             this.btnModificarOferta.Text = "Modificar";
             this.btnModificarOferta.UseVisualStyleBackColor = true;
@@ -1560,9 +1630,12 @@
             // 
             // btnNuevaOferta
             // 
-            this.btnNuevaOferta.Location = new System.Drawing.Point(638, 390);
+            this.btnNuevaOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevaOferta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNuevaOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevaOferta.Image")));
+            this.btnNuevaOferta.Location = new System.Drawing.Point(636, 380);
             this.btnNuevaOferta.Name = "btnNuevaOferta";
-            this.btnNuevaOferta.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevaOferta.Size = new System.Drawing.Size(93, 33);
             this.btnNuevaOferta.TabIndex = 125;
             this.btnNuevaOferta.Text = "Nuevo";
             this.btnNuevaOferta.UseVisualStyleBackColor = true;
@@ -1714,9 +1787,12 @@
             // 
             // btnBuscarOferta
             // 
-            this.btnBuscarOferta.Location = new System.Drawing.Point(15, 17);
+            this.btnBuscarOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarOferta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBuscarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarOferta.Image")));
+            this.btnBuscarOferta.Location = new System.Drawing.Point(15, 6);
             this.btnBuscarOferta.Name = "btnBuscarOferta";
-            this.btnBuscarOferta.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarOferta.Size = new System.Drawing.Size(75, 34);
             this.btnBuscarOferta.TabIndex = 104;
             this.btnBuscarOferta.Text = "Buscar";
             this.btnBuscarOferta.UseVisualStyleBackColor = true;
@@ -1724,9 +1800,9 @@
             // 
             // btnCerrarSession
             // 
-            this.btnCerrarSession.Location = new System.Drawing.Point(765, 109);
+            this.btnCerrarSession.Location = new System.Drawing.Point(765, 97);
             this.btnCerrarSession.Name = "btnCerrarSession";
-            this.btnCerrarSession.Size = new System.Drawing.Size(103, 23);
+            this.btnCerrarSession.Size = new System.Drawing.Size(112, 35);
             this.btnCerrarSession.TabIndex = 2;
             this.btnCerrarSession.Text = "Cerrar Sesion";
             this.btnCerrarSession.UseVisualStyleBackColor = true;
@@ -1735,7 +1811,7 @@
             // lblSession
             // 
             this.lblSession.AutoSize = true;
-            this.lblSession.Location = new System.Drawing.Point(701, 72);
+            this.lblSession.Location = new System.Drawing.Point(638, 97);
             this.lblSession.Name = "lblSession";
             this.lblSession.Size = new System.Drawing.Size(44, 13);
             this.lblSession.TabIndex = 3;
@@ -1745,6 +1821,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1065, 637);
             this.Controls.Add(this.lblSession);
             this.Controls.Add(this.btnCerrarSession);

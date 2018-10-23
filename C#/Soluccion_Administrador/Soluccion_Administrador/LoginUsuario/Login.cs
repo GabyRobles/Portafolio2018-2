@@ -56,12 +56,14 @@ namespace LoginUsuario
                 //si encuentra el valor o es mayor a cero
                 if (tabla.Rows.Count > 0)
                 {
+                    
                     //creara un nuevo panel principal
-                    inicio = new PanelPrincipal();
+                    PanelPrincipal inicio = new PanelPrincipal();
                     inicio.Show();//mostrara el Panel
                     this.Hide();//ocultara el panel de Login
                     MessageBox.Show("Bienvenido al Sistema AURA");//Mostrara un mensaje de Bienvenida
                     ora.Close();//cerrara la conexion con la BD
+                    
                 }
                 else
                 {
