@@ -105,3 +105,12 @@ body {
 .blog .carousel-indicators .active {
     background: #777777;
 }
+
+.tab1{
+    background: white;
+    margin-bottom: 5%;
+    border-radius: 6px;
+    box-shadow: 10px 10px 5px grey;
+    padding-bottom: 39px;
+    border: 1px solid grey;
+}

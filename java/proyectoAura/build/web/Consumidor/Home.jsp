@@ -37,11 +37,11 @@
                 </div>
                 <div class="col-md-10 col-sm-12">
                     <h1>Bienvenido a home de consumidor</h1>
-                    <div>
+                    <div class="tab1">
                         <h2>Categoría X</h2>
                         <%@include file="../Plantillas/Carousels.jspf" %>
                     </div>
-                    <div>
+                    <div class="tab1">
                         <h2>Categoría X</h2>
                         <%@include file="../Plantillas/Carousels.jspf" %>
                     </div>
