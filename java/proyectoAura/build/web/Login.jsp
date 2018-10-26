@@ -27,7 +27,7 @@
                     </div>
                     <form id="Login" action="${pageContext.request.contextPath}/LoginServlet/Consumidor" method="post">
                         <div class="form-group">
-                            <input type="email" class="form-control" id="validationDefaultUsername" name="email" placeholder="Correo Electrónico" aria-describedby="inputGroupPrepend1" required />
+                            <input type="email" class="form-control" id="validationDefaultUsername" name="email" placeholder="Correo" aria-describedby="inputGroupPrepend1" required />
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="validationDefaultPassword" name="psw" placeholder="Contraseña" aria-describedby="inputGroupPrepend2" required />
@@ -44,6 +44,4 @@
             </div>
         </div>
     </body>
-    <footer>
-    </footer>
 </html>
