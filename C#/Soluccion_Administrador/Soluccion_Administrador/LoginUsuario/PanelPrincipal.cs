@@ -1299,7 +1299,7 @@ namespace LoginUsuario
             DataTable dt = new DataTable();//guardamos en un objeto de datatable lo encontrado
             consulta.Fill(dt);
             string dataFiller = string.Empty;
-            StreamWriter archivotxt = new StreamWriter("C:\\Users\\Akihiko Sanada\\Desktop\\ejemplo.txt");
+            StreamWriter archivotxt = new StreamWriter("C:\\Users\\solita\\Desktop\\ejemplo.txt");
             foreach (DataRow item in dt.Rows)
             {
                 foreach (decimal registro in item.ItemArray)
