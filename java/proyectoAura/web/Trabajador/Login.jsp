@@ -23,13 +23,13 @@
                     <div class="loginGerente">
                         <img class="logo" src="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png"/>
                         <h1>Mis Ofertas</h1>
-                        <form action="${pageContext.request.contextPath}/LoginServlet/Trabajador" method="post" class="formulario">
+                        <form action="${pageContext.request.contextPath}/LoginServlet/Trabajador" method="post" class="formulario" class="needs-validation" novalidate>
                             <center>
                                 <div class="form-group">
-                                    <input class="form-control" type="email" placeholder="nombre@ejemplo.com" id="validationDefaultUsername" name="email" aria-describedby="inputGroupPrepend1" required/>
+                                    <input class="form-control is-valid" type="email" placeholder="nombre@ejemplo.com" id="validationDefaultUsername" name="email" aria-describedby="inputGroupPrepend1" required/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="Contraseña" id="validationDefaultPassword" name="psw" aria-describedby="inputGroupPrepend2" required/>
+                                    <input class="form-control is-valid" type="password" placeholder="Contraseña" id="validationDefaultPassword" name="psw" aria-describedby="inputGroupPrepend2" required/>
                                 </div>
                                 <button type="submit" class="btnInicioSesion">Iniciar Sesión</button>
                             </center>
@@ -37,6 +37,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>   
     </body>
 </html>
