@@ -223,7 +223,7 @@
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.ItemSize = new System.Drawing.Size(60, 18);
-            this.tabControl1.Location = new System.Drawing.Point(12, 149);
+            this.tabControl1.Location = new System.Drawing.Point(12, 151);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1041, 473);
@@ -354,6 +354,7 @@
             this.txtprecioPro.Name = "txtprecioPro";
             this.txtprecioPro.Size = new System.Drawing.Size(173, 20);
             this.txtprecioPro.TabIndex = 24;
+            this.txtprecioPro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtprecioPro_KeyPress);
             // 
             // txtidpro
             // 
@@ -368,6 +369,7 @@
             this.txtnomPro.Name = "txtnomPro";
             this.txtnomPro.Size = new System.Drawing.Size(173, 20);
             this.txtnomPro.TabIndex = 22;
+            this.txtnomPro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnomPro_KeyPress);
             // 
             // button1
             // 
@@ -562,6 +564,7 @@
             this.txtcorrAG.Name = "txtcorrAG";
             this.txtcorrAG.Size = new System.Drawing.Size(173, 20);
             this.txtcorrAG.TabIndex = 8;
+            this.txtcorrAG.Leave += new System.EventHandler(this.txtcorrAG_Leave);
             // 
             // txtidAG
             // 
@@ -572,10 +575,11 @@
             // 
             // txtnomAG
             // 
-            this.txtnomAG.Location = new System.Drawing.Point(801, 176);
+            this.txtnomAG.Location = new System.Drawing.Point(801, 175);
             this.txtnomAG.Name = "txtnomAG";
             this.txtnomAG.Size = new System.Drawing.Size(173, 20);
             this.txtnomAG.TabIndex = 6;
+            this.txtnomAG.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnomAG_KeyPress);
             // 
             // btnmodiGA
             // 
@@ -706,6 +710,7 @@
             this.txtDiresucu.Name = "txtDiresucu";
             this.txtDiresucu.Size = new System.Drawing.Size(153, 20);
             this.txtDiresucu.TabIndex = 11;
+            this.txtDiresucu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiresucu_KeyPress);
             // 
             // txtIdsucu
             // 
@@ -721,6 +726,7 @@
             this.txtNomsucu.Name = "txtNomsucu";
             this.txtNomsucu.Size = new System.Drawing.Size(153, 20);
             this.txtNomsucu.TabIndex = 9;
+            this.txtNomsucu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomsucu_KeyPress);
             // 
             // lblEmpresa
             // 
@@ -942,6 +948,7 @@
             this.txtcorrEC.Name = "txtcorrEC";
             this.txtcorrEC.Size = new System.Drawing.Size(173, 20);
             this.txtcorrEC.TabIndex = 24;
+            this.txtcorrEC.Leave += new System.EventHandler(this.txtcorrEC_Leave);
             // 
             // txtidEC
             // 
@@ -957,6 +964,7 @@
             this.txtnomEC.Name = "txtnomEC";
             this.txtnomEC.Size = new System.Drawing.Size(173, 20);
             this.txtnomEC.TabIndex = 22;
+            this.txtnomEC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnomEC_KeyPress);
             // 
             // button4
             // 
@@ -1111,6 +1119,7 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(144, 20);
             this.txtTelefono.TabIndex = 59;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // txtPuntajeCliente
             // 
@@ -1118,6 +1127,7 @@
             this.txtPuntajeCliente.Name = "txtPuntajeCliente";
             this.txtPuntajeCliente.Size = new System.Drawing.Size(144, 20);
             this.txtPuntajeCliente.TabIndex = 58;
+            this.txtPuntajeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPuntajeCliente_KeyPress);
             // 
             // label18
             // 
@@ -1130,7 +1140,7 @@
             // 
             // txtContrasenaCliente
             // 
-            this.txtContrasenaCliente.Location = new System.Drawing.Point(821, 273);
+            this.txtContrasenaCliente.Location = new System.Drawing.Point(821, 272);
             this.txtContrasenaCliente.Name = "txtContrasenaCliente";
             this.txtContrasenaCliente.Size = new System.Drawing.Size(144, 20);
             this.txtContrasenaCliente.TabIndex = 56;
@@ -1143,7 +1153,6 @@
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 55;
             this.label5.Text = "Contraseña";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtCorreoCliente
             // 
@@ -1151,6 +1160,7 @@
             this.txtCorreoCliente.Name = "txtCorreoCliente";
             this.txtCorreoCliente.Size = new System.Drawing.Size(144, 20);
             this.txtCorreoCliente.TabIndex = 54;
+            this.txtCorreoCliente.Leave += new System.EventHandler(this.txtCorreoCliente_Leave);
             // 
             // dtNacimientoCliente
             // 
@@ -1223,10 +1233,11 @@
             // 
             // txtApellidoCliente
             // 
-            this.txtApellidoCliente.Location = new System.Drawing.Point(821, 169);
+            this.txtApellidoCliente.Location = new System.Drawing.Point(821, 170);
             this.txtApellidoCliente.Name = "txtApellidoCliente";
             this.txtApellidoCliente.Size = new System.Drawing.Size(144, 20);
             this.txtApellidoCliente.TabIndex = 44;
+            this.txtApellidoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidoCliente_KeyPress);
             // 
             // txtIdCliente
             // 
@@ -1242,6 +1253,7 @@
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(144, 20);
             this.txtNombreCliente.TabIndex = 42;
+            this.txtNombreCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreCliente_KeyPress);
             // 
             // btnModificarCliente
             // 
@@ -1705,6 +1717,7 @@
             this.txtNombreOferta.Name = "txtNombreOferta";
             this.txtNombreOferta.Size = new System.Drawing.Size(125, 20);
             this.txtNombreOferta.TabIndex = 116;
+            this.txtNombreOferta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreOferta_KeyPress);
             // 
             // txtTipoOferta
             // 
@@ -1726,6 +1739,7 @@
             this.txtPrecioOferta.Name = "txtPrecioOferta";
             this.txtPrecioOferta.Size = new System.Drawing.Size(125, 20);
             this.txtPrecioOferta.TabIndex = 113;
+            this.txtPrecioOferta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioOferta_KeyPress);
             // 
             // lblNombreOferta
             // 
@@ -1814,25 +1828,25 @@
             // btnCerrarSession
             // 
             this.btnCerrarSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrarSession.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCerrarSession.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCerrarSession.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSession.Image")));
-            this.btnCerrarSession.Location = new System.Drawing.Point(870, 85);
+            this.btnCerrarSession.Location = new System.Drawing.Point(872, 86);
             this.btnCerrarSession.Name = "btnCerrarSession";
-            this.btnCerrarSession.Size = new System.Drawing.Size(164, 35);
+            this.btnCerrarSession.Size = new System.Drawing.Size(119, 32);
             this.btnCerrarSession.TabIndex = 2;
-            this.btnCerrarSession.Text = "Cerrar Sesion";
+            this.btnCerrarSession.Text = "Cerrar Sesión";
             this.btnCerrarSession.UseVisualStyleBackColor = true;
             this.btnCerrarSession.Click += new System.EventHandler(this.btnCerrarSession_Click);
             // 
             // lblSession
             // 
             this.lblSession.AutoSize = true;
-            this.lblSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSession.Location = new System.Drawing.Point(638, 97);
+            this.lblSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSession.Location = new System.Drawing.Point(577, 95);
             this.lblSession.Name = "lblSession";
-            this.lblSession.Size = new System.Drawing.Size(109, 25);
+            this.lblSession.Size = new System.Drawing.Size(275, 17);
             this.lblSession.TabIndex = 3;
-            this.lblSession.Text = "Bienvenido";
+            this.lblSession.Text = "Bienvenido Administrador: Simón Pinochet";
             // 
             // PanelPrincipal
             // 

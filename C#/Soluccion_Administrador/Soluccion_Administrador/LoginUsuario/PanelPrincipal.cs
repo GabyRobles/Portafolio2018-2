@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace LoginUsuario
 {
@@ -19,21 +20,21 @@ namespace LoginUsuario
         //atributos
         int posicion;
         Login login;
-        
-       //String de Conexion con AWS de Amazon
+
+        //String de Conexion con AWS de Amazon
         OracleConnection ora = new OracleConnection("DATA SOURCE=aura.cckolbo3d8nz.us-east-1.rds.amazonaws.com:1521/Auradb;USER ID=ADMAURA;PASSWORD= admin123");
 
         public PanelPrincipal()
         {
-           
-            
+
+
 
             InitializeComponent();
             //Cambiar los valores de colores del materil skin
             MaterialSkinManager m = MaterialSkinManager.Instance;
             m.AddFormToManage(this);
             m.Theme = MaterialSkinManager.Themes.LIGHT;
-            m.ColorScheme = new ColorScheme(Primary.DeepPurple500, Primary.DeepPurple400, Primary.DeepPurple500, Accent.Green100, TextShade.WHITE);
+            m.ColorScheme = new ColorScheme(Primary.Blue600, Primary.Blue500, Primary.Blue400, Accent.Green100, TextShade.WHITE);
 
         }
         //seleccionarToda_Encargado
@@ -67,6 +68,27 @@ namespace LoginUsuario
             CargarComboOfertaSucursal(cboSucOfert);
             CargarComboOfertaProducto(cboprodOfert);
             CargarComboOfertaCategoria(cbocateOfert);
+        }
+
+        private Boolean validarCorreo(String email)//validar formato de correo
+        {
+            String expresion;
+            expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";//formato de correo
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void CargarPuesto(DataGridView dgvPuesto)
@@ -247,7 +269,7 @@ namespace LoginUsuario
         }
 
         //acá arreglar para que filtre
-        public void cargarCboCliente( ComboBox cboClienteLocal) {
+        public void cargarCboCliente(ComboBox cboClienteLocal) {
             try
             {
                 ora.Open();//abrimos la conexion
@@ -319,7 +341,7 @@ namespace LoginUsuario
 
                 throw;
             }
-           
+
 
 
         }
@@ -346,7 +368,7 @@ namespace LoginUsuario
                 throw;
             }
         }
-             public void CargarComboGAsocPuesto(ComboBox cbo)//carga los puesto de gerente de asociacion
+        public void CargarComboGAsocPuesto(ComboBox cbo)//carga los puesto de gerente de asociacion
         {
             try
             {
@@ -405,11 +427,11 @@ namespace LoginUsuario
 
                 if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))//verifica que los txxbox esten llenos
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");//mensaje al usuario
+                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
-                   
+
                     //"INSERTAR_SUCURSAL" (nombre in VARCHAR2,direccion in VARCHAR2,idsc in number)
                     ora.Open();
                     OracleCommand comando = new OracleCommand("INSERTAR_SUCURSAL", ora);
@@ -417,16 +439,28 @@ namespace LoginUsuario
                     comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNomsucu.Text;
                     comando.Parameters.Add("direccion", OracleType.VarChar).Value = txtDiresucu.Text;
                     comando.Parameters.Add("idsc", OracleType.Number).Value = idempresa;
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido Insertado");
-                    ora.Close();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        this.CargarSucursal(dgvSucursal);
+                    }
+                    else
+                    {
+                        txtNomsucu.Clear();
+                        txtDiresucu.Clear();
+                        ora.Close();
+                        this.CargarSucursal(dgvSucursal);
+                    }
+
                 }
-                this.CargarSucursal(dgvSucursal);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha siddo Insertado el registro");
-                
+                MessageBox.Show("No se ha siddo Insertado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.CargarSucursal(dgvSucursal);
+
             }
         }
 
@@ -436,7 +470,7 @@ namespace LoginUsuario
                 //INSERTAR_TRABAJADOR(nombre in VARCHAR2,crro in VARCHAR2,pss in VARCHAR2,idp in number,idemp in NUMBER)
                 if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))//verifica que los txxbox esten llenos
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");//mensaje al usuario
+                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
@@ -454,17 +488,33 @@ namespace LoginUsuario
                     int idempresa = Convert.ToInt32(cboPuestoEN.SelectedValue.ToString());
                     comando.Parameters.Add("idp", OracleType.Number).Value = idpuesto;
                     comando.Parameters.Add("idemp", OracleType.Number).Value = idempresa;
-                    comando.ExecuteNonQuery();
-                   
-                    ora.Close();
-                    MessageBox.Show("El Archivo ha sido insertado");
+                    DialogResult resul = MessageBox.Show("Seguro que quiere Agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido Agregar", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.CargarEncargado(dgvEncargado);
+                        txtnomEC.Clear();
+                        txtcorrEC.Clear();
+                        txtpsEC.Clear();
+                    }
+                    else
+                    {
+                        txtnomEC.Clear();
+                        txtcorrEC.Clear();
+                        txtpsEC.Clear();
+                        this.CargarEncargado(dgvEncargado);
+                    }
+
                 }
-                this.CargarEncargado(dgvEncargado);
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha sido insertado el registro");
-                ora.Close();
+                MessageBox.Show("No se ha sido insertado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.CargarEncargado(dgvEncargado); ora.Close();
+
             }
         }
 
@@ -475,9 +525,9 @@ namespace LoginUsuario
             try
             {
 
-                if (txtNomsucu.Text.Equals("")&&txtDiresucu.Equals(""))
+                if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -488,15 +538,28 @@ namespace LoginUsuario
                     comando.Parameters.Add("idsuc", OracleType.Number).Value = Convert.ToInt32(txtIdsucu.Text);
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtNomsucu.Text;
                     comando.Parameters.Add("dir", OracleType.VarChar).Value = txtDiresucu.Text;
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido Actualizado");
-                    ora.Close();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere Modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("Se elimino", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        txtIdsucu.Clear();
+                        txtNomsucu.Clear();
+                        txtDiresucu.Clear();
+                        this.CargarSucursal(dgvSucursal);
+                    }
+                    else
+                    {
+                        this.CargarSucursal(dgvSucursal);
+                        ora.Close();
+                    }
                 }
-                this.CargarSucursal(dgvSucursal);
-              }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("No se ha Actualizado el registro");
+                this.CargarSucursal(dgvSucursal);
                 ora.Close();
             }
         }
@@ -511,20 +574,20 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("seleccionar_Sucursal", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idsu", OracleType.Number).Value = Convert.ToInt32(txtSucursal.Text);
-                    if (comando.Parameters != null)
-                    {
-                        comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
-                        comando.ExecuteNonQuery();
-                        OracleDataAdapter adaptador = new OracleDataAdapter();
-                        adaptador.SelectCommand = comando;
-                        DataTable tabla = new DataTable();
-                        adaptador.Fill(tabla);
-                        dgvSucursal.DataSource = tabla;
-                        ora.Close();
+                if (comando.Parameters != null)
+                {
+                    comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+                    comando.ExecuteNonQuery();
+                    OracleDataAdapter adaptador = new OracleDataAdapter();
+                    adaptador.SelectCommand = comando;
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+                    dgvSucursal.DataSource = tabla;
+                    ora.Close();
                 }
 
 
-             }
+            }
             catch (Exception ex)
             {
 
@@ -532,7 +595,7 @@ namespace LoginUsuario
                 this.CargarSucursal(dgvSucursal);
 
             }
-            
+
         }
 
         private void dgvSucursal_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -541,30 +604,41 @@ namespace LoginUsuario
             txtIdsucu.Text = dgvSucursal[0, posicion].Value.ToString();
             txtNomsucu.Text = dgvSucursal[1, posicion].Value.ToString();
             txtDiresucu.Text = dgvSucursal[2, posicion].Value.ToString();
-            cboEmpresaSuc.Text=dgvSucursal[3, posicion].Value.ToString();
-            
+            cboEmpresaSuc.Text = dgvSucursal[3, posicion].Value.ToString();
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
-                    ora.Open();
-                    OracleCommand comando = new OracleCommand("eliminar_sucursal", ora);
-                    comando.CommandType = System.Data.CommandType.StoredProcedure;
-                    comando.Parameters.Add("idsuc", OracleType.Number).Value = Convert.ToInt32(txtIdsucu.Text);
+                ora.Open();
+                OracleCommand comando = new OracleCommand("eliminar_sucursal", ora);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("idsuc", OracleType.Number).Value = Convert.ToInt32(txtIdsucu.Text);
+                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "Eliminar Registro", MessageBoxButtons.YesNo);
+                if (resul == DialogResult.Yes)
+                {
                     comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido Eliminado");
                     ora.Close();
-               
-                this.CargarSucursal(dgvSucursal);
-                txtDiresucu.Clear();
-                txtNomsucu.Clear();
-                txtIdsucu.Clear();
+                    MessageBox.Show("El Archivo ha sido Eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.CargarSucursal(dgvSucursal);
+                    txtDiresucu.Clear();
+                    txtNomsucu.Clear();
+                    txtIdsucu.Clear();
+                }
+                else
+                {
+                    ora.Close();
+                    this.CargarSucursal(dgvSucursal);
+                }
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha Eliminado el registro");
+                MessageBox.Show("No se ha Eliminado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.CargarSucursal(dgvSucursal);
+                ora.Close();
             }
         }
 
@@ -634,18 +708,27 @@ namespace LoginUsuario
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idtra", OracleType.Number).Value = Convert.ToInt32(txtidAG.Text);
                 comando.ExecuteNonQuery();
-                MessageBox.Show("El Archivo ha sido Eliminado");
-                ora.Close();
+                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                if (resul == DialogResult.Yes)
+                {
+                    comando.ExecuteNonQuery();
+                    ora.Close();
+                    MessageBox.Show("El Archivo ha sido Eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.CargarSucursal(dgvSucursal);
+                }
+                else
+                {
+                    this.CargarSucursal(dgvSucursal);
+                    txtidAG.Clear();
+                    txtnomAG.Clear();
+                    txtcorrAG.Clear();
+                }
 
-                this.CargarSucursal(dgvSucursal);
-                txtidAG.Clear();
-                txtnomAG.Clear();
-                txtcorrAG.Clear();
-               
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha Eliminado el registro");
+                MessageBox.Show("No se ha Eliminado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.CargarSucursal(dgvSucursal);
             }
         }
 
@@ -656,7 +739,7 @@ namespace LoginUsuario
 
                 if (txtnomAG.Text.Equals("") && txtcorrAG.Equals("") && txtcontAG.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -668,15 +751,29 @@ namespace LoginUsuario
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtnomAG.Text;
                     comando.Parameters.Add("cor", OracleType.VarChar).Value = txtcorrAG.Text;
                     comando.Parameters.Add("pass", OracleType.VarChar).Value = txtcontAG.Text;
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido Actualizado");
-                    ora.Close();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido Actualizado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.CargarGerente(dgvAsociacion);
+                    }
+                    else
+                    {
+                        txtnomAG.Clear();
+                        txtcontAG.Clear();
+                        txtcorrAG.Clear();
+                        this.CargarGerente(dgvAsociacion);
+                        ora.Close();
+                    }
                 }
-                this.CargarGerente(dgvAsociacion);
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha Actualizado el registro");
+                MessageBox.Show("No se ha Actualizado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                CargarGerente(dgvAsociacion);
             }
         }
 
@@ -712,15 +809,29 @@ namespace LoginUsuario
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtnomEC.Text;
                     comando.Parameters.Add("cor", OracleType.VarChar).Value = txtcorrEC.Text;
                     comando.Parameters.Add("pass", OracleType.VarChar).Value = txtpsEC.Text;
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido Actualizado");
-                    ora.Close();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere Modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido modificado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.CargarEncargado(dgvEncargado);
+                        txtnomEC.Clear();
+                        txtcorrEC.Clear();
+                        txtpsEC.Clear();
+                    }
+                    else
+                    {
+                        txtnomEC.Clear();
+                        txtcorrEC.Clear();
+                        txtpsEC.Clear();
+                        this.CargarEncargado(dgvEncargado);
+                    }
                 }
-                this.CargarEncargado(dgvEncargado);
-            }
-            catch (Exception ex)
+            } catch (Exception)
             {
-                MessageBox.Show("No se ha Actualizado el registro");
+                MessageBox.Show("No se ha Actualizado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.CargarEncargado(dgvEncargado);
             }
         }
 
@@ -733,22 +844,32 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("ELIMINAR_TRABAJADOR", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idtra", OracleType.Number).Value = Convert.ToInt32(txtidEC.Text);
-                comando.ExecuteNonQuery();
-                MessageBox.Show("El Archivo ha sido Eliminado");
-                ora.Close();
-
-                this.CargarEncargado(dgvEncargado); 
-                txtidEC.Clear();
-                txtnomEC.Clear();
-                txtcorrEC.Clear();
-                txtpsEC.Clear();
-             
-            }
-            catch (Exception ex)
+                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "eliminar Registro", MessageBoxButtons.YesNo);
+                if (resul == DialogResult.Yes)
+                {
+                    comando.ExecuteNonQuery();
+                    ora.Close();
+                    MessageBox.Show("El Archivo ha sido eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.CargarEncargado(dgvEncargado);
+                    txtnomEC.Clear();
+                    txtcorrEC.Clear();
+                    txtpsEC.Clear();
+                }
+                else
+                {
+                    txtnomEC.Clear();
+                    txtcorrEC.Clear();
+                    txtpsEC.Clear();
+                    this.CargarEncargado(dgvEncargado);
+                }
+            
+            }catch (Exception)
             {
-                MessageBox.Show("No se ha Eliminado el registro");
-            }
-        }
+                MessageBox.Show("No se ha eliminado el registro","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                this.CargarEncargado(dgvEncargado);
+    }
+    }
+
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
@@ -774,7 +895,7 @@ namespace LoginUsuario
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Dato no encontrado");
                 this.CargarCeldas(dgvProducto);
@@ -806,7 +927,7 @@ namespace LoginUsuario
                 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Dato no encontrado");
                 this.CargarEncargado(dgvEncargado);
@@ -816,12 +937,11 @@ namespace LoginUsuario
         private void btnGerente_Click(object sender, EventArgs e)
         {
             try
-            {
-               
+            { 
 
                 if (txtnomAG.Text.Equals("") && txtcorrAG.Equals("") && txtcontAG.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                    MessageBox.Show("Todos los Datos Son Obligatorios","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
                 else
                 {//"INSERTAR_TRABAJADOR" (nombre in VARCHAR2,crro in VARCHAR2,pss in VARCHAR2,idp in number,idemp in NUMBER)
@@ -840,30 +960,51 @@ namespace LoginUsuario
                     int idempresa = Convert.ToInt32(cboEmADM.SelectedValue.ToString());
                     comando.Parameters.Add("idp", OracleType.Number).Value = idpuesto;
                     comando.Parameters.Add("idemp", OracleType.Number).Value = idempresa;
-                    comando.ExecuteNonQuery();
-
-                    ora.Close();
-                    MessageBox.Show("El Archivo ha sido insertado");
+                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido insertado","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                        txtnomAG.Clear();
+                        txtcorrAG.Clear();
+                        txtcontAG.Clear();
+                        this.CargarGerente(dgvAsociacion);
+                    }
+                    else
+                    {
+                        txtNomsucu.Clear();
+                        txtDiresucu.Clear();
+                        this.CargarGerente(dgvAsociacion);
+                        ora.Close();
+                    }
+                    
                 }
-                this.CargarGerente(dgvAsociacion);
+             
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha sido insertado el registro");
+                MessageBox.Show("No se ha sido insertado el registro","titulo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 ora.Close();
+                CargarGerente(dgvAsociacion);
             }
-
-
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             try
             {
-
-                if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
+                if (txtnomPro.Text.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                    MessageBox.Show("Inserte Mensaje", "Dato incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (txtprecioPro.Equals(""))
+                {
+                    MessageBox.Show("Inserte Mensaje", "Dato incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+               else if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
+                {
+                    MessageBox.Show("Inserte Mensaje", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {//capturamos el combobox
@@ -878,39 +1019,46 @@ namespace LoginUsuario
                     comando.Parameters.Add("fecelb", OracleType.DateTime).Value = dtpElaboPr.Text;
                     comando.Parameters.Add("fechven", OracleType.DateTime).Value = dtpvecipro.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido insertado");
-                    ora.Close();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                    MessageBox.Show("Inserte Mensaje", "Correcto", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        this.CargarCeldas(dgvProducto);
                     }
-                this.CargarCeldas(dgvProducto); 
-
+                    else
+                    {
+                        txtnomPro.Clear();
+                        txtprecioPro.Clear();
+                        ora.Close();
+                        this.CargarCeldas(dgvProducto);
+                    }
+                    }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha insertado el registro");
+                MessageBox.Show("Inserte Mensaje", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.CargarCeldas(dgvProducto);
             }
         }
-
-        private void button1_MouseEnter(object sender, EventArgs e)  
-        {
-            //this.button1.BackColor =Color.FromArgb("#8BC34A"); 
-            this.button1.BackColor = System.Drawing.ColorTranslator.FromHtml("#8BC34A");
-        }  
-        private void button1_MouseLeave(object sender, EventArgs e)  
-        {  
-            this.button1.BackColor = SystemColors.Control;  
-        } 
-
-
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             try
             {
-
-                if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
+                if (txtnomPro.Text.Equals(""))//mensaje que editar
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                    MessageBox.Show("Inserte Mensaje", "Dato incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (txtprecioPro.Equals(""))
+                {
+                    MessageBox.Show("Inserte Mensaje", "Dato incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                else if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
+                {
+                    MessageBox.Show("Inserte Mensaje", "Dato incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -927,15 +1075,27 @@ namespace LoginUsuario
                     //capturamos el combobox
                     int idcate = Convert.ToInt32(cbocategoria.SelectedValue.ToString());
                     comando.Parameters.Add("ID_CATE", OracleType.Number).Value = idcate;
-                    comando.ExecuteNonQuery();
-                    ora.Close();
+
+                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo,MessageBoxIcon.Information );
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                    }
+                    else
+                    {
+                        txtnomPro.Clear();
+                        txtprecioPro.Clear();
+                        ora.Close();
+                    }
+
                 }
                 this.CargarCeldas(dgvProducto);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha Actualizado el registro");
+                MessageBox.Show("Inserte Mensaje", "No Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -947,19 +1107,29 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("eliminar_producto", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtidpro.Text);
-                comando.ExecuteNonQuery();
-                MessageBox.Show("El Archivo ha sido Eliminado");
-                ora.Close();
+                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "Eliminar Registro", MessageBoxButtons.YesNo);
+                if (resul == DialogResult.Yes)
+                {
+                    comando.ExecuteNonQuery();
+                    ora.Close();
+                    MessageBox.Show("El Archivo ha sido Eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    txtidpro.Clear();
+                    txtnomPro.Clear();
+                    txtprecioPro.Clear();
+                    ora.Close();
+                }
 
                 this.CargarCeldas(dgvProducto);
-                txtidpro.Clear();
-                txtnomPro.Clear();
-                txtprecioPro.Clear(); 
+
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show("No se ha Eliminado el registro");
+                MessageBox.Show("No se ha Eliminado el registro","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 this.CargarCeldas(dgvProducto);
             }
         }
@@ -984,11 +1154,6 @@ namespace LoginUsuario
             }
 
             cbocategoria.Text = dgvProducto[5, posicion].Value.ToString();
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
 
 
@@ -1066,7 +1231,7 @@ namespace LoginUsuario
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
                 MessageBox.Show("Dato no encontrado");
@@ -1082,7 +1247,7 @@ namespace LoginUsuario
 
                 if (txtNombreCliente.Text.Equals("") && txtApellidoCliente.Equals("") && txtRutCliente.Equals("") && txtCorreoCliente.Equals("") && txtContrasenaCliente.Equals("") && txtPuntajeCliente.Equals("") && txtTelefono.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");
+                    MessageBox.Show("Todos los Datos Son Obligatorios","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -1100,16 +1265,49 @@ namespace LoginUsuario
                     comando.Parameters.Add("pto", OracleType.Number).Value = Convert.ToInt32(txtPuntajeCliente.Text);
                     comando.Parameters.Add("tele", OracleType.VarChar).Value = txtTelefono.Text;
                     comando.Parameters.Add("envofe", OracleType.VarChar).Value = cboEnvioOfertaCliente.Text;
+                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "agregar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido Agregar", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.cargarClienteDataGrid(dtvCliente);
+                        txtNombreCliente.Clear();
+                        txtApellidoCliente.Clear();
+                        txtRutCliente.Clear();
+                        txtCorreoCliente.Clear();
+                        txtContrasenaCliente.Clear();
+                        txtPuntajeCliente.Clear();
+                        txtTelefono.Clear();
+                    }
+                    else
+                    {
+                        this.cargarClienteDataGrid(dtvCliente);
+                        txtNombreCliente.Clear();
+                        txtApellidoCliente.Clear();
+                        txtRutCliente.Clear();
+                        txtCorreoCliente.Clear();
+                        txtContrasenaCliente.Clear();
+                        txtPuntajeCliente.Clear();
+                        txtTelefono.Clear();
+                        ora.Close();
+                    }
 
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido Actualizado");
-                    ora.Close();
                 }
-                cargarClienteDataGrid(dtvCliente);
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("No se ha Actualizado el registro");
+                this.cargarClienteDataGrid(dtvCliente);
+                txtNombreCliente.Clear();
+                txtApellidoCliente.Clear();
+                txtRutCliente.Clear();
+                txtCorreoCliente.Clear();
+                txtContrasenaCliente.Clear();
+                txtPuntajeCliente.Clear();
+                txtTelefono.Clear();
+                ora.Close();
             }
         }
 
@@ -1142,15 +1340,49 @@ namespace LoginUsuario
                     //falta cbo.
 
 
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido Actualizado");
-                    ora.Close();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido modificar", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.cargarClienteDataGrid(dtvCliente);
+                        txtNombreCliente.Clear();
+                        txtApellidoCliente.Clear();
+                        txtRutCliente.Clear();
+                        txtCorreoCliente.Clear();
+                        txtContrasenaCliente.Clear();
+                        txtPuntajeCliente.Clear();
+                        txtTelefono.Clear();
+                    }
+                    else
+                    {
+                        this.cargarClienteDataGrid(dtvCliente);
+                        txtNombreCliente.Clear();
+                        txtApellidoCliente.Clear();
+                        txtRutCliente.Clear();
+                        txtCorreoCliente.Clear();
+                        txtContrasenaCliente.Clear();
+                        txtPuntajeCliente.Clear();
+                        txtTelefono.Clear();
+                        ora.Close();
+                    }
+
                 }
-                this.CargarEncargado(dgvEncargado);
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("No se ha Actualizado el registro");
+                this.cargarClienteDataGrid(dtvCliente);
+                txtNombreCliente.Clear();
+                txtApellidoCliente.Clear();
+                txtRutCliente.Clear();
+                txtCorreoCliente.Clear();
+                txtContrasenaCliente.Clear();
+                txtPuntajeCliente.Clear();
+                txtTelefono.Clear();
+                ora.Close();
             }
         }
 
@@ -1163,28 +1395,51 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("eliminar_consumidor", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtIdCliente.Text);
-                comando.ExecuteNonQuery();
-                MessageBox.Show("El Consumidor ha sido Eliminado");
-                ora.Close();
+                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "eliminar Registro", MessageBoxButtons.YesNo);
+                if (resul == DialogResult.Yes)
+                {
+                    comando.ExecuteNonQuery();
+                    ora.Close();
+                    MessageBox.Show("El Archivo ha sido eliminar", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.cargarClienteDataGrid(dtvCliente);
+                    txtNombreCliente.Clear();
+                    txtApellidoCliente.Clear();
+                    txtRutCliente.Clear();
+                    txtCorreoCliente.Clear();
+                    txtContrasenaCliente.Clear();
+                    txtPuntajeCliente.Clear();
+                    txtTelefono.Clear();
+                }
+                else
+                {
+                    this.cargarClienteDataGrid(dtvCliente);
+                    txtNombreCliente.Clear();
+                    txtApellidoCliente.Clear();
+                    txtRutCliente.Clear();
+                    txtCorreoCliente.Clear();
+                    txtContrasenaCliente.Clear();
+                    txtPuntajeCliente.Clear();
+                    txtTelefono.Clear();
+                    ora.Close();
+                }
 
+            
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se ha eliminar el registro");
                 this.cargarClienteDataGrid(dtvCliente);
-                txtIdCliente.Clear();
                 txtNombreCliente.Clear();
                 txtApellidoCliente.Clear();
                 txtRutCliente.Clear();
-                //limpiar datetimepicker fecha de nacimineto
                 txtCorreoCliente.Clear();
                 txtContrasenaCliente.Clear();
                 txtPuntajeCliente.Clear();
                 txtTelefono.Clear();
-                //luimpiar combo box envío
-
+                ora.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("No se ha Eliminado el registro del consumidor");
-            }
-        }
+}
 
 
 
@@ -1208,26 +1463,37 @@ namespace LoginUsuario
                 
                 if (txtPuestoNombre.Text.Equals(""))//verifica que los textbox esten llenos
                 {
-                    MessageBox.Show("El dato es obligatorio");//mensaje al usuario
+                    MessageBox.Show("El dato es obligatorio","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
                     ora.Open();
                     OracleCommand comando = new OracleCommand("INSERTAR_PUESTO", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
-
                     comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtPuestoNombre.Text;
-
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El puesto ha sido creado");
-                    ora.Close();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido Eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.CargarPuesto(dgvPuesto);
+                        txtPuestoNombre.Clear();
+                    }
+                    else
+                    {
+                        this.CargarPuesto(dgvPuesto);
+                        txtPuestoNombre.Clear();
+                    }
                 }
-                this.CargarPuesto(dgvPuesto);
+               
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 MessageBox.Show("No ha sido insertado ningun puesto");
                 ora.Close();
+                this.CargarPuesto(dgvPuesto);
+                txtPuestoNombre.Clear();
             }
         }
 
@@ -1241,7 +1507,7 @@ namespace LoginUsuario
 
                 if (txtPuestoNombre.Text.Equals(""))//verifica que los textbox esten llenos
                 {
-                    MessageBox.Show("El Nuevo nombre es obligatorio");//mensaje al usuario
+                    MessageBox.Show("El Nuevo nombre es obligatorio","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {// "ACTUALIZAR_PUESTO" (idpue in NUMBER,pue in VARCHAR2)
@@ -1250,15 +1516,29 @@ namespace LoginUsuario
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
                     comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtPuestoId.Text); 
                     comando.Parameters.Add("pue", OracleType.VarChar).Value = txtPuestoNombre.Text;
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El puesto ha sido Actualizado");
-                    ora.Close();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido modificar", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.CargarPuesto(dgvPuesto);
+                        txtPuestoNombre.Clear();
+                    }
+                    else
+                    {
+                        this.CargarPuesto(dgvPuesto);
+                        txtPuestoNombre.Clear();
+                    }
                 }
-                this.CargarPuesto(dgvPuesto);
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha Actualizado el puesto");
+                MessageBox.Show("No ha sido modificar ningun puesto");
+                ora.Close();
+                this.CargarPuesto(dgvPuesto);
+                txtPuestoNombre.Clear();
             }
 
         }
@@ -1274,22 +1554,32 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("ELIMINAR_PUESTO", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtPuestoId.Text);
-                comando.ExecuteNonQuery();
-                MessageBox.Show("El puesto ha sido eliminado");
-                ora.Close();
-
-                this.CargarPuesto(dgvPuesto);
-                txtPuestoId.Clear();
-                txtPuestoNombre.Clear();
+                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "eliminar Registro", MessageBoxButtons.YesNo);
+                if (resul == DialogResult.Yes)
+                {
+                    comando.ExecuteNonQuery();
+                    ora.Close();
+                    MessageBox.Show("El Archivo ha sido Eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.CargarPuesto(dgvPuesto);
+                    txtPuestoNombre.Clear();
+                }
+                else
+                {
+                    this.CargarPuesto(dgvPuesto);
+                    txtPuestoNombre.Clear();
+                }
+            
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show("No se ha eliminado el puesto");
+                MessageBox.Show("No ha sido eliminado ningun puesto");
+                ora.Close();
                 this.CargarPuesto(dgvPuesto);
+        txtPuestoNombre.Clear();
             }
-        }
+}
 
         private void btnGenerarBI_Click(object sender, EventArgs e)
         {   
@@ -1338,7 +1628,7 @@ namespace LoginUsuario
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
                 MessageBox.Show("Dato no encontrado");
@@ -1357,7 +1647,7 @@ namespace LoginUsuario
                     && dtpFechaIni.Equals("")
                     && dtpFechaTer.Equals(""))//verifica que los txt esten llenos
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios");//mensaje al usuario
+                    MessageBox.Show("Todos los Datos Son Obligatorios","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
@@ -1381,16 +1671,34 @@ namespace LoginUsuario
                     comando.Parameters.Add("fechini", OracleType.DateTime).Value = dtpFechaIni.Text;
                     comando.Parameters.Add("fechater", OracleType.DateTime).Value = dtpFechaTer.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
+                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "agregar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido agregar", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.CargarOferta(dgvOferta);
+                        txtNombreOferta.Clear();
+                        txtTipoOferta.Clear();
+                        txtUrlOferta.Clear();
+                    }
+                    else
+                    {
+                        this.CargarOferta(dgvOferta);
+                        txtNombreOferta.Clear();
+                        txtTipoOferta.Clear();
+                        txtUrlOferta.Clear();
+                    }
 
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido insertado");
-                    ora.Close();
                 }
-                this.CargarOferta(dgvOferta); 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show("No se ha sido insertado el registro");
+                MessageBox.Show("No se ha sido insertado el registro","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                this.CargarOferta(dgvOferta);
+                txtNombreOferta.Clear();
+                txtTipoOferta.Clear();
+                txtUrlOferta.Clear();
                 ora.Close();
             }
         }
@@ -1411,7 +1719,7 @@ namespace LoginUsuario
                 {
 
 
-                    MessageBox.Show("Todos los Datos Son Obligatorios");//mensaje al usuario
+                    MessageBox.Show("Todos los Datos Son Obligatorios","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
@@ -1431,20 +1739,35 @@ namespace LoginUsuario
                     comando.Parameters.Add("fechini", OracleType.DateTime).Value = dtpFechaIni.Text;
                     comando.Parameters.Add("fechater", OracleType.DateTime).Value = dtpFechaTer.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("El Archivo ha sido actualizado");
-                    ora.Close();
-                    txtNombreOferta.Clear();
-                    txtIdOferta.Clear();
-                    txtTipoOferta.Clear();
-                    txtUrlOferta.Clear();
+                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    if (resul == DialogResult.Yes)
+                    {
+                        comando.ExecuteNonQuery();
+                        ora.Close();
+                        MessageBox.Show("El Archivo ha sido modificado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.CargarOferta(dgvOferta);
+                        txtNombreOferta.Clear();
+                        txtTipoOferta.Clear();
+                        txtUrlOferta.Clear();
+                    }
+                    else
+                    {
+                        this.CargarOferta(dgvOferta);
+                        txtNombreOferta.Clear();
+                        txtTipoOferta.Clear();
+                        txtUrlOferta.Clear();
+                    }
+
                 }
-                this.CargarOferta(dgvOferta); 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se ha actualizado el registro");
-              
+                MessageBox.Show("No se ha sido modificado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.CargarOferta(dgvOferta);
+                txtNombreOferta.Clear();
+                txtTipoOferta.Clear();
+                txtUrlOferta.Clear();
+                ora.Close();
             }
         }
         //eliminar oferta
@@ -1456,21 +1779,35 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("ELIMINAR_OFERTA", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idofe", OracleType.Number).Value = Convert.ToInt32(txtIdOferta.Text);
-                comando.ExecuteNonQuery();
-                MessageBox.Show("El Archivo ha sido Eliminado");
-                ora.Close();
+                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "eliminar Registro", MessageBoxButtons.YesNo);
+                if (resul == DialogResult.Yes)
+                {
+                    comando.ExecuteNonQuery();
+                    ora.Close();
+                    MessageBox.Show("El Archivo ha sido eliminar", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.CargarOferta(dgvOferta);
+                    txtNombreOferta.Clear();
+                    txtTipoOferta.Clear();
+                    txtUrlOferta.Clear();
+                }
+                else
+                {
+                    this.CargarOferta(dgvOferta);
+                    txtNombreOferta.Clear();
+                    txtTipoOferta.Clear();
+                    txtUrlOferta.Clear();
+                }
 
-                this.CargarOferta(dgvOferta); 
-                txtIdOferta.Clear();
-                txtnomAG.Clear();
-                txtcorrAG.Clear();
-
-            }
-            catch (Exception ex)
+            }catch (Exception )
             {
-                MessageBox.Show("No se ha Eliminado el registro");
+                MessageBox.Show("No se ha sido eliminar el registro","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                this.CargarOferta(dgvOferta);
+           txtNombreOferta.Clear();
+                txtTipoOferta.Clear();
+                txtUrlOferta.Clear();
+                ora.Close();
             }
-        }
+}
 
         private void dgvOferta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1628,14 +1965,344 @@ namespace LoginUsuario
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 MessageBox.Show("Dato no encontrado");
                 this.CargarPuesto(dgvPuesto);
             }
         }
-    }
+
+        private void txtprecioPro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condición que solo acepte numeros
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//no permitira ingresar espacios
+            {
+                e.Handled = false;
+            }
+            else if ((e.KeyChar=='.')&&(!txtprecioPro.Text.Contains(".")))//aceptar un decimal
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Admiten numeros", "Validación numeros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtprecioPro.SelectAll();
+                txtprecioPro.Focus();
+            }
+        }
+
+        private void txtPuntajeCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condición que solo acepte numeros
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//no permitira ingresar espacios
+            {
+                e.Handled = false;
+            }
+            else if ((e.KeyChar == '.') && (!txtPuntajeCliente.Text.Contains(".")))//aceptar un decimal
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Admiten numeros", "Validación numeros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtPuntajeCliente.SelectAll();
+                txtPuntajeCliente.Focus();
+            }
+        }
+
+        private void txtPrecioOferta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condición que solo acepte numeros
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//no permitira ingresar espacios
+            {
+                e.Handled = false;
+            }
+            else if ((e.KeyChar == '.') && (!txtPrecioOferta.Text.Contains(".")))//aceptar un decimal
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Admiten numeros", "Validación numeros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtPrecioOferta.SelectAll();
+                txtPrecioOferta.Focus();
+            }
+        }
+
+        private void txtNombreOferta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //solo permite ingresar datos de tipo texto
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//permite utilizar la tecla borrar
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))//permite utilizar el espacio
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show("Solo se admiten caracteres","Validación de palabras",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                txtNombreOferta.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
+            }
+        }
+
+        private void txtnomPro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //solo permite ingresar datos de tipo texto
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//permite utilizar la tecla borrar
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))//permite utilizar el espacio
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtnomPro.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
+                txtnomPro.SelectAll();
+                txtnomPro.Focus();
+            }
+        }
+
+        private void txtnomAG_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //solo permite ingresar datos de tipo texto
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//permite utilizar la tecla borrar
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))//permite utilizar el espacio
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtnomAG.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
+                txtnomAG.SelectAll();
+                txtnomAG.Focus();
+            }
+        }
+
+        private void txtNomsucu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //solo permite ingresar datos de tipo texto
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//permite utilizar la tecla borrar
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))//permite utilizar el espacio
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtNomsucu.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
+                txtNomsucu.SelectAll();
+                txtNomsucu.Focus();
+            }
+        }
+
+        private void txtDiresucu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //solo permite ingresar datos de tipo texto
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//permite utilizar la tecla borrar
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))//permite utilizar el espacio
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtDiresucu.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
+                txtDiresucu.SelectAll();
+                txtDiresucu.Focus();
+            }
+        }
+
+        private void txtnomEC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //solo permite ingresar datos de tipo texto
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//permite utilizar la tecla borrar
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))//permite utilizar el espacio
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtnomEC.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
+                txtnomEC.SelectAll();
+                txtnomEC.Focus();
+            }
+        }
+
+        private void txtNombreCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //solo permite ingresar datos de tipo texto
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//permite utilizar la tecla borrar
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))//permite utilizar el espacio
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtNombreCliente.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
+                txtNombreCliente.SelectAll();
+                txtNombreCliente.Focus();
+            }
+        }
+
+        private void txtApellidoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //solo permite ingresar datos de tipo texto
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//permite utilizar la tecla borrar
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))//permite utilizar el espacio
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtApellidoCliente.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
+                txtApellidoCliente.SelectAll();
+                txtApellidoCliente.Focus();
+            }
+        }
+
+        private void txtCorreoCliente_Leave(object sender, EventArgs e)
+        {
+            //captura del dato
+            if (validarCorreo(txtCorreoCliente.Text))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Dirección de correo electronico no valida", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtCorreoCliente.SelectAll();
+                txtCorreoCliente.Focus();
+            }
+        }
+
+        private void txtcorrEC_Leave(object sender, EventArgs e)
+        {
+            //captura del dato
+            if (validarCorreo(txtcorrEC.Text))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Dirección de correo electronico no valida", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtcorrEC.SelectAll();
+                txtcorrEC.Focus();
+            }
+        }
+
+        private void txtcorrAG_Leave(object sender, EventArgs e)
+        {
+            //captura del dato
+            if (validarCorreo(txtcorrAG.Text))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Dirección de correo electronico no valida", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtcorrAG.SelectAll();
+                txtcorrAG.Focus();
+            }
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))//no permitira ingresar espacios
+            {
+                e.Handled = false;
+            }
+            else if ((e.KeyChar == '+') && (!txtprecioPro.Text.Contains("+")))//+569
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Admiten numeros", "Validación numeros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtTelefono.SelectAll();
+                txtTelefono.Focus();
+            }
+        }
+    } 
 }
 
 

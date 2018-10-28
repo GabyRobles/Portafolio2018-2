@@ -36,89 +36,71 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.SuspendLayout();
             // 
             // lblContrasena
             // 
-            this.lblContrasena.AutoSize = true;
-            this.lblContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContrasena.Location = new System.Drawing.Point(64, 235);
+            resources.ApplyResources(this.lblContrasena, "lblContrasena");
             this.lblContrasena.Name = "lblContrasena";
-            this.lblContrasena.Size = new System.Drawing.Size(85, 18);
-            this.lblContrasena.TabIndex = 2;
-            this.lblContrasena.Text = "Contraseña";
             // 
             // txt_Usuario
             // 
-            this.txt_Usuario.Location = new System.Drawing.Point(201, 185);
+            resources.ApplyResources(this.txt_Usuario, "txt_Usuario");
             this.txt_Usuario.Name = "txt_Usuario";
-            this.txt_Usuario.Size = new System.Drawing.Size(125, 20);
-            this.txt_Usuario.TabIndex = 3;
+            this.txt_Usuario.Leave += new System.EventHandler(this.txt_Usuario_Leave);
             // 
             // txt_contrasena
             // 
-            this.txt_contrasena.Location = new System.Drawing.Point(201, 236);
+            resources.ApplyResources(this.txt_contrasena, "txt_contrasena");
             this.txt_contrasena.Name = "txt_contrasena";
-            this.txt_contrasena.Size = new System.Drawing.Size(125, 20);
-            this.txt_contrasena.TabIndex = 4;
             this.txt_contrasena.UseSystemPasswordChar = true;
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnIniciar, "btnIniciar");
             this.btnIniciar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnIniciar.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciar.Image")));
-            this.btnIniciar.Location = new System.Drawing.Point(76, 299);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(94, 35);
-            this.btnIniciar.TabIndex = 5;
-            this.btnIniciar.Text = "Conectar";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
             // btnSalir
             // 
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnSalir, "btnSalir");
             this.btnSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.Location = new System.Drawing.Point(190, 299);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(94, 35);
-            this.btnSalir.TabIndex = 6;
-            this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // materialLabel1
             // 
-            this.materialLabel1.AutoSize = true;
+            resources.ApplyResources(this.materialLabel1, "materialLabel1");
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(88, 184);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(61, 19);
-            this.materialLabel1.TabIndex = 7;
-            this.materialLabel1.Text = "Usuario";
             // 
             // materialDivider1
             // 
+            resources.ApplyResources(this.materialDivider1, "materialDivider1");
             this.materialDivider1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialDivider1.Depth = 0;
-            this.materialDivider1.Location = new System.Drawing.Point(-15, -15);
             this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider1.Name = "materialDivider1";
-            this.materialDivider1.Size = new System.Drawing.Size(75, 23);
-            this.materialDivider1.TabIndex = 8;
-            this.materialDivider1.Text = "materialDivider1";
+            // 
+            // materialLabel2
+            // 
+            resources.ApplyResources(this.materialLabel2, "materialLabel2");
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(358, 374);
+            this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialDivider1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.btnSalir);
@@ -126,11 +108,8 @@
             this.Controls.Add(this.txt_contrasena);
             this.Controls.Add(this.txt_Usuario);
             this.Controls.Add(this.lblContrasena);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Login";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login de Sistema AURA";
             this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -145,6 +124,7 @@
         private System.Windows.Forms.Button btnSalir;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialDivider materialDivider1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }
 
