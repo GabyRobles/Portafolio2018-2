@@ -26,20 +26,19 @@ namespace LoginUsuario
 
         public PanelPrincipal()
         {
-
-
-
+                                    
             InitializeComponent();
             //Cambiar los valores de colores del materil skin
             MaterialSkinManager m = MaterialSkinManager.Instance;
             m.AddFormToManage(this);
             m.Theme = MaterialSkinManager.Themes.LIGHT;
             m.ColorScheme = new ColorScheme(Primary.Blue600, Primary.Blue500, Primary.Blue400, Accent.Green100, TextShade.WHITE);
-
         }
+
         //seleccionarToda_Encargado
         private void PanelPrincipal_Load(object sender, EventArgs e)
         {
+
             txtidpro.Enabled = false;
             txtidEC.Enabled = false;
             txtIdsucu.Enabled = false;
@@ -53,8 +52,7 @@ namespace LoginUsuario
             CargarEncargado(dgvEncargado);
             cargarClienteDataGrid(dtvCliente);
             CargarPuesto(dgvPuesto);
-
-
+            
             //metodos de carga de combobox
             CargarComboBox(cbocategoria);
             CargarComboEmpresaSuc(cboEmpresaSuc);
@@ -68,6 +66,18 @@ namespace LoginUsuario
             CargarComboOfertaSucursal(cboSucOfert);
             CargarComboOfertaProducto(cboprodOfert);
             CargarComboOfertaCategoria(cbocateOfert);
+            //validacion de fechas
+            dtpElaboPr.MinDate = new DateTime(1985, 6, 20);
+            dtpElaboPr.MaxDate = DateTime.Today;
+            //dtpvecipro
+            dtpvecipro.MinDate = DateTime.Today;//
+            dtpvecipro.MaxDate = new DateTime(2100, 6, 20);
+            // dtpDesde
+            dtpDesde.MaxDate = DateTime.Today;//
+            dtpDesde.MinDate = new DateTime(1985, 6, 20);
+            //dtpHasta
+            dtpHasta.MinDate = DateTime.Today;//
+            dtpHasta.MaxDate = new DateTime(2050, 6, 20);
         }
 
         private Boolean validarCorreo(String email)//validar formato de correo
@@ -2301,6 +2311,46 @@ namespace LoginUsuario
                 txtTelefono.SelectAll();
                 txtTelefono.Focus();
             }
+        }
+
+        public String formatear(String rut)
+        {
+            int cont = 0;
+            String format;
+            if (rut.Length == 0)
+            {
+                return "";
+            }
+            else
+            {
+                rut = rut.Replace(".", "");
+                rut = rut.Replace("-", "");
+                format = "-" + rut.Substring(rut.Length - 1);
+                for (int i = rut.Length - 2; i >= 0; i--)
+                {
+
+                    format = rut.Substring(i, 1) + format;
+
+                    cont++;
+                    if (cont == 3 && i != 0)
+                    {
+                        format = "." + format;
+                        cont = 0;
+                    }
+                }
+                return format;
+            }
+        }
+
+        private void txtRutCliente_Leave(object sender, EventArgs e)
+        {
+            
+            this.txtRutCliente.Text = formatear(this.txtRutCliente.Text);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text ="Fecha Actual: "+ DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
         }
     } 
 }

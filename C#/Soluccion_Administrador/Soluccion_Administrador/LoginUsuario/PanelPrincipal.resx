@@ -23267,7 +23267,7 @@
   <data name="btnCerrarSession.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAfkAAADzCAYAAACFWm82AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAAhdEVYdENyZWF0aW9uIFRpbWUAMjAxODoxMDoyNiAxMTo1
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAAhdEVYdENyZWF0aW9uIFRpbWUAMjAxODoxMDoyNiAxMTo1
         ODowMZ1lWp0AAAPFSURBVHhe7dUBDQAADMOg+ze9+2jABDcAIEnyABAleQCIkjwAREkeAKIkDwBRkgeA
         KMkDQJTkASBK8gAQJXkAiJI8AERJHgCiJA8AUZIHgCjJA0CU5AEgSvIAECV5AIiSPABESR4AoiQPAFGS
         B4AoyQNAlOQBIEryABAleQCIkjwAREkeAKIkDwBRkgeAKMkDQJTkASBK8gAQJXkAiJI8AERJHgCiJA8A
@@ -23287,6 +23287,9 @@
         yQNAlOQBIEryABAleQBI2h7JCV5/e8tp6QAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>114</value>
   </metadata>

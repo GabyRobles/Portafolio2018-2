@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelPrincipal));
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -185,6 +186,8 @@
             this.btnBuscarOferta = new System.Windows.Forms.Button();
             this.btnCerrarSession = new System.Windows.Forms.Button();
             this.lblSession = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblHora = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
@@ -1166,9 +1169,12 @@
             // 
             this.dtNacimientoCliente.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtNacimientoCliente.Location = new System.Drawing.Point(821, 221);
+            this.dtNacimientoCliente.MaxDate = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
+            this.dtNacimientoCliente.MinDate = new System.DateTime(1918, 1, 1, 0, 0, 0, 0);
             this.dtNacimientoCliente.Name = "dtNacimientoCliente";
             this.dtNacimientoCliente.Size = new System.Drawing.Size(144, 20);
             this.dtNacimientoCliente.TabIndex = 53;
+            this.dtNacimientoCliente.Value = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -1227,9 +1233,11 @@
             // txtRutCliente
             // 
             this.txtRutCliente.Location = new System.Drawing.Point(821, 195);
+            this.txtRutCliente.MaxLength = 12;
             this.txtRutCliente.Name = "txtRutCliente";
             this.txtRutCliente.Size = new System.Drawing.Size(144, 20);
             this.txtRutCliente.TabIndex = 45;
+            this.txtRutCliente.Leave += new System.EventHandler(this.txtRutCliente_Leave);
             // 
             // txtApellidoCliente
             // 
@@ -1830,7 +1838,7 @@
             this.btnCerrarSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarSession.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCerrarSession.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSession.Image")));
-            this.btnCerrarSession.Location = new System.Drawing.Point(872, 86);
+            this.btnCerrarSession.Location = new System.Drawing.Point(910, 86);
             this.btnCerrarSession.Name = "btnCerrarSession";
             this.btnCerrarSession.Size = new System.Drawing.Size(119, 32);
             this.btnCerrarSession.TabIndex = 2;
@@ -1841,12 +1849,27 @@
             // lblSession
             // 
             this.lblSession.AutoSize = true;
-            this.lblSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSession.Location = new System.Drawing.Point(577, 95);
+            this.lblSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSession.Location = new System.Drawing.Point(552, 86);
             this.lblSession.Name = "lblSession";
-            this.lblSession.Size = new System.Drawing.Size(275, 17);
+            this.lblSession.Size = new System.Drawing.Size(175, 18);
             this.lblSession.TabIndex = 3;
-            this.lblSession.Text = "Bienvenido Administrador: Simón Pinochet";
+            this.lblSession.Text = "Bienvenido Administrador";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblHora
+            // 
+            this.lblHora.AutoSize = true;
+            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.Location = new System.Drawing.Point(552, 116);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(14, 17);
+            this.lblHora.TabIndex = 4;
+            this.lblHora.Text = "x";
             // 
             // PanelPrincipal
             // 
@@ -1854,6 +1877,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1065, 637);
+            this.Controls.Add(this.lblHora);
             this.Controls.Add(this.lblSession);
             this.Controls.Add(this.btnCerrarSession);
             this.Controls.Add(this.tabControl1);
@@ -2050,5 +2074,7 @@
         private System.Windows.Forms.ComboBox cboSucOfert;
         private System.Windows.Forms.ComboBox cboprodOfert;
         private System.Windows.Forms.ComboBox cbocateOfert;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblHora;
     }
 }

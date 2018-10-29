@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblContrasena.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 235</value>
+  </data>
   <data name="txt_Usuario.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 183</value>
   </data>
@@ -1034,6 +1037,12 @@
         dAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btnIniciar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 284</value>
+  </data>
+  <data name="btnIniciar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 35</value>
+  </data>
   <data name="btnSalir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1540,8 +1549,17 @@
         4MHqk1Gjuj4fPXrux+PG3f6XadOGzJkzJ/8v9ngfffr8/4twHFzufJ7cAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btnSalir.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 284</value>
+  </data>
+  <data name="btnSalir.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 35</value>
+  </data>
   <data name="materialLabel1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 182</value>
   </data>
   <data name="materialLabel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>68, 108</value>

@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>343, 361</value>
-  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEA5QAAAAEAIAAotAMAFgAAACgAAADlAAAAAAIAAAEAIAAAAAAAAJQDAAAAAAAAAAAAAAAAAAAA
@@ -5682,6 +5679,9 @@
   <data name="&gt;&gt;txt_Usuario.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="&gt;&gt;txt_contrasena.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;txt_contrasena.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
@@ -5748,20 +5748,20 @@
   <data name="btnSalir.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="txt_Usuario.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
   <data name="&gt;&gt;materialLabel1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="txt_contrasena.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 233</value>
   </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialForm, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
   <data name="materialDivider1.Location" type="System.Drawing.Point, System.Drawing">
     <value>-15, -15</value>
   </data>
-  <data name="materialLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="materialLabel2.Text" xml:space="preserve">
+    <value>Login Administrador</value>
   </data>
   <data name="&gt;&gt;txt_contrasena.Name" xml:space="preserve">
     <value>txt_contrasena</value>
@@ -5784,8 +5784,8 @@
   <data name="&gt;&gt;btnIniciar.Name" xml:space="preserve">
     <value>btnIniciar</value>
   </data>
-  <data name="&gt;&gt;btnSalir.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnIniciar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 35</value>
   </data>
   <data name="txt_Usuario.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 183</value>
@@ -5793,8 +5793,8 @@
   <data name="btnSalir.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 299</value>
   </data>
-  <data name="materialLabel2.Text" xml:space="preserve">
-    <value>Login Administrador</value>
+  <data name="&gt;&gt;btnSalir.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSalir.Name" xml:space="preserve">
     <value>btnSalir</value>
@@ -5802,20 +5802,20 @@
   <data name="lblContrasena.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;txt_contrasena.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>343, 361</value>
   </data>
   <data name="materialDivider1.Text" xml:space="preserve">
     <value>materialDivider1</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>MaterialSkin.Controls.MaterialForm, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="txt_Usuario.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 20</value>
   </data>
   <data name="&gt;&gt;txt_contrasena.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnIniciar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 35</value>
+  <data name="materialLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

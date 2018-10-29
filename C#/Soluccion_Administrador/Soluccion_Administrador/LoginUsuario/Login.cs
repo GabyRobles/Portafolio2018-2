@@ -18,6 +18,7 @@ namespace LoginUsuario
 
     public partial class Login : MaterialForm
     {
+        string usuario;
         PanelPrincipal inicio;
         OracleConnection ora= new OracleConnection("DATA SOURCE=aura.cckolbo3d8nz.us-east-1.rds.amazonaws.com:1521/Auradb;USER ID=ADMAURA;PASSWORD= admin123");
        // OracleConnectionStringBuilder ora = new OracleConnectionStringBuilder("DATA SOURCE=aura.cckolbo3d8nz.us-east-1.rds.amazonaws.com:1521/Auradb;USER ID=ADMAURA PASSWORD= admin123;");
@@ -72,7 +73,6 @@ namespace LoginUsuario
 
                     //Realizamos una consulta con la base de datos
                     OracleCommand comando = new OracleCommand("select * from TRABAJADOR where (Correo='" + txt_Usuario.Text + "' and CONTRASENA='" + txt_contrasena.Text + "') and (ID_PUESTO = 2)", ora);
-
                     //realizamos un adaptador para verificar
                     OracleDataAdapter adap = new OracleDataAdapter(comando);
                     DataTable tabla = new DataTable();
@@ -81,12 +81,12 @@ namespace LoginUsuario
                     //si encuentra el valor o es mayor a cero
                     if (tabla.Rows.Count > 0)
                     {
-
+                        
                         //creara un nuevo panel principal
                         PanelPrincipal inicio = new PanelPrincipal();
                         inicio.Show();//mostrara el Panel
                         this.Hide();//ocultara el panel de Login
-                        MessageBox.Show("Bienvenido al Sistema AURA");//Mostrara un mensaje de Bienvenida
+                        MessageBox.Show("Bienvenido al Sistema AURA ","Bienvenido",MessageBoxButtons.OK,MessageBoxIcon.Information);//Mostrara un mensaje de Bienvenida
                         ora.Close();//cerrara la conexion con la BD
 
 
