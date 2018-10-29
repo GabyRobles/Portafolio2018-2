@@ -10,6 +10,7 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Productos</title>
+        <link rel="shortcut icon" href="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png">
          
         <style>
             <%@include file="../../css/trabajadorStyle.css" %>
@@ -18,24 +19,27 @@
     <body>
         
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <%@include file="../../Plantillas/MenuTrabajador.jspf" %>
                 </div>
-                <div class="col-sm-9 col-sm-offset-1">
+                <div class="col-sm-10 col-sm-offset-1">
                     <%@include file="../../Plantillas/NavbarTrabajador.jspf" %>
-                    <h1>Productos</h1>
-                    <div class="form-inline">
-                        <input class="form-control" type="text" placeholder="Buscar" id="buscador"/>
-                        <input class="btn btn-primary" type="button" value="Buscar"/>
-                    </div><br/>
+                    <div class="contenedorTituloBusqueda">
+                        <a class="tituloProducto">Productos</a>
+
+                        <div class="contenedorBuscar form-inline">
+                            <input class="form-control" type="text" placeholder="Buscar" id="buscador"/>
+                            <input class="btn btn-primary" type="button" value="Buscar" id="btnBuscador"/>
+                        </div>
+                    </div>
                     <table class="table table-bordered table-hover">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Id Producto</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">llegada del lote</th>
-                                <th scope="col">Fecha de vencimiento</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col">Llegada del Lote</th>
+                                <th scope="col">Fecha de Vencimiento</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,8 +54,8 @@
                             </c:forEach>
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
-
     </body>
 </html>

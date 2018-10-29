@@ -4,22 +4,14 @@
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
              <li>
-                <a href="${pageContext.request.contextPath}/Trabajador/Encargado/Home.jsp">
-                    <i class="fa fa-dashboard fa-lg"></i> Home
-                </a>
+                <a href="${pageContext.request.contextPath}/Trabajador/Encargado/Home.jsp" class="btnHome">Home</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/ProductoServlet?action=Listar">
-                    <i class="fa fa-dashboard fa-lg"></i> Listar Productos
-                </a>
+                <a href="${pageContext.request.contextPath}/ProductoServlet?action=Listar" class="btnproducto"> Listar Productos</a>
             </li>
             <li data-toggle="collapse" data-target="#new" class="collapsed">
-                <a href="${pageContext.request.contextPath}/OfertaServlet?action=Listar"><i class="fa fa-car fa-lg"></i> Listar Ofertas <span class="arrow"></span></a>
+                <a href="${pageContext.request.contextPath}/OfertaServlet?action=Listar" class="btnOferta">Listar Ofertas</a>
             </li>
-            <!-- submenu
-            <ul class="sub-menu collapse" id="new">
-                <li>New New 1</li>
-            </ul> -->
         </ul>
     </div>
 </div>

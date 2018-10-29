@@ -16,13 +16,18 @@
     <body>
         
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <%@include file="../../Plantillas/MenuTrabajador.jspf" %>
                 </div>
-                <div class="col-sm-9 col-sm-offset-1">
+                <div class="col-sm-10 ">
                     <%@include file="../../Plantillas/NavbarTrabajador.jspf" %>
-                    <h1 class="tituloEncargado">Bienvenido Encargado </h1>
+                    <center class="centroHome">
                     <img class="logo" src="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png"/>
+                    <h1 class="tituloEncargado">Bienvenido Encargado </h1>
+                    <p class="subtituloEncargado">En esta plataforma puede administrar las ofertas y visualizar los productos existentes</p>
+                    <a href="${pageContext.request.contextPath}/ProductoServlet?action=Listar"><button class="btnlistar">Lista de Productos</button></a>
+                    <a href="${pageContext.request.contextPath}/OfertaServlet?action=Listar"><button class="btnlistaoferta">  Lista de ofertas</button></a> 
+                    </center>
                 </div>
             </div>
         
