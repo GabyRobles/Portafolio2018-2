@@ -17,17 +17,18 @@
         <%@include file="../Plantillas/NavbarConsumidor.jspf" %>
         <div class="container-fluid" >
             <div class="row">
-                <div class="col-md-2 col-sm-12" >
-                    <div style="border-right: solid 1px; box-shadow: 8px 0px 5px grey; ">
-                        <h5>todas las</h5>
-                        <h2>categorias</h2>
-                        <hr style="border: 1px solid gray; "/>
-                        <button class="btn-lg btn-warning" style="border-radius: 7px">recibe tu descuento</button>
-                        <hr style="border: 1px solid gray; "/>
-                        <c:forEach items="${categorias}" var="categoria">
-                            <a href="#">${categoria.nombre}</a><br/>
-                        </c:forEach>
+                <div id="contenedorMenu">
+                    <div class="contenedorTituloMenu">
+                        <h5 class="tituloMenu">Todas las</h5>
+                        <h2 class="subtituloMenu">Categorias</h2>
                     </div>
+                    <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
+                    <button class="botonMenu">Recibe tu Descuento</button>
+                    <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
+                    <c:forEach items="${categorias}" var="categoria">
+                        <a href="#">${categoria.getNombre()}</a><br/>
+                    </c:forEach>
+                        
                 </div>
                 <div class="col-md-10 col-sm-12">
                     <h1>Bienvenido a home de consumidor</h1>
@@ -108,7 +109,7 @@
                         </div>
                     </c:forEach>
                 </div>
-            </div>
+            </div>      
         </div>
     </body>
 </html>
