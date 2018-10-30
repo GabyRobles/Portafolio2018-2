@@ -51,21 +51,21 @@ namespace LoginUsuario
                 if (txt_Usuario.Text.Equals(""))//si esta vacio el txt usuario 
                 {
 
-                    MessageBox.Show("Inserte Mensaje", "Campo incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Ingrese Usuario", "Campo incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txt_Usuario.SelectAll();
                     txt_Usuario.Focus();
 
                 }
                  else if (txt_contrasena.Text.Equals(""))//si el txtcontrasena esta vacio
                 {
-                    MessageBox.Show("Inserte Mensaje", "Campo incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Ingrese contraseña", "Campo incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txt_contrasena.SelectAll();
                     txt_contrasena.Focus();
                 }
 
                    else if (txt_contrasena.Text.Equals("") && txt_Usuario.Text.Equals(""))//si ambos estan vacios
                 {
-                    MessageBox.Show("inserte un mensaje3" );
+                    MessageBox.Show("Ingrese Usuario y contraseña ");
                 }
                 else {
                     ora.Open();
@@ -96,7 +96,7 @@ namespace LoginUsuario
                     else
                     {
                         //modificar mensaje de error
-                        MessageBox.Show("Inserte Mensaje", "Usuario invalido", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("Usuario o contraseña incorrectos o usuario sin los permisos pertinentes.", "Usuario invalido", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                         ora.Close();//cerrara la conexion con la BD
                        

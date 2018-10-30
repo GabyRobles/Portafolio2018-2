@@ -437,7 +437,7 @@ namespace LoginUsuario
 
                 if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))//verifica que los txxbox esten llenos
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
+                    MessageBox.Show("Todos los datos son obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
@@ -449,7 +449,7 @@ namespace LoginUsuario
                     comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNomsucu.Text;
                     comando.Parameters.Add("direccion", OracleType.VarChar).Value = txtDiresucu.Text;
                     comando.Parameters.Add("idsc", OracleType.Number).Value = idempresa;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere agregar el registro?", "Agregar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
@@ -468,7 +468,7 @@ namespace LoginUsuario
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha siddo Insertado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No ha sido insertado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.CargarSucursal(dgvSucursal);
 
             }
@@ -480,7 +480,7 @@ namespace LoginUsuario
                 //INSERTAR_TRABAJADOR(nombre in VARCHAR2,crro in VARCHAR2,pss in VARCHAR2,idp in number,idemp in NUMBER)
                 if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))//verifica que los txxbox esten llenos
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
+                    MessageBox.Show("Todos los datos son obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
@@ -498,12 +498,12 @@ namespace LoginUsuario
                     int idempresa = Convert.ToInt32(cboPuestoEN.SelectedValue.ToString());
                     comando.Parameters.Add("idp", OracleType.Number).Value = idpuesto;
                     comando.Parameters.Add("idemp", OracleType.Number).Value = idempresa;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere Agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere agregar el registro?", "Agregar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El Archivo ha sido Agregar", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El Archivo ha sido Agregado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarEncargado(dgvEncargado);
                         txtnomEC.Clear();
                         txtcorrEC.Clear();
@@ -522,7 +522,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha sido insertado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No ha sido insertado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.CargarEncargado(dgvEncargado); ora.Close();
 
             }
@@ -537,7 +537,7 @@ namespace LoginUsuario
 
                 if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Todos los datos son obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -548,12 +548,12 @@ namespace LoginUsuario
                     comando.Parameters.Add("idsuc", OracleType.Number).Value = Convert.ToInt32(txtIdsucu.Text);
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtNomsucu.Text;
                     comando.Parameters.Add("dir", OracleType.VarChar).Value = txtDiresucu.Text;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere Modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere modificar el registro?", "Modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("Se elimino", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Se elimino el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         txtIdsucu.Clear();
                         txtNomsucu.Clear();
                         txtDiresucu.Clear();
@@ -568,7 +568,7 @@ namespace LoginUsuario
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha Actualizado el registro");
+                MessageBox.Show("No se ha actualizado el registro");
                 this.CargarSucursal(dgvSucursal);
                 ora.Close();
             }
@@ -631,7 +631,7 @@ namespace LoginUsuario
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El Archivo ha sido Eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El archivo ha sido eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarSucursal(dgvSucursal);
                     txtDiresucu.Clear();
                     txtNomsucu.Clear();
@@ -646,7 +646,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha Eliminado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No se ha eliminado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.CargarSucursal(dgvSucursal);
                 ora.Close();
             }
@@ -718,12 +718,12 @@ namespace LoginUsuario
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idtra", OracleType.Number).Value = Convert.ToInt32(txtidAG.Text);
                 comando.ExecuteNonQuery();
-                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que quiere eliminar el registro?", "modificar Registro", MessageBoxButtons.YesNo);
                 if (resul == DialogResult.Yes)
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El Archivo ha sido Eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El archivo ha sido eliminado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarSucursal(dgvSucursal);
                 }
                 else
@@ -737,7 +737,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha Eliminado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No se ha eliminado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.CargarSucursal(dgvSucursal);
             }
         }
@@ -749,7 +749,7 @@ namespace LoginUsuario
 
                 if (txtnomAG.Text.Equals("") && txtcorrAG.Equals("") && txtcontAG.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Todos los datos Son obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -761,12 +761,12 @@ namespace LoginUsuario
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtnomAG.Text;
                     comando.Parameters.Add("cor", OracleType.VarChar).Value = txtcorrAG.Text;
                     comando.Parameters.Add("pass", OracleType.VarChar).Value = txtcontAG.Text;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere modificar el registro?", "modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El Archivo ha sido Actualizado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El archivo ha sido actualizado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarGerente(dgvAsociacion);
                     }
                     else
@@ -782,7 +782,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha Actualizado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No se ha actualizado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 CargarGerente(dgvAsociacion);
             }
         }
@@ -819,12 +819,12 @@ namespace LoginUsuario
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtnomEC.Text;
                     comando.Parameters.Add("cor", OracleType.VarChar).Value = txtcorrEC.Text;
                     comando.Parameters.Add("pass", OracleType.VarChar).Value = txtpsEC.Text;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere Modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere Modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El Archivo ha sido modificado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El archivo ha sido modificado", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarEncargado(dgvEncargado);
                         txtnomEC.Clear();
                         txtcorrEC.Clear();
@@ -951,7 +951,7 @@ namespace LoginUsuario
 
                 if (txtnomAG.Text.Equals("") && txtcorrAG.Equals("") && txtcontAG.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Todos los datos son obligatorios","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
                 else
                 {//"INSERTAR_TRABAJADOR" (nombre in VARCHAR2,crro in VARCHAR2,pss in VARCHAR2,idp in number,idemp in NUMBER)
@@ -975,7 +975,7 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El Archivo ha sido insertado","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El archivo ha sido insertado","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                         txtnomAG.Clear();
                         txtcorrAG.Clear();
                         txtcontAG.Clear();
@@ -994,7 +994,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha sido insertado el registro","titulo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("No se ha insertado el registro","titulo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 ora.Close();
                 CargarGerente(dgvAsociacion);
             }

@@ -789,10 +789,10 @@
             this.dgvSucursal.AllowUserToAddRows = false;
             this.dgvSucursal.AllowUserToDeleteRows = false;
             this.dgvSucursal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSucursal.Location = new System.Drawing.Point(28, 48);
+            this.dgvSucursal.Location = new System.Drawing.Point(46, 48);
             this.dgvSucursal.Name = "dgvSucursal";
             this.dgvSucursal.ReadOnly = true;
-            this.dgvSucursal.Size = new System.Drawing.Size(409, 372);
+            this.dgvSucursal.Size = new System.Drawing.Size(449, 372);
             this.dgvSucursal.TabIndex = 3;
             this.dgvSucursal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSucursal_CellClick);
             // 
@@ -1838,7 +1838,7 @@
             this.btnCerrarSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarSession.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCerrarSession.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSession.Image")));
-            this.btnCerrarSession.Location = new System.Drawing.Point(910, 86);
+            this.btnCerrarSession.Location = new System.Drawing.Point(910, 79);
             this.btnCerrarSession.Name = "btnCerrarSession";
             this.btnCerrarSession.Size = new System.Drawing.Size(119, 32);
             this.btnCerrarSession.TabIndex = 2;
@@ -1850,7 +1850,7 @@
             // 
             this.lblSession.AutoSize = true;
             this.lblSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSession.Location = new System.Drawing.Point(552, 86);
+            this.lblSession.Location = new System.Drawing.Point(568, 79);
             this.lblSession.Name = "lblSession";
             this.lblSession.Size = new System.Drawing.Size(175, 18);
             this.lblSession.TabIndex = 3;
@@ -1865,7 +1865,7 @@
             // 
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHora.Location = new System.Drawing.Point(552, 116);
+            this.lblHora.Location = new System.Drawing.Point(3, 79);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(14, 17);
             this.lblHora.TabIndex = 4;

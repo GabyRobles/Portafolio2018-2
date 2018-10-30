@@ -39,3 +39,6 @@ C:\Users\solita\Desktop\portafolio\Portafolio2018-2\C#\Soluccion_Administrador\S
 C:\Users\solita\Desktop\portafolio\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.Login.es-CL.resources
 C:\Users\solita\Desktop\portafolio\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\es-CL\LoginUsuario.resources.dll
 C:\Users\solita\Desktop\portafolio\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\AdministradorEscritorio.csprojResolveAssemblyReference.cache
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\es-CL\LoginUsuario.resources.dll
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.Login.es-CL.resources
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\es-CL\LoginUsuario.resources.dll
