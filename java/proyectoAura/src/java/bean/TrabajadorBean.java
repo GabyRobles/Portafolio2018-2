@@ -8,6 +8,7 @@ package bean;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import model.Trabajador;
 
@@ -19,11 +20,11 @@ public class TrabajadorBean {
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProyectoAuraPU");
     EntityManager em = factory.createEntityManager();
     
-    public Trabajador findByCorreo(String correo)throws SQLException, NullPointerException{
+    public Trabajador findByCorreo(String correo)throws SQLException, NullPointerException, NoResultException{
         return (Trabajador)em.createNamedQuery("Trabajador.findByCorreo").setParameter("correo", correo).getSingleResult();
     }
     
-    public boolean validarContrasena(String Correo, String contrasena) throws SQLException{
+    public boolean validarContrasena(String Correo, String contrasena) throws SQLException, NoResultException{
         boolean validador = false;
         Trabajador trabajador = findByCorreo(Correo);
         if (trabajador.getContrasena().equals(contrasena))

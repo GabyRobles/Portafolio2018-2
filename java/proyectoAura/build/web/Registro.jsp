@@ -1,9 +1,4 @@
-<%-- 
-    Document   : Registro
-    Created on : 11-10-2018, 14:49:29
-    Author     : nico_
---%>
-
+<%@include file="Plantillas/UsuarioActivo.jspf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,7 +44,7 @@
                           </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="validationDefault04" placeholder="Telefono"  name="fono"  required/>
+                            <input type="number" class="form-control" id="validationDefault04" placeholder="Telefono"  name="fono"  required/>
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control" id="validationDefaultUsername" placeholder="Correo" name="mail"  aria-describedby="inputGroupPrepend" required/>

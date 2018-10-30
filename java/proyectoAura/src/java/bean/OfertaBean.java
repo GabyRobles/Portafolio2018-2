@@ -15,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
 import javax.persistence.StoredProcedureQuery;
+import model.Categoria;
 import model.Oferta;
 
 /**
@@ -52,6 +53,10 @@ public class OfertaBean {
 
     public void setLista(List<Oferta> lista) {
         this.lista = lista;
+    }
+    
+    public List<Oferta> findByCategoria(Categoria idCategoria) {
+        return em.createNamedQuery("Oferta.findByIdCategoria").setParameter("idCategoria", idCategoria).getResultList();
     }
     
     public void create(String nombre, String tipoOferta, String imagen, Integer precioOferta, Date fechaIni, Date fechaTerm, Integer idTrabajador, Integer idSucursal, Integer idProducto, Integer idCategoria)

@@ -1,0 +1,8 @@
+<%@page import="model.Consumidor"%>
+<% if (session.getAttribute("usuario") != null ) {
+        if (session.getAttribute("usuario") instanceof Consumidor)
+        response.sendRedirect("Consumidor/Home.jsp");
+        else {
+        response.sendRedirect("Encargado/Home.jsp");
+        }
+}%>

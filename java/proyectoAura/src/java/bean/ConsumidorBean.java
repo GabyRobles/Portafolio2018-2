@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
 import javax.persistence.StoredProcedureQuery;
@@ -52,11 +53,11 @@ public class ConsumidorBean {
         
    }
    
-   public Consumidor findByCorreo(String Correo)throws SQLException, NullPointerException{
+   public Consumidor findByCorreo(String Correo)throws SQLException, NullPointerException, NoResultException{
        return (Consumidor) em.createNamedQuery("Consumidor.findByCorreo").setParameter("correo", Correo).getSingleResult();
    }
    
-   public boolean validarContrasena(String correo, String contrasena) throws SQLException{
+   public boolean validarContrasena(String correo, String contrasena) throws SQLException, NoResultException{
        Consumidor consumidor = findByCorreo(correo);
        boolean validacion = false;
        if (consumidor.getContrasena().equals(contrasena)){

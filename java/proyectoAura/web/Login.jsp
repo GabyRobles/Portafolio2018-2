@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Login
-    Created on : 08-10-2018, 14:50:28
-    Author     : nico_
---%>
+<%@include file="Plantillas/UsuarioActivo.jspf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,7 +29,7 @@
                             <input type="password" class="form-control" id="validationDefaultPassword" name="psw" placeholder="Contraseña" aria-describedby="inputGroupPrepend2" required />
                         </div>
                         <div class="links">
-                            <a href="reset.html">¿Olvidaste tu contraseña?</a>
+                            <a href="#">¿Olvidaste tu contraseña?</a>
                             <a href="${pageContext.request.contextPath}/LoginServlet?action=Registro"> Crear Usuario </a>
                         </div>
                         <button type="submit" class="btn btn-primary">Iniciar Sesión.</button>
