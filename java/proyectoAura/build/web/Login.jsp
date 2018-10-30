@@ -33,11 +33,13 @@
                             <input type="password" class="form-control" id="validationDefaultPassword" name="psw" placeholder="Contraseña" aria-describedby="inputGroupPrepend2" required />
                         </div>
                         <div class="links">
-                            <a href="reset.html">¿Olvidaste tu contraseña?</a>
-                            <a href="${pageContext.request.contextPath}/LoginServlet?action=Registro"> Crear Usuario </a>
+                            <a class="olvideContraseña" href="reset.html">¿Olvidaste tu contraseña?</a>
                         </div>
-                        <button type="submit" class="btn btn-primary">Iniciar Sesión.</button>
-                    </form><br/>
+                        <div class="contenedorBotones">
+                            <button type="submit" class="btnInicioSesion">Iniciar Sesión</button>
+                            <button class="btnCrearUsuario"><a href="${pageContext.request.contextPath}/LoginServlet?action=Registro"></a>Crear Usuario</button>
+                        </div>
+                    </form>
                     <p class="botto-text"> Sistema AURA</p><br/>
                     <a href="${pageContext.request.contextPath}/LoginServlet?action=LoginT">Sesión Empleado</a>
                 </div>
