@@ -109,7 +109,6 @@ namespace LoginUsuario
         {
             try
             {
-
                 ora.Open();//se abre la conexion
                 OracleCommand comando = new OracleCommand("seleccionarToda_Puesto", ora);//se llama el procedimiento y la conexion
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -120,12 +119,10 @@ namespace LoginUsuario
                 adaptador.Fill(tabla);
                 dgvPuesto.DataSource = tabla;
                 ora.Close();
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
+                MessageBox.Show("Error de carga","Datos no cargados",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 ora.Close();
             }
         }
@@ -148,10 +145,10 @@ namespace LoginUsuario
                 dgv.DataSource = tabla;
                 ora.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
+                MessageBox.Show("Error de carga", "Datos no cargados", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ora.Close();
             }
 
@@ -175,10 +172,10 @@ namespace LoginUsuario
                 dgv.DataSource = tabla;
                 ora.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
+                MessageBox.Show("Error de carga","Datos no cargados",MessageBoxButtons.OK,MessageBoxIcon.Error );
                 ora.Close();
             }
 
@@ -201,11 +198,10 @@ namespace LoginUsuario
                 dgv.DataSource = tabla;
                 ora.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
-                ora.Close();
+               MessageBox.Show("Error de carga","Daton no cargados en grilla",MessageBoxButtons.OK,MessageBoxIcon.Error );
+               ora.Close();
             }
 
         }
@@ -226,9 +222,10 @@ namespace LoginUsuario
                 dgv.DataSource = tabla;
                 ora.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
+                MessageBox.Show("Error de carga", "Datos no cargados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ora.Close();
             }
         }
         /*---------------------------------------------  cargar grilla encargado  -------------------------------------------------------*/
@@ -237,7 +234,6 @@ namespace LoginUsuario
         {
             try
             {
-
                 ora.Open();
                 OracleCommand comando = new OracleCommand("seleccionarToda_Encargado", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -249,15 +245,13 @@ namespace LoginUsuario
                 dgv.DataSource = tabla;
                 ora.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                MessageBox.Show("No se Pudo Cargar las Celdas" + ex.ToString());
+                MessageBox.Show("Error de carga", "Datos no cargados", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ora.Close();
             }
-
         }
-
+        /*---------------------------------------------  Botón cerrar Sesión  -------------------------------------------------------*/
 
         private void btnCerrarSession_Click(object sender, EventArgs e)//boton de cerrar session
         {
@@ -452,9 +446,21 @@ namespace LoginUsuario
                 //capturamos el valor del combobox
                 int idempresa = Convert.ToInt32(cboEmpresaSuc.SelectedValue.ToString());
 
+                if (txtNomsucu.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe tener más de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNomsucu.SelectAll();
+                    txtNomsucu.Focus();
+                }
+                if (txtDiresucu.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "La dirección debe tener más de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtDiresucu.SelectAll();
+                    txtDiresucu.Focus();
+                }
                 if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))//verifica que los txxbox esten llenos
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
+                    MessageBox.Show("Validación", "Todos los Datos Son Obligatorios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
@@ -498,8 +504,22 @@ namespace LoginUsuario
         private void btnNuevoEncargado_Click(object sender, EventArgs e) {//boton de  nuevo
             try
             {
+                if (txtnomEC.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe tener más de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtnomEC.SelectAll();
+                    txtnomEC.Focus();
+                }
+                if (txtpsEC.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "La contraseña debe tener más de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtpsEC.SelectAll();
+                    txtpsEC.Focus();
+                }
+
+
                 //INSERTAR_TRABAJADOR(nombre in VARCHAR2,crro in VARCHAR2,pss in VARCHAR2,idp in number,idemp in NUMBER)
-                if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))//verifica que los txxbox esten llenos
+                if (txtnomEC.Text.Equals("") && txtpsEC.Equals(""))//verifica que los txxbox esten llenos
                 {
                     MessageBox.Show("Todos los Datos Son Obligatorios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
@@ -556,10 +576,23 @@ namespace LoginUsuario
         {
             try
             {
+                if (txtNomsucu.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe tener más de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNomsucu.SelectAll();
+                    txtNomsucu.Focus();
+                }
+                if (txtDiresucu.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "La dirección debe tener más de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtDiresucu.SelectAll();
+                    txtDiresucu.Focus();
+                }
+
 
                 if (txtNomsucu.Text.Equals("") && txtDiresucu.Equals(""))
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Validación","Todos los Datos Son Obligatorios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -620,17 +653,12 @@ namespace LoginUsuario
                     MessageBox.Show("El Archivo ha sido encontrado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     ora.Close();
                 }
-
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
                 MessageBox.Show("Dato no ha sido encontrado","Error",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 this.CargarSucursal(dgvSucursal);
-
             }
-
         }
         /*---------------------------------------------  autorrelleno de grilla y campos de sucursal  -------------------------------------------------------*/
 
@@ -672,10 +700,8 @@ namespace LoginUsuario
                     txtNomsucu.Clear();
                     txtIdsucu.Clear();
                     this.CargarSucursal(dgvSucursal);
-                    ora.Close();
-                    
+                    ora.Close();                    
                 }
-
             }
             catch (Exception)
             {
@@ -790,6 +816,18 @@ namespace LoginUsuario
         {
             try
             {
+                if (txtnomAG.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe tener mas de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtnomAG.SelectAll();
+                    txtnomAG.Focus();
+                }
+                if (txtcontAG.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "La contraseña debe tener mas de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtcontAG.SelectAll();
+                    txtcontAG.Focus();
+                }
 
                 if (txtnomAG.Text.Equals("") && txtcorrAG.Equals("") && txtcontAG.Equals(""))
                 {
@@ -846,10 +884,22 @@ namespace LoginUsuario
             //CargarEncargado(dgvEncargado);
             try
             {
-
-                if (txtnomEC.Text.Equals("") && txtnomEC.Equals("") && txtcorrEC.Equals("") && txtpsEC.Equals(""))
+                if (txtnomEC.Text.Length < 4)
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios","Validación",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "El nombre debe tener más de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtnomEC.SelectAll();
+                    txtnomEC.Focus();
+                }
+                if (txtpsEC.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "La contraseña debe tener más de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtpsEC.SelectAll();
+                    txtpsEC.Focus();
+                }
+                //INSERTAR_TRABAJADOR(nombre in VARCHAR2,crro in VARCHAR2,pss in VARCHAR2,idp in number,idemp in NUMBER)
+                if (txtnomEC.Text.Equals("") && txtpsEC.Equals(""))//verifica que los txxbox esten llenos
+                {
+                    MessageBox.Show("Todos los Datos Son Obligatorios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
@@ -867,7 +917,7 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El Archivo ha sido modificado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Exito", "El Archivo ha sido modificado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarEncargado(dgvEncargado);
                         txtnomEC.Clear();
                         txtcorrEC.Clear();
@@ -875,14 +925,14 @@ namespace LoginUsuario
                     }
                     else
                     {
-                        MessageBox.Show("El Archivo no ha sido modificado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Advertencia", "El Archivo no ha sido modificado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarEncargado(dgvEncargado);
                         ora.Close();
                     }
                 }
             } catch (Exception)
             {
-                MessageBox.Show("No se ha Actualizado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error", "No se ha Actualizado el registro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.CargarEncargado(dgvEncargado);
                 ora.Close();
             }
@@ -902,7 +952,7 @@ namespace LoginUsuario
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El Archivo ha sido eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Exito", "El Archivo ha sido eliminado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarEncargado(dgvEncargado);
                     txtnomEC.Clear();
                     txtcorrEC.Clear();
@@ -910,14 +960,14 @@ namespace LoginUsuario
                 }
                 else
                 {
-                    MessageBox.Show("El Archivo no ha sido eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Advertencia", "El Archivo no ha sido eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.CargarEncargado(dgvEncargado);
                     ora.Close();
                 }
             
             }catch (Exception)
             {
-                MessageBox.Show("No se ha eliminado el registro","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error", "No se ha eliminado el registro",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 this.CargarEncargado(dgvEncargado);
                 ora.Close();
             }
@@ -943,21 +993,20 @@ namespace LoginUsuario
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
                     dgvProducto.DataSource = tabla;
+                    MessageBox.Show("Advertencia", "Dato ha sido encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                     ora.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Dato no ha sido encontrado","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show("Advertencia","Dato no se ha sido encontrado",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     this.CargarCeldas(dgvProducto);
                     ora.Close();
-
                 }
-
-
             }
             catch (Exception)
             {
-                MessageBox.Show("Dato no ha encontrado","Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error!", "El dato no se ha encontrado",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 this.CargarCeldas(dgvProducto);
                 ora.Close();
              }
@@ -983,13 +1032,13 @@ namespace LoginUsuario
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
                     dgvEncargado.DataSource = tabla;
-                    MessageBox.Show("Dato ha sido encontrado", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Exito!", "Dato ha sido encontrado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     ora.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Dato no ha sido encontrado","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show("Advertencia", "El dato no ha sido encontrado",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     this.CargarEncargado(dgvEncargado);
                     ora.Close();
                 }
@@ -1005,12 +1054,25 @@ namespace LoginUsuario
         private void btnGerente_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                if (txtnomAG.Text.Length<4)
+                {
+                    MessageBox.Show("Validación","El nombre debe tener mas de 4 caracteres",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    txtnomAG.SelectAll();
+                    txtnomAG.Focus();
+                }
+                if (txtcontAG.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "La contraseña debe tener mas de 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtcontAG.SelectAll();
+                    txtcontAG.Focus();
+                }
 
                 if (txtnomAG.Text.Equals("") && txtcorrAG.Equals("") && txtcontAG.Equals(""))
                 {
                     MessageBox.Show("Todos los Datos Son Obligatorios","Validación",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
+
                 else
                 {//"INSERTAR_TRABAJADOR" (nombre in VARCHAR2,crro in VARCHAR2,pss in VARCHAR2,idp in number,idemp in NUMBER)
                  // nombre,crro,pss,idp,idemp
@@ -1063,15 +1125,27 @@ namespace LoginUsuario
             {
                 if (txtnomPro.Text.Equals(""))
                 {
-                    MessageBox.Show("Inserte Mensaje", "Dato incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "Nombre de producto es obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (txtprecioPro.Equals(""))
+                if (txtprecioPro.Equals(""))
                 {
-                    MessageBox.Show("Inserte Mensaje", "Dato incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "Precio de producto es obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-               else if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
+                if (txtnomPro.Text.Length<4)
                 {
-                    MessageBox.Show("Inserte Mensaje", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "El nombre debe tener minimo 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtnomPro.SelectAll();
+                    txtnomPro.Focus();
+                }
+                if (txtprecioPro.Text.Length<3)
+                {
+                    MessageBox.Show("Validación", "El precio debe ser mayor 999 pesos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtprecioPro.SelectAll();
+                    txtprecioPro.Focus();
+                }
+                else if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
+                {
+                    MessageBox.Show("Validación", "Nombre y precio de producto es obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {//capturamos el combobox
@@ -1081,7 +1155,7 @@ namespace LoginUsuario
                     ora.Open();
                     OracleCommand comando = new OracleCommand("INSERTAR_PRODUCTO", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
-                    comando.Parameters.Add("nombre", OracleType.VarChar).Value =txtnomPro.Text;
+                    comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtnomPro.Text;
                     comando.Parameters.Add("prec", OracleType.Number).Value = Convert.ToInt32(txtprecioPro.Text.ToString());
                     comando.Parameters.Add("fecelb", OracleType.DateTime).Value = dtpElaboPr.Text;
                     comando.Parameters.Add("fechven", OracleType.DateTime).Value = dtpvecipro.Text;
@@ -1091,7 +1165,7 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                    MessageBox.Show("El registro ha sido insertado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El registro ha sido insertado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarCeldas(dgvProducto);
                     }
                     else
@@ -1101,7 +1175,6 @@ namespace LoginUsuario
                         ora.Close();
                         this.CargarCeldas(dgvProducto);
                         MessageBox.Show("El registro no ha sido insertado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                     }
                 }
             }
@@ -1117,16 +1190,28 @@ namespace LoginUsuario
         {
             try
             {
-                if (txtnomPro.Text.Equals(""))//mensaje que editar
+                if (txtnomPro.Text.Equals(""))
                 {
-                    MessageBox.Show("Inserte Mensaje", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "Nombre de producto es obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (txtprecioPro.Equals(""))
+                if (txtprecioPro.Equals(""))
                 {
-                    MessageBox.Show("Inserte Precio", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "Precio de producto es obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                if (txtnomPro.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe tener minimo 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtnomPro.SelectAll();
+                    txtnomPro.Focus();
+                }
+                if (txtprecioPro.Text.Length < 3)
+                {
+                    MessageBox.Show("Validación", "El precio debe ser mayor 999 pesos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtprecioPro.SelectAll();
+                    txtprecioPro.Focus();
                 }
 
-                else if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
+                 if (txtnomPro.Text.Equals("") && txtprecioPro.Equals(""))
                 {
                     MessageBox.Show("Todos los campos son obligatorios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -1151,14 +1236,14 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El registro ha sido modificado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Exito", "El registro ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarCeldas(dgvProducto);
                     }
                     else
                     {
                         txtnomPro.Clear();
                         txtprecioPro.Clear();
-                        MessageBox.Show("El registro no ha sido modificado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Advertencia", "El registro no ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         ora.Close();
                         this.CargarCeldas(dgvProducto);
                     }
@@ -1166,7 +1251,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("El registro no ha sido modificado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error","El registro no ha sido modificado",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.CargarCeldas(dgvProducto);
                 ora.Close();
             }
@@ -1185,7 +1270,7 @@ namespace LoginUsuario
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El Archivo ha sido Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Exito", "El Archivo ha sido Eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtidpro.Clear();
                     txtnomPro.Clear();
                     txtprecioPro.Clear();
@@ -1196,14 +1281,14 @@ namespace LoginUsuario
                     txtidpro.Clear();
                     txtnomPro.Clear();
                     txtprecioPro.Clear();
-                    MessageBox.Show("El Archivo no ha sido Eliminado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Advertencia", "El Archivo no ha sido Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.CargarCeldas(dgvProducto);
                     ora.Close();
                 }
             }
             catch (Exception )
             {
-                MessageBox.Show("No se ha Eliminado el registro","Error",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error", "No se ha Eliminado el registro",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 this.CargarCeldas(dgvProducto);
             }
         }
@@ -1232,7 +1317,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("Registro no cargado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error", "Registro no ha sido cargado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1277,7 +1362,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se Pudo Cargar las Celdas","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error", "No se Pudo Cargar las Celdas",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 ora.Close();
             }
         }
@@ -1323,6 +1408,42 @@ namespace LoginUsuario
             //CargarEncargado(dgvEncargado);
             try
             {
+                if (txtNombreCliente.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe ser mayor 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombreCliente.SelectAll();
+                    txtNombreCliente.Focus();
+                }
+                if (txtApellidoCliente.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El apellido debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtApellidoCliente.SelectAll();
+                    txtApellidoCliente.Focus();
+                }
+                if (txtRutCliente.Text.Length < 11)
+                {
+                    MessageBox.Show("Validación", "El RUT debe ser mayor a 11 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtRutCliente.SelectAll();
+                    txtRutCliente.Focus();
+                }
+                if (txtContrasenaCliente.Text.Length < 5)
+                {
+                    MessageBox.Show("Validación", "La contraseña debe ser mayor a 5 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtContrasenaCliente.SelectAll();
+                    txtContrasenaCliente.Focus();
+                }
+                if (txtPuntajeCliente.Text.Length < 3)
+                {
+                    MessageBox.Show("Validación", "El puntaje no debe ser menor a 100 puntos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPuntajeCliente.SelectAll();
+                    txtPuntajeCliente.Focus();
+                }
+                if (txtTelefono.Text.Length < 9)
+                {
+                    MessageBox.Show("Validación", "El puntaje no debe ser menor a 9 numeros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtTelefono.SelectAll();
+                    txtTelefono.Focus();
+                }
 
                 if (txtNombreCliente.Text.Equals("") && txtApellidoCliente.Equals("") && txtRutCliente.Equals("") && txtCorreoCliente.Equals("") && txtContrasenaCliente.Equals("") && txtPuntajeCliente.Equals("") && txtTelefono.Equals(""))
                 {
@@ -1394,17 +1515,54 @@ namespace LoginUsuario
             //CargarEncargado(dgvEncargado);
             try
             {
+                if (txtNombreCliente.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe ser mayor 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombreCliente.SelectAll();
+                    txtNombreCliente.Focus();
+                }
+                if (txtApellidoCliente.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El apellido debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtApellidoCliente.SelectAll();
+                    txtApellidoCliente.Focus();
+                }
+                if (txtRutCliente.Text.Length < 11)
+                {
+                    MessageBox.Show("Validación", "El RUT debe ser mayor a 11 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtRutCliente.SelectAll();
+                    txtRutCliente.Focus();
+                }
+                if (txtContrasenaCliente.Text.Length < 5)
+                {
+                    MessageBox.Show("Validación", "La contraseña debe ser mayor a 5 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtContrasenaCliente.SelectAll();
+                    txtContrasenaCliente.Focus();
+                }
+                if (txtPuntajeCliente.Text.Length < 3)
+                {
+                    MessageBox.Show("Validación", "El puntaje no debe ser menor a 100 puntos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPuntajeCliente.SelectAll();
+                    txtPuntajeCliente.Focus();
+                }
+                if (txtTelefono.Text.Length < 9)
+                {
+                    MessageBox.Show("Validación", "El puntaje debe ser mayor a 9 numeros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtTelefono.SelectAll();
+                    txtTelefono.Focus();
+                }
+
 
                 if (txtNombreCliente.Text.Equals("") && txtApellidoCliente.Equals("") && txtRutCliente.Equals("") && txtCorreoCliente.Equals("") && txtContrasenaCliente.Equals("") && txtPuntajeCliente.Equals("") && txtTelefono.Equals("") )
                 {
-                    MessageBox.Show("Todos los Datos Son Obligatorios","Validación",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "Todos los Datos Son Obligatorios",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 }
                 else
                 {
                     // "ACTUALIZAR_CONSUMIDOR" (idpue in NUMBER,nombre in VARCHAR2,ape in VARCHAR2,rut in VARCHAR2,fechnac in date,correo in VARCHAR2,pass in VARCHAR2,
                     //pto in NUMBER,tele in VARCHAR2,envofe in CHAR)
                     ora.Open();
-                    OracleCommand comando = new OracleCommand("actualizar_consumidor", ora);
+                    OracleCommand comando = new OracleCommand("ACTUALIZAR_CONSUMIDOR", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
                     comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtIdCliente.Text);
                     comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNombreCliente.Text;
@@ -1423,12 +1581,12 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El registro ha sido actualizado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Exito", "El registro ha sido actualizado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.cargarClienteDataGrid(dtvCliente);
                     }
                     else
                     {
-                        MessageBox.Show("El registro no ha sido actualizado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Advertencia","El registro no ha sido actualizado",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.cargarClienteDataGrid(dtvCliente);
                         ora.Close();
                     }
@@ -1436,7 +1594,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("El registro no ha sido actualizado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error","El registro no ha sido actualizado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.cargarClienteDataGrid(dtvCliente);
                 ora.Close();
             }
@@ -1455,7 +1613,7 @@ namespace LoginUsuario
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El registro ha sido eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Exito", "El registro ha sido eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.cargarClienteDataGrid(dtvCliente);
                     txtNombreCliente.Clear();
                     txtApellidoCliente.Clear();
@@ -1467,7 +1625,7 @@ namespace LoginUsuario
                 }
                 else
                 {
-                    MessageBox.Show("El registro no ha sido eliminado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Advertencia", "El registro no ha sido eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.cargarClienteDataGrid(dtvCliente);
                     txtNombreCliente.Clear();
                     txtApellidoCliente.Clear();
@@ -1481,7 +1639,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("El registro no ha sido eliminado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error", "El registro no ha sido eliminado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.cargarClienteDataGrid(dtvCliente);
                 txtNombreCliente.Clear();
                 txtApellidoCliente.Clear();
@@ -1493,9 +1651,6 @@ namespace LoginUsuario
                 ora.Close();
             }
 }
-
-
-
 /*---------------------------------------------  Cargar y autorelleno de grilla y campos de puesto  -------------------------------------------------------*/
 
         //Muestra la información en el datagrid
@@ -1514,10 +1669,16 @@ namespace LoginUsuario
         {
             try
             {
-                
+                if (txtPuestoNombre.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPuestoNombre.SelectAll();
+                    txtPuestoNombre.Focus();
+                }
+
                 if (txtPuestoNombre.Text.Equals(""))//verifica que los textbox esten llenos
                 {
-                    MessageBox.Show("El dato es obligatorio","Validación",MessageBoxButtons.OK,MessageBoxIcon.Warning);//mensaje al usuario
+                    MessageBox.Show("Validación", "El campo nombre es obligatorio",MessageBoxButtons.OK,MessageBoxIcon.Warning);//mensaje al usuario
                 }
                 else
                 {
@@ -1530,22 +1691,21 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El registro ha sido insertado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Exito","El registro ha sido insertado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarPuesto(dgvPuesto);
                         txtPuestoNombre.Clear();
                     }
                     else
                     {
-                        MessageBox.Show("El registro no ha sido insertado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Advertencia","El registro no ha sido insertado",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.CargarPuesto(dgvPuesto);
                         txtPuestoNombre.Clear();
                     }
-                }
-               
+                }               
             }
             catch (Exception )
             {
-                MessageBox.Show("El registro no ha sido insertado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); ora.Close();
+                MessageBox.Show("Error", "El registro no ha sido insertado", MessageBoxButtons.OK, MessageBoxIcon.Error); ora.Close();
                 this.CargarPuesto(dgvPuesto);
                 txtPuestoNombre.Clear();
             }
@@ -1557,9 +1717,16 @@ namespace LoginUsuario
             try
             {
 
+                if (txtPuestoNombre.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPuestoNombre.SelectAll();
+                    txtPuestoNombre.Focus();
+                }
+
                 if (txtPuestoNombre.Text.Equals(""))//verifica que los textbox esten llenos
                 {
-                    MessageBox.Show("Todos los campos son obligatorios","Validación",MessageBoxButtons.OK,MessageBoxIcon.Warning);//mensaje al usuario
+                    MessageBox.Show("Validación", "El campo nombre es obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);//mensaje al usuario
                 }
                 else
                 {// "ACTUALIZAR_PUESTO" (idpue in NUMBER,pue in VARCHAR2)
@@ -1573,13 +1740,13 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El registro ha sido modificado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Exito","El registro ha sido modificado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarPuesto(dgvPuesto);
                         txtPuestoNombre.Clear();
                     }
                     else
                     {
-                        MessageBox.Show("El registro no ha sido modificado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Advertencia", "El registro no ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.CargarPuesto(dgvPuesto);
                         txtPuestoNombre.Clear();
                     }
@@ -1588,7 +1755,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("El registro no ha sido modificado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error", "El registro no ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ora.Close();
                 this.CargarPuesto(dgvPuesto);
                 txtPuestoNombre.Clear();
@@ -1612,13 +1779,13 @@ namespace LoginUsuario
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El Archivo ha sido Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Exito", "El Archivo ha sido Eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarPuesto(dgvPuesto);
                     txtPuestoNombre.Clear();
                 }
                 else
                 {
-                    MessageBox.Show("El Archivo no ha sido Eliminado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Advertencia", "El Archivo no ha sido Eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.CargarPuesto(dgvPuesto);
                     txtPuestoNombre.Clear();
                     ora.Close();
@@ -1626,7 +1793,7 @@ namespace LoginUsuario
             }
             catch (Exception )
             {
-                MessageBox.Show("El Archivo no ha sido Eliminado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error", "El Archivo no ha sido Eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.CargarPuesto(dgvPuesto);
                 txtPuestoNombre.Clear();
                 ora.Close();
@@ -1674,12 +1841,12 @@ namespace LoginUsuario
                     adaptador.Fill(tabla);
                     dgvOferta.DataSource = tabla;
                     ora.Close();
-                    MessageBox.Show("El Archivo ha sido Encontrado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Exito", "El Archivo ha sido Encontrado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 }
                 else
                 {
-                    MessageBox.Show("El Archivo no ha sido Encontrado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Advertencia", "El Archivo no ha sido Encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.CargarOferta(dgvOferta);
                     ora.Close();
                 }
@@ -1688,7 +1855,7 @@ namespace LoginUsuario
             }
             catch (Exception )
             {
-                MessageBox.Show("El Archivo no ha sido Encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error", "El Archivo no ha sido Encontrado",  MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.CargarOferta(dgvOferta);
                 ora.Close();
             }
@@ -1696,6 +1863,31 @@ namespace LoginUsuario
         //nueva oferta
         private void btnNuevaOferta_Click(object sender, EventArgs e)
         {
+            if (txtNombreOferta.Text.Length < 4)
+            {
+                MessageBox.Show("Validación", "El nombre  debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombreOferta.SelectAll();
+                txtNombreOferta.Focus();
+            }
+            if (txtTipoOferta.Text.Length < 4)
+            {
+                MessageBox.Show("Validación", "El Tipo de oferta debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTipoOferta.SelectAll();
+                txtTipoOferta.Focus();
+            }
+            if (txtUrlOferta.Text.Length < 4)
+            {
+                MessageBox.Show("Validación", "El link debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUrlOferta.SelectAll();
+                txtUrlOferta.Focus();
+            }
+            if (txtPrecioOferta.Text.Length < 3)
+            {
+                MessageBox.Show("Validación", "El precio debe ser mayor a $990", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPrecioOferta.SelectAll();
+                txtPrecioOferta.Focus();
+            }
+
 
             //"INSERTAR_OFERTA" (nombre in VARCHAR2,tpo in VARCHAR2,img in VARCHAR2,prof in NUMBER,idtr in NUMBER,idsuc in NUMBER,idproin in number,fechini in date,fechater in date,idcat in number)
             try
@@ -1733,7 +1925,7 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El registro ha sido insertado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Exito", "El registro ha sido insertado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarOferta(dgvOferta);
                         txtNombreOferta.Clear();
                         txtTipoOferta.Clear();
@@ -1741,7 +1933,7 @@ namespace LoginUsuario
                     }
                     else
                     {
-                        MessageBox.Show("El registro no ha sido insertado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Advertencia", "El registro no ha sido insertado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.CargarOferta(dgvOferta);
                         txtNombreOferta.Clear();
                         txtTipoOferta.Clear();
@@ -1752,7 +1944,7 @@ namespace LoginUsuario
             }
             catch (Exception )
             {
-                MessageBox.Show("No se ha sido insertado el registro","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error", "No se ha sido insertado el registro",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 this.CargarOferta(dgvOferta);
                 txtNombreOferta.Clear();
                 txtTipoOferta.Clear();
@@ -1769,8 +1961,32 @@ namespace LoginUsuario
             int idtraba = Convert.ToInt32(cbotrabajadorOferta.SelectedValue.ToString());
             int idsuc = Convert.ToInt32(cboSucOfert.SelectedValue.ToString());
 
-            try
-            {
+            try{
+                if (txtNombreOferta.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El nombre  debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombreOferta.SelectAll();
+                    txtNombreOferta.Focus();
+                }
+                if (txtTipoOferta.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El Tipo de oferta debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtTipoOferta.SelectAll();
+                    txtTipoOferta.Focus();
+                }
+                if (txtUrlOferta.Text.Length < 4)
+                {
+                    MessageBox.Show("Validación", "El link debe ser mayor a 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtUrlOferta.SelectAll();
+                    txtUrlOferta.Focus();
+                }
+                if (txtPrecioOferta.Text.Length < 3)
+                {
+                    MessageBox.Show("Validación", "El precio debe ser mayor a $990", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPrecioOferta.SelectAll();
+                    txtPrecioOferta.Focus();
+                }
+
                 if (txtIdOferta.Text.Equals("") && txtNombreOferta.Text.Equals("") && txtTipoOferta.Equals("") && txtUrlOferta.Equals("")
                     && txtPrecioOferta.Equals("")
                     && dtpFechaIni.Equals("") && dtpFechaTer.Equals(""))//verifica que los txt esten llenos
@@ -1802,7 +2018,7 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El registro ha sido modificado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Exito", "El registro ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarOferta(dgvOferta);
                         txtNombreOferta.Clear();
                         txtTipoOferta.Clear();
@@ -1810,7 +2026,7 @@ namespace LoginUsuario
                     }
                     else
                     {
-                        MessageBox.Show("El registro no ha sido modificado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Advertencia", "El registro no ha sido modificado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.CargarOferta(dgvOferta);
                         txtNombreOferta.Clear();
                         txtTipoOferta.Clear();
@@ -1821,7 +2037,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("El registro no ha sido modificado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error", "El registro no ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.CargarOferta(dgvOferta);
                 txtNombreOferta.Clear();
                 txtTipoOferta.Clear();
@@ -1843,7 +2059,7 @@ namespace LoginUsuario
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El registro ha sido eliminar", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Exito", "El registro ha sido eliminar",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarOferta(dgvOferta);
                     txtNombreOferta.Clear();
                     txtTipoOferta.Clear();
@@ -1851,7 +2067,7 @@ namespace LoginUsuario
                 }
                 else
                 {
-                    MessageBox.Show("El registro no ha sido eliminar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Advertencia", "El registro no ha sido eliminar",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.CargarOferta(dgvOferta);
                     txtNombreOferta.Clear();
                     txtTipoOferta.Clear();
@@ -1860,7 +2076,7 @@ namespace LoginUsuario
 
             }catch (Exception )
             {
-                MessageBox.Show("El registro no ha sido eliminar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Advertencia", "El registro no ha sido eliminar",  MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.CargarOferta(dgvOferta);
                 txtNombreOferta.Clear();
                 txtTipoOferta.Clear();
@@ -2405,7 +2621,7 @@ namespace LoginUsuario
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblHora.Text ="Fecha Actual: "+ DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            lblHora.Text ="Fecha Actual: "+ DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
     } 
 }

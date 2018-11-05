@@ -821,7 +821,7 @@
             this.btnSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSucursal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSucursal.Image = ((System.Drawing.Image)(resources.GetObject("btnSucursal.Image")));
-            this.btnSucursal.Location = new System.Drawing.Point(727, 369);
+            this.btnSucursal.Location = new System.Drawing.Point(727, 370);
             this.btnSucursal.Name = "btnSucursal";
             this.btnSucursal.Size = new System.Drawing.Size(77, 30);
             this.btnSucursal.TabIndex = 0;
@@ -1465,7 +1465,7 @@
             this.dgvPuesto.Location = new System.Drawing.Point(128, 73);
             this.dgvPuesto.Name = "dgvPuesto";
             this.dgvPuesto.ReadOnly = true;
-            this.dgvPuesto.Size = new System.Drawing.Size(246, 346);
+            this.dgvPuesto.Size = new System.Drawing.Size(262, 346);
             this.dgvPuesto.TabIndex = 40;
             this.dgvPuesto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPuesto_CellContentClick);
             // 

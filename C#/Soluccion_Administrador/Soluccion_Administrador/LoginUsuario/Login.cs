@@ -51,21 +51,21 @@ namespace LoginUsuario
                 if (txt_Usuario.Text.Equals(""))//si esta vacio el txt usuario 
                 {
 
-                    MessageBox.Show("Inserte Mensaje", "Campo incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Los campos son obligatorios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txt_Usuario.SelectAll();
                     txt_Usuario.Focus();
 
                 }
-                 else if (txt_contrasena.Text.Equals(""))//si el txtcontrasena esta vacio
+                 if (txt_contrasena.Text.Equals(""))//si el txtcontrasena esta vacio
                 {
-                    MessageBox.Show("Inserte Mensaje", "Campo incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Los campos son obligatorios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txt_contrasena.SelectAll();
                     txt_contrasena.Focus();
                 }
 
-                   else if (txt_contrasena.Text.Equals("") && txt_Usuario.Text.Equals(""))//si ambos estan vacios
+                   if (txt_contrasena.Text.Equals("") && txt_Usuario.Text.Equals(""))//si ambos estan vacios
                 {
-                    MessageBox.Show("inserte un mensaje3" );
+                    MessageBox.Show("Los campos son obligatorio","Validación",MessageBoxButtons.OK,MessageBoxIcon.Exclamation );
                 }
                 else {
                     ora.Open();
@@ -96,7 +96,7 @@ namespace LoginUsuario
                     else
                     {
                         //modificar mensaje de error
-                        MessageBox.Show("Inserte Mensaje", "Usuario invalido", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("Problemas de conexión", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                         ora.Close();//cerrara la conexion con la BD
                        
