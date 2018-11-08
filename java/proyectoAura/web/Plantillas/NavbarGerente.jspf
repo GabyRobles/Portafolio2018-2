@@ -1,0 +1,10 @@
+<nav class="navbarTrabajador navbar-expand-lg">
+    <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav ml-auto"> 
+            <li class="nav-item "><a class="nav-link" id="" href="#"> Bienvenido ${usuario.getNombre()} </a></li>
+            <li class="nav-item">
+                <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/CerrarSesion.jsp">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
