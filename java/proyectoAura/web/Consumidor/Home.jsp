@@ -26,12 +26,11 @@
                     <button class="botonMenu">Recibe tu Descuento</button>
                     <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
                     <c:forEach items="${categorias}" var="categoria">
-                        <a href="#">${categoria.getNombre()}</a><br/>
+                        <a class="catalogo" href="#">${categoria.getNombre()}</a><br><br>
                     </c:forEach>
                         
                 </div>
-                <div class="col-md-10 col-sm-12">
-                    <h1>Bienvenido a home de consumidor</h1>
+                <div class="contenedorHome col-md-10 col-sm-12">
                     <c:forEach items="${categorias}" var="categoria">
                         <div class="tab1">
                             <h2><c:out value="${categoria.nombre}" /></h2>

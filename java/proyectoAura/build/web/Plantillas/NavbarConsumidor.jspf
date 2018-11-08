@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#"> <img class="logo" src="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png" height="40"> Mis Ofertas</a>
+    <a class="iconoHeader navbar-brand" href="#"> <img class="logoNavbar" src="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png"> Mis Ofertas</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar1">
         <ul class="navbar-nav ml-auto"> 
-            <li class="nav-item "><a class="nav-link" href="#"> Hola ${usuario.getNombre()} ${usuario.getApellidos()}</a></li>
+            <li class="nav-item "><a class="NombreConsumidor nav-link" href="#"> Hola ${usuario.getNombre()} ${usuario.getApellidos()}</a></li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">tienes ${usuario.getPuntaje()} puntos<span class="sr-only">(current)</span></a>
+                <a class=" puntos nav-link" href="#">Tienes ${usuario.getPuntaje()} puntos<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/CerrarSesion.jsp">Cerrar Sesión</a></li>
