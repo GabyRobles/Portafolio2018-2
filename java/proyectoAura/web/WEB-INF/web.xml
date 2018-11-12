@@ -20,9 +20,13 @@
         <servlet-name>OfertaServlet</servlet-name>
         <servlet-class>controller.OfertaServlet</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>ValoracionServlet</servlet-name>
         <servlet-class>controller.ValoracionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GeneracionCuponPdfServlet</servlet-name>
+        <servlet-class>controller.GeneracionCuponPdfServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -52,6 +56,10 @@
         <servlet-name>ValoracionServlet</servlet-name>
         <url-pattern>/ValoracionServlet</url-pattern>
         <url-pattern>/ValoracionServlet/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneracionCuponPdfServlet</servlet-name>
+        <url-pattern>/GeneracionCuponPdfServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
