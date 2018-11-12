@@ -23,7 +23,7 @@
                         <h2 class="subtituloMenu">Categorias</h2>
                     </div>
                     <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
-                    <button class="botonMenu">Recibe tu Descuento</button>
+                    <button class="botonMenu"><a href="${pageContext.request.contextPath}/Consumidor/ValoracionOferta.jsp" > Recibe tu Descuento</a></button>
                     <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
                     <c:forEach items="${categorias}" var="categoria">
                         <a class="catalogo" href="#">${categoria.getNombre()}</a><br><br>
