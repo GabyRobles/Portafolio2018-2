@@ -13,19 +13,17 @@ import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
 import javax.persistence.StoredProcedureQuery;
 
-/**
- *
- * @author solita
- */
+
 public class ValoracionBean {
+    //declarar la Api para manejar la persistencia de JPA
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProyectoAuraPU");
     EntityManager em = factory.createEntityManager();
     
         //INSERTAR_VALORACION" (val in number,fch in date,comm in VARCHAR2,idof in number,idcons in number,idct in number,idsuc in number)
     public void createValoracion(int valoracion, Date fecha,String comentario ,int idofert,int idconsumidor,int idcate,int idsucur ){
-    //SE CREA UNA VARIABLE DE PROCEDIMIENTO
+        //SE CREA UNA VARIABLE DE PROCEDIMIENTO
         StoredProcedureQuery storedProcedureQuery= em.createStoredProcedureQuery("OPERACIONES_CRUD.INSERTAR_VALORACION");
-    //variable del procedimiento en la bd
+        //variable del procedimiento en la bd
         storedProcedureQuery.registerStoredProcedureParameter("val", Integer.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter("fch", Date.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter("comm", String.class, ParameterMode.IN);
@@ -43,7 +41,7 @@ public class ValoracionBean {
          storedProcedureQuery.setParameter("idct", valoracion);
          storedProcedureQuery.setParameter("idsuc", valoracion);
                  
-                //ejecutar procedimiento
+        //ejecutar procedimiento
         storedProcedureQuery.execute(); 
         
     }

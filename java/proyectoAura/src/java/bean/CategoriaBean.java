@@ -12,27 +12,34 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Categoria;
 
-/**
- *
- * @author nico_
- */
 public class CategoriaBean {
+    //declarar la Api para manejar la persistencia de JPA
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProyectoAuraPU");
     EntityManager em = factory.createEntityManager();
+    //declarar la lista de categorias
     private List<Categoria> lista;
     
+    
+    //constructor con la generación de la lista
     public CategoriaBean(){
         try {
-            lista = findAll();
+            lista = findAll();//búsqueda de todas las categorias
         } catch (SQLException | NullPointerException ex) {
+            //acción en caso de error
             System.out.println("Error: "+ex.getMessage());
         }
     }
     
+    /*
+    * Método de busqueda unica
+    */
     public Categoria findByNombre(String nombre) throws SQLException, NullPointerException{
         return (Categoria) em.createNamedQuery("Categoria.findByNombre").setParameter("nombre", nombre).getSingleResult();
     }
     
+    /*
+    * Método de busqueda de todos los elementos de la base de datos
+    */
     public List<Categoria> findAll() throws SQLException, NullPointerException{
         return em.createNamedQuery("Categoria.findAll").getResultList();
     }

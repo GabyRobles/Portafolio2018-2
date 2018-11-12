@@ -60,6 +60,7 @@
     <servlet-mapping>
         <servlet-name>GeneracionCuponPdfServlet</servlet-name>
         <url-pattern>/GeneracionCuponPdfServlet</url-pattern>
+        <url-pattern>/GeneracionCuponPdfServlet/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

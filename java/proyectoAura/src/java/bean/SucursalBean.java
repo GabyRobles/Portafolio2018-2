@@ -13,16 +13,18 @@ import javax.persistence.Persistence;
 import model.Empresa;
 import model.Sucursal;
 
-/**
- *
- * @author BR0KK
- */
 public class SucursalBean {
+    //declarar la Api para manejar la persistencia de JPA
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProyectoAuraPU");
     EntityManager em = factory.createEntityManager();
     
+    /*
+    * Método de busqueda de sucursales segun empresa
+    */
     public List<Sucursal> findByEmpresa(Integer idEmpresa)throws SQLException, NullPointerException{
+        //instanciar la empresa a referenciar
         Empresa empresa = (Empresa)em.createNamedQuery("Empresa.findByIdEmpresa").setParameter("idEmpresa", idEmpresa).getSingleResult();
+        //buscar y retornar las sucursales
         return em.createNamedQuery("Sucursal.findByIdEmpresa").setParameter("idEmpresa", empresa).getResultList();
     }
     

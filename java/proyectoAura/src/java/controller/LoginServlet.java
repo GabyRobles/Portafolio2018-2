@@ -21,10 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Categoria;
 import model.Oferta;
 
-/**
- *
- * @author nico_
- */
+
 public class LoginServlet extends HttpServlet {
 
     /**
@@ -88,13 +85,13 @@ public class LoginServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action) {
-            case "LoginC":
+            case "LoginC"://direcionamiento a la pantalla de login para consumidor
                 response.sendRedirect("Login.jsp");
                 break;
-            case "LoginT":
+            case "LoginT"://direcionamiento a la pantalla de login para trabajador
                 response.sendRedirect("Trabajador/Login.jsp");
                 break;
-            case "Registro":
+            case "Registro"://direcionamiento a la pantalla de registro de Cliente
                 response.sendRedirect("Registro.jsp");
                 break;
         }

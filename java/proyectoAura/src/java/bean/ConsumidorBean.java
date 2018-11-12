@@ -21,6 +21,7 @@ import model.Consumidor;
  * @author nico_
  */
 public class ConsumidorBean {
+    //declarar la Api para manejar la persistencia de JPA
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProyectoAuraPU");
     EntityManager em = factory.createEntityManager();
     
@@ -53,23 +54,34 @@ public class ConsumidorBean {
         
    }
    
+   /*
+    * Método de busqueda unica
+    */
    public Consumidor findByCorreo(String Correo)throws SQLException, NullPointerException, NoResultException{
        return (Consumidor) em.createNamedQuery("Consumidor.findByCorreo").setParameter("correo", Correo).getSingleResult();
    }
    
+   /*
+    * Método para validar contraseña
+    */
    public boolean validarContrasena(String correo, String contrasena) throws SQLException, NoResultException{
+       //Instanciar al cosumidor por busqueda
        Consumidor consumidor = findByCorreo(correo);
-       boolean validacion = false;
+       boolean validacion = false; //declarar el retorno
+       //cambiar el retorno en caso de encontrar coincidencia
        if (consumidor.getContrasena().equals(contrasena)){
            validacion = true;
        }
        return validacion;
    }
    
-   public void sumarPuntos(Consumidor consumidor, int puntaje){//suma y envia puntaje a la entidad
-       Integer puntos;
-       puntos = consumidor.getPuntaje();
-       puntos += puntaje;
-       consumidor.setPuntaje(puntos);
+   /*
+    * Método de sumarPuntos
+    */
+   public void sumarPuntos(Consumidor consumidor, int puntos){
+        //suma y envia puntaje a la entidad
+        Integer puntaje = consumidor.getPuntaje();
+        puntaje += puntos;
+        consumidor.setPuntaje(puntaje);
    }
 }

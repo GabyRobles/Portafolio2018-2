@@ -13,10 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author nico_
- */
 public class ProductoServlet extends HttpServlet {
 
     /**
@@ -57,12 +53,15 @@ public class ProductoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        
+        String action = request.getParameter("action");//obtener la acción de la petición
+        //disciminación de la acción
         switch (action){
-            case "Listar": 
+            case "Listar": //direccionamiento en caso de Listar
+                //instanciar el Bean de productos
                 ProductoBean productos= new ProductoBean();
+                //obtener y asignar la lista de productos
                 request.setAttribute("productos", productos.getLista());
+                //direccionamiento a la página de Productos
                 request.getRequestDispatcher("Trabajador/Encargado/Producto.jsp").forward(request, response);
                 break;
         }
@@ -79,17 +78,15 @@ public class ProductoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+       //accion para el metodo post
     }
 
     /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
+     * Breve descripción del servlet
      */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

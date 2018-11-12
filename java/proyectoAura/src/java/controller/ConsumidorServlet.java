@@ -8,8 +8,6 @@ package controller;
 import bean.ConsumidorBean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,10 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Consumidor;
 
-/**
- *
- * @author nico_
- */
 public class ConsumidorServlet extends HttpServlet {
 
     /**
@@ -64,10 +58,12 @@ public class ConsumidorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");//llamadode la acción
+        String action = request.getParameter("action");//obtener la accion de la petición
+        //discriminar la accion a realizar
         switch(action){
-            case"sumarPuntajes":this.sumarPuntaje(request, response);
-                        break;
+            case"sumarPuntajes"://sumar los puntajes
+                this.sumarPuntaje(request, response);
+                break;
             
         }
     }   
@@ -83,52 +79,55 @@ public class ConsumidorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //obtener la accion de la petición
         String action = request.getRequestURI();
-        System.out.println(action);
         action = utilidad.Formato.obtenerAction(action);
-        
+        //discriminar la accion a realizar
         switch (action){
-            case "Registro": 
+            case "Registro": //llamar al registro
                 Registrar(request, response);
                 break;
                 
-            default: System.out.println("problema de accion"+ action); 
+            default://Acción en caso de que no exista la petición
+                System.out.println("problema de accion"+ action); 
                 break;
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    /*
+        Descripción del servlet
+    */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
     
     private void Registrar(HttpServletRequest request, HttpServletResponse response){
+        //instanciar el Bean para consumidor
         ConsumidorBean consumidor = new ConsumidorBean();
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");// formato para la fecha
+            //Obtener los datos del formulario de registro
             String nombre = request.getParameter("fname");
             String apellido = request.getParameter("lname") ;
             String rut = request.getParameter("rut");
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             Date fechaNac = formatter.parse(request.getParameter("nac"));
             String telefono = request.getParameter("fono");
             String correo = request.getParameter("mail");
             String contrasena = request.getParameter("psw") ;
             Integer puntaje =  0;
+            //asignar el parametro para envío de correos automáticos
             Character envio = 'S' ;
             if (request.getParameter("chkCorreos")== ""){
                 envio = 'N';
             }
             
-            
+            //Alamacenar el consumidor en la base de datos
             consumidor.create(nombre, apellido, rut, fechaNac, correo, contrasena, puntaje, telefono, envio);
+            //direccionamiento al Home del consumidor
             request.getRequestDispatcher("/Consumidor/Home.jsp").forward(request, response);
         } catch(IOException | SQLException | ParseException | ServletException ex){
-        
+            //Mensaje de Error
             System.out.println("No se puede crear el usuario: "+ex.getMessage());
             
         }  

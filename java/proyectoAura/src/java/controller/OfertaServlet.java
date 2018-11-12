@@ -21,10 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Oferta;
 import model.Trabajador;
 
-/**
- *
- * @author nico_
- */
 @WebServlet(name = "OfertaServlet", urlPatterns = {"/OfertaServlet"})
 public class OfertaServlet extends HttpServlet {
 
@@ -66,24 +62,28 @@ public class OfertaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //obtener la acción de la petición
         String action = request.getParameter("action");
-
+        //disciminación de la acción
         switch (action) {
-            case "Crear":
+            case "Crear"://direccionamiento en caso de crear
                 showCrear(request, response);
                 break;
-            case "Listar":
+            case "Listar"://direccionaminto a la lista de ofertas
+                //Instanciar el Bean
                 OfertaBean ofertas = new OfertaBean();
+                //obtener y asignar la lista de ofertas 
                 request.setAttribute("ofertas", ofertas.getLista());
+                //direccionamiento a la página de listas
                 request.getRequestDispatcher("Trabajador/Encargado/Ofertas.jsp").forward(request, response);
                 break;
-            case "Editar":
+            case "Editar"://direccionamiento a la página de editar ofertas
                 showEditar(request, response);
                 break;
-            case "Eliminar":
+            case "Eliminar"://llamar a la acción de eliminar ofertas
                 eliminarOferta(request, response);
                 break;
-            default:
+            default://accion a realizar en caso de petición inválida
                 System.out.println("Acción no encontrada");
                 break;
         }
@@ -100,64 +100,71 @@ public class OfertaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //obtener la acción de la petición
         String action = request.getRequestURI();
-        System.out.println(action);
         action = utilidad.Formato.obtenerAction(action);
-
+        //disccriminación de la acción a realizar
         switch (action) {
-            case "Crear":
+            case "Crear"://llamar a la acción de Crear oferta
                 crearOferta(request, response);
                 break;
-            case "Editar":
+            case "Editar"://llamar a la acción de Editar oferta
                 editarOferta(request, response);
-            default:
+            default://accion a realizar en caso de petición inválida
                 System.out.println("Acción no encontrada");
                 break;
         }
     }
 
     /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
+     * Breve descripción del servlet.
      */
     @Override
     public String getServletInfo() {
         return "Short description";
     }
     
+    /*
+    * Método para direccionar a la creacion de oferta
+    */
     private void showCrear(HttpServletRequest request, HttpServletResponse response) {
-        try {
+        try {//instanciar el Bean de sucursales
             SucursalBean sucursales = new SucursalBean();
+            //instanciar al usuario de la sesion
             Trabajador user = (Trabajador)request.getSession().getAttribute("usuario");
-            System.out.println("usuario = "+user.toString());
+            //obtener el id de la empresa
             Integer idEmpresa = Integer.valueOf(user.getIdEmpresa().getIdEmpresa().toString());
-            System.out.println("idEmpresa = "+idEmpresa);
+            //obtener y asignar la lista de sucursales
             request.setAttribute("sucursales", sucursales.findByEmpresa(idEmpresa));
+            //direccionamiento a la página de creación
             request.getRequestDispatcher("Trabajador/Encargado/DetalleOferta.jsp").forward(request, response);
         } catch (IOException | NullPointerException | NumberFormatException | SQLException | ServletException e) {
             System.out.println("Error no se pudo obtener la Lista de sucursales: " + e.getMessage());
         }
     }
-
+    
+     /*
+    * Método para crear la oferta
+    */
     private void crearOferta(HttpServletRequest request, HttpServletResponse response) {
-        try {
+        try {//instanciar el Bean de la oferta
             OfertaBean oferta = new OfertaBean();
+            //asignar el formato de las fechas
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        
+            //obtener los datos del formulario de creación de ofertas
             String nombre = request.getParameter("nombreOferta");
-            Integer idProducto = Integer.valueOf(request.getParameter("idProducto"));
-            Integer idCat = Integer.valueOf(request.getParameter("idCat"));
+            Integer idProducto = Integer.valueOf(request.getParameter("idProducto"));//Parseo de String a Integer
+            Integer idCat = Integer.valueOf(request.getParameter("idCat"));//Parseo de String a Integer
             String tipoOferta = request.getParameter("tipo");
             String imagen = request.getParameter("imagenURL");
-            Integer precio = Integer.valueOf(request.getParameter("precio"));
-            Integer idEncargado = Integer.valueOf(request.getParameter("idEncargado"));
-            Integer idSucur = Integer.valueOf(request.getParameter("cbSucurcales"));
-            
-            Date fechaIni = formatter.parse(request.getParameter("fechaIni"));
-            Date fechaTerm = formatter.parse(request.getParameter("fechaTerm"));
-
+            Integer precio = Integer.valueOf(request.getParameter("precio"));//Parseo de String a Integer
+            Integer idEncargado = Integer.valueOf(request.getParameter("idEncargado"));//Parseo de String a Integer
+            Integer idSucur = Integer.valueOf(request.getParameter("cbSucurcales"));//Parseo de String a Integer
+            Date fechaIni = formatter.parse(request.getParameter("fechaIni"));//Parseo de String a Date
+            Date fechaTerm = formatter.parse(request.getParameter("fechaTerm"));//Parseo de String a Date
+            //crear la Oferta dentro de la base de datos
             oferta.create(nombre, tipoOferta, imagen, precio, fechaIni, fechaTerm, idEncargado, idSucur, idProducto, idCat);
+            //direccionamiento a la página de ofertas
             response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
         } catch (IOException | NumberFormatException | SQLException | ParseException e) {
             System.out.println("Error al crear la oferta" + e.getLocalizedMessage());
@@ -165,11 +172,13 @@ public class OfertaServlet extends HttpServlet {
     }
 
     private void showEditar(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            Integer idOferta = Integer.valueOf(request.getParameter("idOferta"));
-            OfertaBean bean = new OfertaBean();
+        try {OfertaBean bean = new OfertaBean();
+            //obtener el id de la oferta a editar
+            Integer idOferta = Integer.valueOf(request.getParameter("idOferta"));//Parseo de String a Integer
+            //asignar la oferta a editar
             Oferta oferta = bean.findById(idOferta);
             request.setAttribute("oferta", oferta);
+            //direcionamiento a la pagina de edición
             request.getRequestDispatcher("Trabajador/Encargado/DetalleOferta.jsp").forward(request, response);
         } catch (IOException | NullPointerException | NumberFormatException | SQLException | ServletException e) {
             System.out.println("Error al redirccionar: " + e.getMessage());
@@ -178,25 +187,25 @@ public class OfertaServlet extends HttpServlet {
     }
 
     private void editarOferta(HttpServletRequest request, HttpServletResponse response) {
-        try {
+        try {//instanciar el Bean de oferta
             OfertaBean oferta = new OfertaBean();
+            //asignar el formato de las fechas
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        
-            Integer idOferta = Integer.valueOf(request.getParameter("id"));
-
+            //obtener los datos del formulario de edición de ofertas
+            Integer idOferta = Integer.valueOf(request.getParameter("id"));//Parseo de String a Integer
             String nombre = request.getParameter("nombreOferta");
-            Integer idProducto = Integer.valueOf(request.getParameter("idProducto"));
-            Integer idCat = Integer.valueOf(request.getParameter("idCat"));
+            Integer idProducto = Integer.valueOf(request.getParameter("idProducto"));//Parseo de String a Integer
+            Integer idCat = Integer.valueOf(request.getParameter("idCat"));//Parseo de String a Integer
             String tipoOferta = request.getParameter("tipo");
             String imagen = request.getParameter("imagenURL");
-            Integer precio = Integer.valueOf(request.getParameter("precio"));
-            Integer idEncargado = Integer.valueOf(request.getParameter("idEncargado"));
-            Integer idSucur = Integer.valueOf(request.getParameter("cbSucurcales"));
-            
-            Date fechaIni = formatter.parse(request.getParameter("fechaIni"));
-            Date fechaTerm = formatter.parse(request.getParameter("fechaTerm"));
-
+            Integer precio = Integer.valueOf(request.getParameter("precio"));//Parseo de String a Integer
+            Integer idEncargado = Integer.valueOf(request.getParameter("idEncargado"));//Parseo de String a Integer
+            Integer idSucur = Integer.valueOf(request.getParameter("cbSucurcales"));//Parseo de String a Integer
+            Date fechaIni = formatter.parse(request.getParameter("fechaIni"));//Parseo de String a Date
+            Date fechaTerm = formatter.parse(request.getParameter("fechaTerm"));//Parseo de String a Date
+            //editar la oferta en la base de datos
             oferta.update(idOferta, nombre, tipoOferta, imagen, precio, fechaIni, fechaTerm, idEncargado, idSucur, idProducto, idCat);
+            //direccionamiento a la lista de ofertas
             response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
         } catch (IOException | NumberFormatException | SQLException | ParseException e) {
             System.out.println("Error al editar: " + e.getLocalizedMessage());
@@ -204,11 +213,13 @@ public class OfertaServlet extends HttpServlet {
     }
 
     private void eliminarOferta(HttpServletRequest request, HttpServletResponse response) {
-        try {    
+        try {//Instanciar el Bean de oferta    
             OfertaBean oferta = new OfertaBean();
-        
+            //obtener el id de la oferta a eliminar
             Integer idOferta = Integer.valueOf(request.getParameter("idOferta"));
+            //Eliminar la oferta de la base de datos
             oferta.delete(idOferta);
+            //direccionamiento a la lista de ofertas
             response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
         } catch (IOException | NumberFormatException | SQLException e) {
             System.out.println("Error no se pudo eliminar: " + e.getLocalizedMessage());

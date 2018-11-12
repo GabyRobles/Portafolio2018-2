@@ -14,35 +14,43 @@ import javax.persistence.Persistence;
 import model.Producto;
 
 
-/**
- *
- * @author nico_
- */
 public class ProductoBean {
+    //declarar la Api para manejar la persistencia de JPA
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProyectoAuraPU");
     EntityManager em = factory.createEntityManager();
+    //declarar la lista de Producto
     private List<Producto> lista;
     
+    //constructor con la generación de la lista
     public ProductoBean(){
         try {
-            lista = findAll();
+            lista = findAll();//búsqueda de todas las productos
         } catch (SQLException | NullPointerException ex) {
+            //acción en caso de error
             System.out.println("Error: "+ex.getMessage());
         }
     }
-
+    
+    /*
+    * Métodos de getter and setter para la lista
+    */
     public List<Producto> getLista() {
         return lista;
     }
-
     public void setLista(List<Producto> lista) {
         this.lista = lista;
     }
     
+    /*
+    * Método de busqueda unica por nombre
+    */
     public Producto findByNombre(String nombre)throws SQLException, NullPointerException{
         return (Producto) em.createNamedQuery("Producto.findByNombre").setParameter("nombre", nombre).getSingleResult();
     }
     
+    /*
+    * Método de busqueda de todos los elementos de la base de datos
+    */
     public List<Producto> findAll()throws SQLException, NullPointerException{
         return em.createNamedQuery("Producto.findAll").getResultList();
     }
