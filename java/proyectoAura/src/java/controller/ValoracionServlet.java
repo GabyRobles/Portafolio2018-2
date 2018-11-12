@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,14 +19,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Consumidor;
-
+import model.Oferta;
+import model.Sucursal;
+import bean.SucursalBean;
 /**
  *
  * @author solita
  */
 @WebServlet(name = "ValoracionServlet", urlPatterns = {"/ValoracionOferta"})
 public class ValoracionServlet extends HttpServlet {
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,12 +37,14 @@ public class ValoracionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ValoracionServlet</title>");            
+            out.println("<title>Servlet ValoracionServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ValoracionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+        } catch (Exception e){
+            
         }
     }
 
@@ -55,7 +60,7 @@ public class ValoracionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.sendRedirect("/Consumidor/ValoracionOferta.jsp");
     }
 
     /**
@@ -70,28 +75,17 @@ public class ValoracionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-      //INSERTAR_VALORACION" (val in number,fch in date,comm in VARCHAR2,idof in number,idcons in number,idct in number,idsuc in number)
-
-        try{
-        
-            Integer valoracion =Integer.parseInt(request.getParameter("valoracion"));
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            Date fecha = formatter.parse(request.getParameter("fch"));
-            String comentario = request.getParameter("com");
-            Integer idoferta=Integer.parseInt(request.getParameter("idoferta"));
-            Integer idconsumidor = Integer.valueOf(((Consumidor)request.getSession().getAttribute("usuario")).getIdConsumidor().toString());
-            Integer idcate = Integer.parseInt(request.getParameter("idcategoria"));
-            Integer idsuc =Integer.parseInt(request.getParameter("idsuc"));
-
-            
-        }catch(ParseException ex){
-            
-        System.out.println("No se puede crear la Valoracion "+ex.getMessage());
-        
+        //INSERTAR_VALORACION" (val in number,fch in date,comm in VARCHAR2,idof in number,idcons in number,idct in number,idsuc in number)
+        LocalDate fechalocal = LocalDate.now();
+        Integer valoracion = Integer.parseInt(request.getParameter("valoracion"));
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date fecha = Date.from(fechalocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        String comentario = request.getParameter("com");
+        Integer idoferta = Integer.parseInt(request.getParameter("idoferta"));
+        Integer idconsumidor = Integer.valueOf(((Consumidor) request.getSession().getAttribute("usuario")).getIdConsumidor().toString());
+        Integer idcate = Integer.parseInt(request.getParameter("idcategoria"));
+        Integer idsuc = Integer.parseInt(request.getParameter("idsuc"));
     }
-    }
-
-    
 
     @Override
     public String getServletInfo() {
