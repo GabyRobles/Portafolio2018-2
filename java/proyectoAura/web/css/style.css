@@ -172,6 +172,16 @@ body {
     font-size: 32px;
     text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
+.botonMenu2{
+    color: white;
+    padding: 3% 24px;
+    margin: -31px;
+}
+
+.botonMenu2:hover{
+    color: white;
+    text-decoration: none;
+}
 
 .botonMenu:hover{
     cursor: pointer;
