@@ -1,10 +1,5 @@
-<%-- 
-    Document   : ValoracionOferta
-    Created on : 22-oct-2018, 13:49:23
-    Author     : solita
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,16 +8,16 @@
     </head>
     <body>
         <div id="main-div">
-            <div class="estrellitas">
+            <div id="estrellitas">
 
             </div>
-            <div class="valoracion-form">
+            <div id="div-form-val">
                 <form action="${pageContext.request.contextPath}/ValoracionServlet/ValoracionOferta" class="needs-validation" id="formValoracion">
                     <div class="form-control">
                         <label for="imgInput">Agregar Imagen</label>
                         <input type="file" class="form-control-file" id="imgInput">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="div-val">
                         <div id="input-type" class="row">
                             <div class="col-sm-6">
                                 <label class="radio-inline">
@@ -41,18 +36,26 @@
                             </div>                                
                         </div
                     </div>
-                    <div class="dropdown" id="sucursalddl">
-                        Selecciona sucursal:
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sucursal
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                </form>
-            </div>
+                    <div class="form-group" id="div-suc">
+                        <label for="cbSucursales">Seleccione Sucursal:</label>
+                        <select name="cbSucurcales">
+                            <c:forEach items="${sucursales}" var="sucursal">
+                                <option value="${sucursal.getIdSucursal()}">${sucursal.getNombre()}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="form-inline">
+                        <label for="cbSucursales">Seleccione Sucursal:</label>
+                        <select name="cbSucurcales">
+                            <c:forEach items="${ofertas}" var="oferta">
+                                <option value="${oferta.getOferta()}">${oferta.getNombre()}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    
+                </div>
+            </form>
         </div>
-    </body>
+    </div>
+</body>
 </html>
