@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Valoración de Ofertas</title>
     </head>
@@ -44,18 +48,38 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="form-inline">
-                        <label for="cbSucursales">Seleccione Sucursal:</label>
-                        <select name="cbSucurcales">
-                            <c:forEach items="${ofertas}" var="oferta">
-                                <option value="${oferta.getOferta()}">${oferta.getNombre()}</option>
-                            </c:forEach>
-                        </select>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="cbCategoria">Seleccione Categoría:</label>
+                            <select name="cbCategoria">
+                                <c:forEach items="${categorias}" var="categoria">
+                                    <option value="${categoria.getCategoria()}">${categoria.getNombre()}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="cbOferta">Seleccione Oferta</label>
+                            <select name="cbOferta">
+                                <c:forEach items="${ofertas}" var="oferta">
+                                    <option value="${oferta.getOferta()}">${oferta.getNombre()}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
                     </div>
-                    
-                </div>
-            </form>
-        </div>
+
+            </div>
+        </form>
     </div>
+</div>
 </body>
 </html>
