@@ -25,15 +25,15 @@
                     <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
                     <button class="botonMenu">Recibe tu Descuento</button>
                     <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
-                    <c:forEach items="${categorias}" var="categoria">
-                        <a class="catalogo" href="#">${categoria.getNombre()}</a><br><br>
+                    <c:forEach items="${mapa}" var="categoria">
+                        <a class="catalogo" href="#">${categoria.key.nombre}</a><br><br>
                     </c:forEach>
                         
                 </div>
                 <div class="contenedorHome col-md-10 col-sm-12">
-                    <c:forEach items="${categorias}" var="categoria">
+                    <c:forEach items="${mapa}" var="entry">
                         <div class="tab1">
-                            <h2><c:out value="${categoria.nombre}" /></h2>
+                            <h2><c:out value="${entry.key.nombre}" /></h2>
                             <div class="container">
                                 <div class="row blog">
                                     <div class="col-md-12">
@@ -45,55 +45,14 @@
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
                                                     <div class="row">
-                                                        <c:forEach items="${categoria.nombre}" var="oferta" begin="0" end="4">
+                                                        <c:forEach items="${entry.value}" var="oferta" begin="0" end="3">
                                                         <div class="col-md-3">
                                                             <a href="#">
                                                                 <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                                                <h3><c:out value="${oferta.nombre}"/></h3>
                                                             </a>
                                                         </div>
                                                         </c:forEach>
-                                                    </div>
-                                                    <!--.row-->
-                                                </div>
-                                                <!--.item-->
-
-                                                <div class="carousel-item">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                            </a>
-                                                        </div>
                                                     </div>
                                                     <!--.row-->
                                                 </div>

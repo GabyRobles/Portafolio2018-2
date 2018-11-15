@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Consumidor;
+import utilidad.ListaInteligente;
 
 public class ConsumidorServlet extends HttpServlet {
 
@@ -64,7 +65,10 @@ public class ConsumidorServlet extends HttpServlet {
             case"sumarPuntajes"://sumar los puntajes
                 this.sumarPuntaje(request, response);
                 break;
-            
+            case"cargarOfertas"://accion para carga las ofertas
+                request.setAttribute("mapa", ListaInteligente.cargarOfertas());
+                request.getRequestDispatcher("/Consumidor/Home.jsp").forward(request, response);
+                
         }
     }   
 

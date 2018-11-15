@@ -142,9 +142,7 @@ public class LoginServlet extends HttpServlet {
     private void logearC(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // instanciar Beans
-            OfertaBean ofertaBean = new OfertaBean();
             ConsumidorBean consumidorBean = new ConsumidorBean();
-            CategoriaBean categoria = new CategoriaBean();
 
             //obtener parametros de entrada
             String correo = request.getParameter("email");
@@ -154,21 +152,10 @@ public class LoginServlet extends HttpServlet {
             if (consumidorBean.validarContrasena(correo, contrasena)) {
                 //establecer al usuario como atributo de session
                 request.getSession().setAttribute("usuario", consumidorBean.findByCorreo(correo));
-
-                //obtener categorias y adjuntar lista de categorias
-                List<Categoria> categorias = categoria.findAll();
-                request.setAttribute("categorias", categorias);
-
-                //obtener y adjuntar ofertas por categorias
-                for (Categoria item : categorias) {
-                    List<Oferta> listaOfertasCat = ofertaBean.findByCategoria(item);
-                    request.setAttribute(item.getNombre(), listaOfertasCat);
-                }
-
-                //direccionar al home del consumidor
-                request.getRequestDispatcher("/Consumidor/Home.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath()+"/ConsumidorServlet?action=cargarOfertas");
+                //request.getRequestDispatcher("/ConsumidorServlet?action=cargarOfertas").forward(request, response);
             }
-        } catch (IOException | ServletException | SQLException | NoResultException e) {
+        } catch (IOException | SQLException | NoResultException e) {
             processRequest(request, response, e.getMessage());
             System.out.println("Error: " + e.getLocalizedMessage());
         }

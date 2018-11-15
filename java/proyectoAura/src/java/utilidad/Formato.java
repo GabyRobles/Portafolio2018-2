@@ -7,13 +7,10 @@ package utilidad;
 
 import java.util.regex.Pattern;
 
-/**
- *
- * @author nico_
- */
+
 public class Formato {
     public static String obtenerAction(String param){
-        String[] parts = param.split(Pattern.quote("/"));
-        return parts[3];
+        String[] parts = param.split(Pattern.quote("/"));//separa el texto entregado segun '/'
+        return parts[3];//retorna el la ultima posicion
     }
 }
