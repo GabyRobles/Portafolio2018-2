@@ -31,11 +31,14 @@
                         <div id="modalOferta" class="modalDialog">
                             <div>
                                 <a href="" title="close" class="close">X</a>
-                                <%@include file="../../Trabajador/Encargado/DetalleOferta.jsp" %>
+                                <jsp:include page="../../Trabajador/Encargado/DetalleOferta.jsp">
+                                    <jsp:param name="sucursales" value="${sucursales}"/>
+                                </jsp:include>
                             </div>
                         </div>
+                        
                     </div>
-                    
+                        
                     <table class="table table-bordered table-hover" >
                         <thead class="thead-light">
                         <th scope="col">ID</th>
@@ -53,11 +56,30 @@
                                     <td scope="row">${oferta.getTipoOferta()}</td>
                                     <td scope="row" class="ofertaInicio">${oferta.getFechaIni()}</td>
                                     <td scope="row" class="ofertaTermino">${oferta.getFechaTerm()}</td>
-                                    <td scope="row"><a class="BotonEditar" href="${pageContext.request.contextPath}/OfertaServlet?action=Editar&idOferta=${oferta.getIdOferta()}">Editar</a>
+                                    <td scope="row"><a class="BotonEditar" href="#modalEdit${oferta.idOferta}">Editar</a>
                                         <a class="botonEliminar" href="${pageContext.request.contextPath}/OfertaServlet?action=Eliminar&idOferta=${oferta.getIdOferta()}">Eliminar</a>
                                     </td>
                                 </tr>
+                                <div id="modalEdit${oferta.idOferta}" class="modalDialog">
+                                    <div>
+                                        <a href="" title="close" class="close">X</a>
+                                        <jsp:include page="../../Trabajador/Encargado/DetalleOferta.jsp">
+                                            <jsp:param name="oferta" value="${oferta}"/>
+                                            <jsp:param name="oNombre" value="${oferta.nombre}"/>
+                                            <jsp:param name="ofertaID" value="${oferta.idOferta}"/>
+                                            <jsp:param name="oCategoria" value="${oferta.idCategoria.nombre}"/>
+                                            <jsp:param name="oTipo" value="${oferta.tipoOferta}"/>
+                                            <jsp:param name="oImagen" value="${oferta.imagen}"/>
+                                            <jsp:param name="oPrecio" value="${oferta.precioOferta}"/>
+                                            <jsp:param name="oIdTrab" value="${oferta.idTrabajador.idTrabajador}"/>
+                                            <jsp:param name="oSucursal" value="${oferta.idSucursal.nombre}"/>
+                                            <jsp:param name="oFechaI" value="${oferta.fechaIni}"/>
+                                            <jsp:param name="oFechaT" value="${oferta.fechaTerm}"/>
+                                        </jsp:include>
+                                    </div>
+                                </div>
                             </c:forEach>
+                                
                         </tbody>
                     </table>
                 </div>

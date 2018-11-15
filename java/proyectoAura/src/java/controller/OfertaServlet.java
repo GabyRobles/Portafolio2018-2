@@ -70,12 +70,7 @@ public class OfertaServlet extends HttpServlet {
                 showCrear(request, response);
                 break;
             case "Listar"://direccionaminto a la lista de ofertas
-                //Instanciar el Bean
-                OfertaBean ofertas = new OfertaBean();
-                //obtener y asignar la lista de ofertas 
-                request.setAttribute("ofertas", ofertas.getLista());
-                //direccionamiento a la página de listas
-                request.getRequestDispatcher("Trabajador/Encargado/Ofertas.jsp").forward(request, response);
+                showListar(request,response);
                 break;
             case "Editar"://direccionamiento a la página de editar ofertas
                 showEditar(request, response);
@@ -138,6 +133,28 @@ public class OfertaServlet extends HttpServlet {
             request.setAttribute("sucursales", sucursales.findByEmpresa(idEmpresa));
             //direccionamiento a la página de creación
             request.getRequestDispatcher("Trabajador/Encargado/DetalleOferta.jsp").forward(request, response);
+        } catch (IOException | NullPointerException | NumberFormatException | SQLException | ServletException e) {
+            System.out.println("Error no se pudo obtener la Lista de sucursales: " + e.getMessage());
+        }
+    }
+    /*
+    * Método para direccionar a la Lista de oferta
+    */
+    private void showListar(HttpServletRequest request, HttpServletResponse response) {
+        try {//instanciar el Bean de sucursales
+            SucursalBean sucursales = new SucursalBean();
+            //instanciar al usuario de la sesion
+            Trabajador user = (Trabajador)request.getSession().getAttribute("usuario");
+            //obtener el id de la empresa
+            Integer idEmpresa = Integer.valueOf(user.getIdEmpresa().getIdEmpresa().toString());
+            //obtener y asignar la lista de sucursales
+            request.setAttribute("sucursales", sucursales.findByEmpresa(idEmpresa));
+            //direccionamiento a la página de creación
+            //Instanciar el Bean
+            OfertaBean ofertas = new OfertaBean();
+            //obtener y asignar la lista de ofertas 
+            request.setAttribute("ofertas", ofertas.getLista());
+            request.getRequestDispatcher("Trabajador/Encargado/Ofertas.jsp").forward(request, response);
         } catch (IOException | NullPointerException | NumberFormatException | SQLException | ServletException e) {
             System.out.println("Error no se pudo obtener la Lista de sucursales: " + e.getMessage());
         }
