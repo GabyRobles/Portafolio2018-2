@@ -54,5 +54,5 @@
         <c:if test="${oferta == null}"><input type="submit" value="Crear"/></c:if>
         <c:if test="${oferta != null}"><input type="submit" value="Actualizar"/></c:if>
         </form>
-        <button>limpiar</button>
+        <button>Limpiar</button>
 </html>

@@ -7,11 +7,12 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="../js/CarouselHome.js" type="text/javascript"></script>
+        <title>Mis Ofertas</title>
+        <link rel="shortcut icon" href="https://s3.amazonaws.com/proyectoaura-storage/img/Logo+Empresa.png">
         <style>
             <%@include file="../css/style.css" %>
         </style>
-        <script src="../js/CarouselHome.js" type="text/javascript"></script>
-        <title>Mis Ofertas</title>
     </head>
     <body>
         <%@include file="../Plantillas/NavbarConsumidor.jspf" %>
@@ -23,7 +24,7 @@
                         <h2 class="subtituloMenu">Categorias</h2>
                     </div>
                     <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
-                    <button class="botonMenu">Recibe tu Descuento</button>
+                    <button class="botonMenu"><a class="botonMenu2" href="${pageContext.request.contextPath}/Consumidor/ValoracionOferta.jsp" > Recibe tu Descuento</a></button>
                     <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
                     <c:forEach items="${mapa}" var="categoria">
                         <a class="catalogo" href="#">${categoria.key.nombre}</a><br><br>

@@ -60,7 +60,6 @@ public class ValoracionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("/Consumidor/ValoracionOferta.jsp");
     }
 
     /**
