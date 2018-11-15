@@ -58,12 +58,11 @@
                 <!--Parte seba-->
                 <div id="div-form-val">
                     <form action="${pageContext.request.contextPath}/ValoracionServlet/ValoracionOferta" class="needs-validation" id="formValoracion">
-                        
                         <div class="agregarImagen">
                             <p class="titulo-control">Agregar Imagen</p>
                             <div class="contenedor-imagen" for="imgInput">
-                                <span class="glyphicon glyphicon-cloud-upload"></span>
-                                <input type="file" class="form-control-file" id="imgInput">
+                                <img class="agregarImg" src="https://s3.amazonaws.com/proyectoaura-storage/img/cloud-upload.png">
+                                <input type="file" size="30" id="imgInput">
                             </div>
                            <!-- <label for="imgInput">Agregar Imagen</label>
                             <input type="file" class="form-control-file" id="imgInput">-->

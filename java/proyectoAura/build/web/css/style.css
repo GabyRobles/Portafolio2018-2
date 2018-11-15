@@ -337,7 +337,7 @@ body {
 }
 /*para subir la imagen*/
 .agregarImagen{
-    width: 35%;
+    width: 37%;
     float: left;
     margin-right: 4%;
     background: linear-gradient(96deg, rgb(0, 167, 255) -16%, rgb(0, 255, 137) 66%);
@@ -349,11 +349,19 @@ body {
     text-align: center;
     color: white;
 }
+.agregarImg{
+    display: block;
+    width: 43%;
+    margin: auto;
+}
+
 .contenedor-imagen{
     background: rgb(240,242,248);
-    height: 177px;
+    height: 230px;
     margin-bottom: 2%;
     border-radius: 7px;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 /*para seleccionar las ofertas*/
