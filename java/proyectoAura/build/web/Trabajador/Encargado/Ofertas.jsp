@@ -49,7 +49,6 @@
                         <th scope="col">Opciones</th>
                         </thead >
                         <tbody>
-                            
                             <c:forEach items="${ofertas}" var="oferta">
                                 <tr>
                                     <td scope="row">${oferta.getIdOferta()}</td>
