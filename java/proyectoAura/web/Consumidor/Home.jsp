@@ -18,19 +18,7 @@
         <%@include file="../Plantillas/NavbarConsumidor.jspf" %>
         <div class="container-fluid" >
             <div class="row">
-                <div id="contenedorMenu">
-                    <div class="contenedorTituloMenu">
-                        <h5 class="tituloMenu">Todas las</h5>
-                        <h2 class="subtituloMenu">Categorias</h2>
-                    </div>
-                    <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
-                    <button class="botonMenu"><a class="botonMenu2" href="${pageContext.request.contextPath}/Consumidor/ValoracionOferta.jsp" > Recibe tu Descuento</a></button>
-                    <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
-                    <c:forEach items="${mapa}" var="categoria">
-                        <a class="catalogo" href="#">${categoria.key.nombre}</a><br><br>
-                    </c:forEach>
-                        
-                </div>
+                <%@include file="../Plantillas/MenuRedirecciones.jspf"%>
                 <div class="contenedorHome col-md-10 col-sm-12">
                     <c:forEach items="${mapa}" var="entry">
                         <div class="tab1">
@@ -47,12 +35,12 @@
                                                 <div class="carousel-item active">
                                                     <div class="row">
                                                         <c:forEach items="${entry.value}" var="oferta" begin="0" end="3">
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                                <h3><c:out value="${oferta.nombre}"/></h3>
-                                                            </a>
-                                                        </div>
+                                                            <div class="col-md-3">
+                                                                <a href="#">
+                                                                    <img src="${oferta.imagen}" alt="Image" style="max-width:100%;">
+                                                                    <h3><c:out value="${oferta.nombre}"/></h3>
+                                                                </a>
+                                                            </div>
                                                         </c:forEach>
                                                     </div>
                                                     <!--.row-->
@@ -63,12 +51,12 @@
                                                 <div class="carousel-item">
                                                     <div class="row">
                                                         <c:forEach items="${entry.value}" var="oferta" begin="4" end="7">
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                                <h3><c:out value="${oferta.nombre}"/></h3>
-                                                            </a>
-                                                        </div>
+                                                            <div class="col-md-3">
+                                                                <a href="#">
+                                                                    <img src="${oferta.imagen}" alt="Image" style="max-width:100%;">
+                                                                    <h3><c:out value="${oferta.nombre}"/></h3>
+                                                                </a>
+                                                            </div>
                                                         </c:forEach>
                                                     </div>
                                                     <!--.row-->

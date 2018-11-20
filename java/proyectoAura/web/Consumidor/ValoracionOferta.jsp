@@ -16,20 +16,8 @@
     </head>
     <body>
         <%@include file="../Plantillas/NavbarConsumidor.jspf" %>
-
+        <%@include file="../Plantillas/MenuRedirecciones.jspf" %>
         <div class="row">
-            <div id="contenedorMenu">
-                <div class="contenedorTituloMenu">
-                    <h5 class="tituloMenu">Todas las</h5>
-                    <h2 class="subtituloMenu">Categorias</h2>
-                </div>
-                <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
-
-                <c:forEach items="${categorias}" var="categoria">
-                    <a class="catalogo" href="#">${categoria.getNombre()}</a><br><br>
-                </c:forEach>
-            </div>
-            
             <!--Estrellitas-->  
             <div class="col-md-10 col-sm-12">
                 <div id="estrellitas">
@@ -64,8 +52,8 @@
                                 <img class="agregarImg" src="https://s3.amazonaws.com/proyectoaura-storage/img/cloud-upload.png">
                                 <input type="file" size="30" id="imgInput">
                             </div>
-                           <!-- <label for="imgInput">Agregar Imagen</label>
-                            <input type="file" class="form-control-file" id="imgInput">-->
+                            <!-- <label for="imgInput">Agregar Imagen</label>
+                             <input type="file" class="form-control-file" id="imgInput">-->
                         </div>
 
                         <div class="grupoValoracion">
@@ -127,7 +115,7 @@
                         </div>
                     </form>
                 </div>
-            </div> 
-        </div>
-    </body>
+            </div>
+        </div>                
+    </body>    
 </html>
