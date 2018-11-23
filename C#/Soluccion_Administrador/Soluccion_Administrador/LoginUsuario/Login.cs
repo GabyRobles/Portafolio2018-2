@@ -27,14 +27,14 @@ namespace LoginUsuario
 
         //OracleConnection ora = new OracleConnection("DATA SOURCE=aura.cckolbo3d8nz.us-east-1.rds.amazonaws.com:1521/Auradb;USER ID=ADMAURA PASSWORD= admin123;");
         /**
-        Data Sourse = es la direccion donde se encuentra nuestra base de datos con el / SID
+        Data Sourse = es la dirección donde se encuentra nuestra base de datos con el / SID
             USER ID= el Usuario de Nuestra base de datos
             PASSWORD= es la contraseña de nuestra USUARIO en la BD
         **/
         public Login()
         {
             InitializeComponent();
-            //Cambiar los valores de colores del materil skin
+            //Cambiar los valores de colores del material skin
             MaterialSkinManager m = MaterialSkinManager.Instance;
             m.AddFormToManage(this);
             m.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -48,7 +48,7 @@ namespace LoginUsuario
             try
             {
               
-                if (txt_Usuario.Text.Equals(""))//si esta vacio el txt usuario 
+                if (txt_Usuario.Text.Equals(""))//si esta vacío el txt usuario 
                 {
 
                     MessageBox.Show("Los campos son obligatorios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -56,20 +56,20 @@ namespace LoginUsuario
                     txt_Usuario.Focus();
 
                 }
-                 if (txt_contrasena.Text.Equals(""))//si el txtcontrasena esta vacio
+                 if (txt_contrasena.Text.Equals(""))//si el txtcontrasena esta vacío
                 {
                     MessageBox.Show("Los campos son obligatorios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txt_contrasena.SelectAll();
                     txt_contrasena.Focus();
                 }
 
-                   if (txt_contrasena.Text.Equals("") && txt_Usuario.Text.Equals(""))//si ambos estan vacios
+                   if (txt_contrasena.Text.Equals("") && txt_Usuario.Text.Equals(""))//si ambos estan vacíos
                 {
-                    MessageBox.Show("Los campos son obligatorio","Validación",MessageBoxButtons.OK,MessageBoxIcon.Exclamation );
+                    MessageBox.Show("Los campos son obligatorios","Validación",MessageBoxButtons.OK,MessageBoxIcon.Exclamation );
                 }
                 else {
                     ora.Open();
-                    //abrimos la conexion con la base de datos
+                    //abrimos la conexión con la base de datos
 
                     //Realizamos una consulta con la base de datos
                     OracleCommand comando = new OracleCommand("select * from TRABAJADOR where (Correo='" + txt_Usuario.Text + "' and CONTRASENA='" + txt_contrasena.Text + "') and (ID_PUESTO = 2)", ora);
@@ -128,7 +128,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Dirección de correo electronico no valida","el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo valido",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Dirección de correo electrónico no válida","el correo debe tener el formato ejemplo@gmail.cl, por favor, seleccione un correo válido",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 txt_Usuario.SelectAll();
                 txt_Usuario.Focus();
             }

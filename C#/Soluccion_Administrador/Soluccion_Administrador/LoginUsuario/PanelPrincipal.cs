@@ -21,7 +21,7 @@ namespace LoginUsuario
         int posicion;
         Login login;
 
-        //String de Conexion con AWS de Amazon
+        //String de Conexión con AWS de Amazon
         OracleConnection ora = new OracleConnection("DATA SOURCE=aura.cckolbo3d8nz.us-east-1.rds.amazonaws.com:1521/Auradb;USER ID=ADMAURA;PASSWORD= admin123");
 
         public PanelPrincipal()
@@ -36,7 +36,7 @@ namespace LoginUsuario
             m.ColorScheme = new ColorScheme(Primary.Blue600, Primary.Blue500, Primary.Blue400, Accent.Green100, TextShade.WHITE);
         }
 
-        /*---------------------------------------------  Cargar los datos de inicio de la aplicacion  -------------------------------------------------------*/
+        /*---------------------------------------------  Cargar los datos de inicio de la aplicación  -------------------------------------------------------*/
 
         private void PanelPrincipal_Load(object sender, EventArgs e)
         {
@@ -55,7 +55,7 @@ namespace LoginUsuario
             cargarClienteDataGrid(dtvCliente);
             CargarPuesto(dgvPuesto);
             
-            //metodos de carga de combobox
+            //métodos de carga de combobox
             CargarComboBox(cbocategoria);
             CargarComboEmpresaSuc(cboEmpresaSuc);
             CargarComboGAsocPuesto(cbopuestoGA);
@@ -68,7 +68,7 @@ namespace LoginUsuario
             CargarComboOfertaSucursal(cboSucOfert);
             CargarComboOfertaProducto(cboprodOfert);
             CargarComboOfertaCategoria(cbocateOfert);
-            //validacion de fechas
+            //validación de fechas
             dtpElaboPr.MinDate = new DateTime(1985, 6, 20);
             dtpElaboPr.MaxDate = DateTime.Today;
             //dtpvecipro
@@ -110,7 +110,7 @@ namespace LoginUsuario
             try
             {
                 ora.Open();//se abre la conexion
-                OracleCommand comando = new OracleCommand("seleccionarToda_Puesto", ora);//se llama el procedimiento y la conexion
+                OracleCommand comando = new OracleCommand("seleccionarToda_Puesto", ora);//se llama el procedimiento y la conexión
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
                 OracleDataAdapter adaptador = new OracleDataAdapter();
@@ -129,7 +129,7 @@ namespace LoginUsuario
         /*---------------------------------------------  Cargar grilla de oferta  -------------------------------------------------------*/
 
 
-        public void CargarOferta(DataGridView dgv)//metodo que carga la grilla de oferta
+        public void CargarOferta(DataGridView dgv)//método que carga la grilla de oferta
         {
             try
             {
@@ -161,8 +161,8 @@ namespace LoginUsuario
             try
             {
 
-                ora.Open();//se abre la conexion
-                OracleCommand comando = new OracleCommand("seleccionarToda_Producto", ora);//se llama el procedimiento y la conexion
+                ora.Open();//se abre la conexión
+                OracleCommand comando = new OracleCommand("seleccionarToda_Producto", ora);//se llama el procedimiento y la conexión
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
                 OracleDataAdapter adaptador = new OracleDataAdapter();
@@ -182,7 +182,7 @@ namespace LoginUsuario
         }
         /*--------------------------------------------- carga grilla gerente -------------------------------------------------------*/
 
-        public void CargarGerente(DataGridView dgv)//metodo que carga la grilla de Gerente de asociacion
+        public void CargarGerente(DataGridView dgv)//método que carga la grilla de Gerente de asociación
         {
             try
             {
@@ -207,7 +207,7 @@ namespace LoginUsuario
         }
         /*---------------------------------------------  cargar grilla sucursal  -------------------------------------------------------*/
 
-        public void CargarSucursal(DataGridView dgv)//metodo que carga la grilla de sucursal
+        public void CargarSucursal(DataGridView dgv)//método que carga la grilla de sucursal
         {
             try
             {
@@ -230,7 +230,7 @@ namespace LoginUsuario
         }
         /*---------------------------------------------  cargar grilla encargado  -------------------------------------------------------*/
 
-        public void CargarEncargado(DataGridView dgv)//metodo que carga la grilla de encargdo de local
+        public void CargarEncargado(DataGridView dgv)//método que carga la grilla de encargdo de local
         {
             try
             {
@@ -253,9 +253,9 @@ namespace LoginUsuario
         }
         /*---------------------------------------------  Botón cerrar Sesión  -------------------------------------------------------*/
 
-        private void btnCerrarSession_Click(object sender, EventArgs e)//boton de cerrar session
+        private void btnCerrarSession_Click(object sender, EventArgs e)//botón de cerrar sesión
         {
-            ora.Close();//cierra la conexion con la bd
+            ora.Close();//cierra la conexión con la bd
             login = new Login();//crea un nuevo login
             login.Show();//nos direcciona al login
             this.Close();//cierra el fromulario Principal
@@ -266,18 +266,18 @@ namespace LoginUsuario
         {
             try
             {
-                ora.Open();//abrimos la conexion
+                ora.Open();//abrimos la conexión
                 OracleDataAdapter da = new OracleDataAdapter("select * from empresa", ora);//hacemos una consula en la db y lo capturamos en el da que es un adaptador
                 DataTable dt = new DataTable();//guardamos en un objeto de datatable lo encontrado
                 da.Fill(dt);//el adaptadr esta cargado en el data table
 
                 if (dt.Rows.Count > 0)//si lo que esta en la dt o datatable es mayor a 0
                 {
-                    cboEmpresaEN.DataSource = dt;//cargara el cbocategoria con la dt de table
-                    cboEmpresaEN.DisplayMember = "nombre";//lo que nos mostrara en el combobox
+                    cboEmpresaEN.DataSource = dt;//cargara el cbocategoría con la dt de table
+                    cboEmpresaEN.DisplayMember = "nombre";//lo que nos mostrará en el combobox
                     cboEmpresaEN.ValueMember = "id_empresa"; //los nombre los asociara al id de cada nombre
                 }
-                ora.Close();//se cierra la conexion
+                ora.Close();//se cierra la conexión
             }
             catch (Exception ex)
             {
@@ -291,18 +291,18 @@ namespace LoginUsuario
         public void cargarCboCliente(ComboBox cboClienteLocal) {
             try
             {
-                ora.Open();//abrimos la conexion
+                ora.Open();//abrimos la conexión
                 OracleDataAdapter da = new OracleDataAdapter("select * from consumidor ", ora);//hacemos una consula en la db y lo capturamos en el da que es un adaptador
                 DataTable dt = new DataTable();//guardamos en un objeto de datatable lo encontrado
                 da.Fill(dt);//el adaptadr esta cargado en el data table
 
                 if (dt.Rows.Count > 0)//si lo que esta en la dt o datatable es mayor a 0
                 {
-                    cboEnvioOfertaCliente.DataSource = dt;//cargara el cbocategoria con la dt de table
-                    cboEnvioOfertaCliente.DisplayMember = "Envío";//lo que nos mostrara en el combobox
-                    cboEnvioOfertaCliente.ValueMember = "env_oferta"; //los nombre los asociara al id de cada nombre
+                    cboEnvioOfertaCliente.DataSource = dt;//cargará el cbocategoríaa con la dt de table
+                    cboEnvioOfertaCliente.DisplayMember = "Envío";//lo que nos mostrará en el combobox
+                    cboEnvioOfertaCliente.ValueMember = "env_oferta"; //los nombre los asociará al id de cada nombre
                 }
-                ora.Close();//se cierra la conexion
+                ora.Close();//se cierra la conexión
             }
             catch (Exception ex)
             {
@@ -310,25 +310,25 @@ namespace LoginUsuario
                 MessageBox.Show("no se puede cargar desde la base de datos","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
-        /*---------------------------------------------  cargar combobox empresa Asociacion  -------------------------------------------------------*/
+        /*---------------------------------------------  cargar combobox empresa Asociación  -------------------------------------------------------*/
 
 
-        public void CargarComboBoxEmpAG(ComboBox cbo)//se carga el combo box de empresas Gerente asociacion
+        public void CargarComboBoxEmpAG(ComboBox cbo)//se carga el combo box de empresas Gerente asociación
         {
             try
             {
-                ora.Open();//abrimos la conexion
+                ora.Open();//abrimos la conexión
                 OracleDataAdapter da = new OracleDataAdapter("select * from empresa where id_empresa= 1", ora);//hacemos una consula en la db y lo capturamos en el da que es un adaptador
                 DataTable dt = new DataTable();//guardamos en un objeto de datatable lo encontrado
                 da.Fill(dt);//el adaptadr esta cargado en el data table
 
                 if (dt.Rows.Count > 0)//si lo que esta en la dt o datatable es mayor a 0
                 {
-                    cboEmADM.DataSource = dt;//cargara el cbocategoria con la dt de table
-                    cboEmADM.DisplayMember = "nombre";//lo que nos mostrara en el combobox
-                    cboEmADM.ValueMember = "id_empresa"; //los nombre los asociara al id de cada nombre
+                    cboEmADM.DataSource = dt;//cargará el cbocategoria con la dt de table
+                    cboEmADM.DisplayMember = "nombre";//lo que nos mostrará en el combobox
+                    cboEmADM.ValueMember = "id_empresa"; //los nombre los asociará al id de cada nombre
                 }
-                ora.Close();//se cierra la conexion
+                ora.Close();//se cierra la conexión
             }
             catch (Exception)
             {
@@ -339,11 +339,11 @@ namespace LoginUsuario
 
         /*---------------------------------------------  cargar cbo sucursal-------------------------------------------------------*/
 
-        public void CargarComboBox(ComboBox cbo)//se carga el combo box de categoria de productos
+        public void CargarComboBox(ComboBox cbo)//se carga el combo box de categoría de productos
         {
             try
             {
-                ora.Open();//abrimos la conexion
+                ora.Open();//abrimos la conexión
                 OracleDataAdapter da = new OracleDataAdapter("select * from categoria", ora);//hacemos una consula en la db y lo capturamos en el da que es un adaptador
                 DataTable dt = new DataTable();//guardamos en un objeto de datatable lo encontrado
                 da.Fill(dt);//el adaptadr esta cargado en el data table
@@ -351,10 +351,10 @@ namespace LoginUsuario
                 if (dt.Rows.Count > 0)//si lo que esta en la dt o datatable es mayor a 0
                 {
                     cbocategoria.DataSource = dt;//cargara el cbocategoria con la dt de table
-                    cbocategoria.DisplayMember = "nombre";//lo que nos mostrara en el combobox
-                    cbocategoria.ValueMember = "id_categoria"; //los nombre los asociara al id de cada nombre
+                    cbocategoria.DisplayMember = "nombre";//lo que nos mostrará en el combobox
+                    cbocategoria.ValueMember = "id_categoria"; //los nombre los asociará al id de cada nombre
                 }
-                ora.Close();//se cierra la conexion
+                ora.Close();//se cierra la conexión
             }
             catch (Exception)
             {
@@ -387,7 +387,7 @@ namespace LoginUsuario
         }
         /*---------------------------------------------  cargar cbo puestos  -------------------------------------------------------*/
 
-        public void CargarComboGAsocPuesto(ComboBox cbo)//carga los puesto de gerente de asociacion
+        public void CargarComboGAsocPuesto(ComboBox cbo)//carga los puesto de gerente de asociación
         {
             try
             {
@@ -472,12 +472,12 @@ namespace LoginUsuario
                     comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtNomsucu.Text;
                     comando.Parameters.Add("direccion", OracleType.VarChar).Value = txtDiresucu.Text;
                     comando.Parameters.Add("idsc", OracleType.Number).Value = idempresa;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         
-                        MessageBox.Show("El Archivo ha sido Agregar", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El Archivo ha sido Agregado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         txtNomsucu.Clear();
                         txtDiresucu.Clear();
                         this.CargarSucursal(dgvSucursal);
@@ -495,13 +495,13 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha sido Insertado el registro", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No ha sido insertado el registro", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.CargarSucursal(dgvSucursal);
              }
         }        /*---------------------------------------------  agregar nuevo encargado  -------------------------------------------------------*/
 
 
-        private void btnNuevoEncargado_Click(object sender, EventArgs e) {//boton de  nuevo
+        private void btnNuevoEncargado_Click(object sender, EventArgs e) {//botón de  nuevo
             try
             {
                 if (txtnomEC.Text.Length < 4)
@@ -544,7 +544,7 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El Archivo ha sido Agregar", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El Archivo ha sido agregado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarEncargado(dgvEncargado);
                         txtnomEC.Clear();
                         txtcorrEC.Clear();
@@ -563,7 +563,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha sido insertado el registro", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No ha sido insertado el registro", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.CargarEncargado(dgvEncargado); ora.Close();
 
             }
@@ -603,11 +603,11 @@ namespace LoginUsuario
                     comando.Parameters.Add("idsuc", OracleType.Number).Value = Convert.ToInt32(txtIdsucu.Text);
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtNomsucu.Text;
                     comando.Parameters.Add("dir", OracleType.VarChar).Value = txtDiresucu.Text;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere Modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere Modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
-                        MessageBox.Show("Se Actualizo el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Se Actualizó el registro", "Título", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         txtIdsucu.Clear();
                         txtNomsucu.Clear();
                         txtDiresucu.Clear();
@@ -650,7 +650,7 @@ namespace LoginUsuario
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
                     dgvSucursal.DataSource = tabla;
-                    MessageBox.Show("El Archivo ha sido encontrado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El Archivo ha sido encontrado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     ora.Close();
                 }
             }
@@ -681,12 +681,12 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("eliminar_sucursal", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idsuc", OracleType.Number).Value = Convert.ToInt32(txtIdsucu.Text);
-                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "Eliminar Registro", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que quiere eliminar el Registro?", "Eliminar Registro", MessageBoxButtons.YesNo);
                 if (resul == DialogResult.Yes)
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El Archivo ha sido Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El Archivo ha sido Eliminado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarSucursal(dgvSucursal);
                     txtDiresucu.Clear();
                     txtNomsucu.Clear();
@@ -758,7 +758,7 @@ namespace LoginUsuario
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
                     dgvAsociacion.DataSource = tabla;
-                    MessageBox.Show("Registro encontrado", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Registro encontrado", "Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     ora.Close();
                 }
@@ -786,12 +786,12 @@ namespace LoginUsuario
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idtra", OracleType.Number).Value = Convert.ToInt32(txtidAG.Text);
                 comando.ExecuteNonQuery();
-                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que quiere eliminar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
                 if (resul == DialogResult.Yes)
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("El Archivo ha sido Eliminado", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El Archivo ha sido Eliminado", "Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarSucursal(dgvSucursal);
                 }
                 else
@@ -806,7 +806,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha Eliminado el registro", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No se ha Eliminado el registro", "Título", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.CargarSucursal(dgvSucursal);
                 ora.Close();
             }
@@ -843,17 +843,17 @@ namespace LoginUsuario
                     comando.Parameters.Add("nom", OracleType.VarChar).Value = txtnomAG.Text;
                     comando.Parameters.Add("cor", OracleType.VarChar).Value = txtcorrAG.Text;
                     comando.Parameters.Add("pass", OracleType.VarChar).Value = txtcontAG.Text;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El Archivo ha sido Actualizado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El Archivo ha sido Actualizado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarGerente(dgvAsociacion);
                     }
                     else
                     {
-                        MessageBox.Show("El Archivo no ha sido Actualizado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El Archivo no ha sido Actualizado", "Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarGerente(dgvAsociacion);
                         ora.Close();
                     }
@@ -947,12 +947,12 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("ELIMINAR_TRABAJADOR", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idtra", OracleType.Number).Value = Convert.ToInt32(txtidEC.Text);
-                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "eliminar Registro", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que quiere eliminar el Registro?", "eliminar Registro", MessageBoxButtons.YesNo);
                 if (resul == DialogResult.Yes)
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("Exito", "El Archivo ha sido eliminado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Éxito", "El Archivo ha sido eliminado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarEncargado(dgvEncargado);
                     txtnomEC.Clear();
                     txtcorrEC.Clear();
@@ -1090,12 +1090,12 @@ namespace LoginUsuario
                     int idempresa = Convert.ToInt32(cboEmADM.SelectedValue.ToString());
                     comando.Parameters.Add("idp", OracleType.Number).Value = idpuesto;
                     comando.Parameters.Add("idemp", OracleType.Number).Value = idempresa;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El Archivo ha sido insertado","Exito",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El Archivo ha sido insertado","Éxito",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                         txtnomAG.Clear();
                         txtcorrAG.Clear();
                         txtcontAG.Clear();
@@ -1133,7 +1133,7 @@ namespace LoginUsuario
                 }
                 if (txtnomPro.Text.Length<4)
                 {
-                    MessageBox.Show("Validación", "El nombre debe tener minimo 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "El nombre debe tener mínimo 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtnomPro.SelectAll();
                     txtnomPro.Focus();
                 }
@@ -1160,12 +1160,12 @@ namespace LoginUsuario
                     comando.Parameters.Add("fecelb", OracleType.DateTime).Value = dtpElaboPr.Text;
                     comando.Parameters.Add("fechven", OracleType.DateTime).Value = dtpvecipro.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El registro ha sido insertado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El registro ha sido insertado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarCeldas(dgvProducto);
                     }
                     else
@@ -1200,7 +1200,7 @@ namespace LoginUsuario
                 }
                 if (txtnomPro.Text.Length < 4)
                 {
-                    MessageBox.Show("Validación", "El nombre debe tener minimo 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "El nombre debe tener mínimo 4 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtnomPro.SelectAll();
                     txtnomPro.Focus();
                 }
@@ -1231,12 +1231,12 @@ namespace LoginUsuario
                     int idcate = Convert.ToInt32(cbocategoria.SelectedValue.ToString());
                     comando.Parameters.Add("ID_CATE", OracleType.Number).Value = idcate;
 
-                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo,MessageBoxIcon.Information );
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo,MessageBoxIcon.Information );
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("Exito", "El registro ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Éxito", "El registro ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarCeldas(dgvProducto);
                     }
                     else
@@ -1265,12 +1265,12 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("eliminar_producto", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtidpro.Text);
-                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "Eliminar Registro", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que quiere eliminar el Registro?", "Eliminar Registro", MessageBoxButtons.YesNo);
                 if (resul == DialogResult.Yes)
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("Exito", "El Archivo ha sido Eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Éxito", "El Archivo ha sido Eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtidpro.Clear();
                     txtnomPro.Clear();
                     txtprecioPro.Clear();
@@ -1385,7 +1385,7 @@ namespace LoginUsuario
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
                     dtvCliente.DataSource = tabla;
-                    MessageBox.Show("El registro ha sido encontrado", "Exito", MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El registro ha sido encontrado", "Éxito", MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     ora.Close();
                 }
                 else
@@ -1440,7 +1440,7 @@ namespace LoginUsuario
                 }
                 if (txtTelefono.Text.Length < 9)
                 {
-                    MessageBox.Show("Validación", "El puntaje no debe ser menor a 9 numeros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "El puntaje no debe ser menor a 9 números", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtTelefono.SelectAll();
                     txtTelefono.Focus();
                 }
@@ -1470,7 +1470,7 @@ namespace LoginUsuario
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("El registro ha sido insertado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("El registro ha sido insertado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.cargarClienteDataGrid(dtvCliente);
                         txtNombreCliente.Clear();
                         txtApellidoCliente.Clear();
@@ -1547,7 +1547,7 @@ namespace LoginUsuario
                 }
                 if (txtTelefono.Text.Length < 9)
                 {
-                    MessageBox.Show("Validación", "El puntaje debe ser mayor a 9 numeros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Validación", "El puntaje debe ser mayor a 9 números", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtTelefono.SelectAll();
                     txtTelefono.Focus();
                 }
@@ -1576,12 +1576,12 @@ namespace LoginUsuario
                     //falta cbo.
 
 
-                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("Exito", "El registro ha sido actualizado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Éxito", "El registro ha sido actualizado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.cargarClienteDataGrid(dtvCliente);
                     }
                     else
@@ -1608,12 +1608,12 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("eliminar_consumidor", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtIdCliente.Text);
-                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "eliminar Registro", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que quiere eliminar el Registro?", "Eliminar Registro", MessageBoxButtons.YesNo);
                 if (resul == DialogResult.Yes)
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("Exito", "El registro ha sido eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Éxito", "El registro ha sido eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.cargarClienteDataGrid(dtvCliente);
                     txtNombreCliente.Clear();
                     txtApellidoCliente.Clear();
@@ -1686,12 +1686,12 @@ namespace LoginUsuario
                     OracleCommand comando = new OracleCommand("INSERTAR_PUESTO", ora);
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
                     comando.Parameters.Add("nombre", OracleType.VarChar).Value = txtPuestoNombre.Text;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere eliminar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("Exito","El registro ha sido insertado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Éxito","El registro ha sido insertado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarPuesto(dgvPuesto);
                         txtPuestoNombre.Clear();
                     }
@@ -1735,12 +1735,12 @@ namespace LoginUsuario
                     comando.CommandType = System.Data.CommandType.StoredProcedure;
                     comando.Parameters.Add("idpue", OracleType.Number).Value = Convert.ToInt32(txtPuestoId.Text); 
                     comando.Parameters.Add("pue", OracleType.VarChar).Value = txtPuestoNombre.Text;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("Exito","El registro ha sido modificado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Éxito","El registro ha sido modificado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarPuesto(dgvPuesto);
                         txtPuestoNombre.Clear();
                     }
@@ -1841,7 +1841,7 @@ namespace LoginUsuario
                     adaptador.Fill(tabla);
                     dgvOferta.DataSource = tabla;
                     ora.Close();
-                    MessageBox.Show("Exito", "El Archivo ha sido Encontrado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Éxito", "El Archivo ha sido Encontrado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 }
                 else
@@ -1920,12 +1920,12 @@ namespace LoginUsuario
                     comando.Parameters.Add("fechini", OracleType.DateTime).Value = dtpFechaIni.Text;
                     comando.Parameters.Add("fechater", OracleType.DateTime).Value = dtpFechaTer.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere agregar el Registro?", "Agregar Registro", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("Exito", "El registro ha sido insertado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Éxito", "El registro ha sido insertado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarOferta(dgvOferta);
                         txtNombreOferta.Clear();
                         txtTipoOferta.Clear();
@@ -1993,7 +1993,7 @@ namespace LoginUsuario
                 {
 
 
-                    MessageBox.Show("Todos los Datos Son Obligatorios","titulo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);//mensaje al usuario
+                    MessageBox.Show("Todos los Datos Son Obligatorios","Título",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);//mensaje al usuario
                 }
                 else
                 {
@@ -2013,12 +2013,12 @@ namespace LoginUsuario
                     comando.Parameters.Add("fechini", OracleType.DateTime).Value = dtpFechaIni.Text;
                     comando.Parameters.Add("fechater", OracleType.DateTime).Value = dtpFechaTer.Text;
                     comando.Parameters.Add("idcat", OracleType.Number).Value = idcate;
-                    DialogResult resul = MessageBox.Show("Seguro que quiere modificar el Registro?", "modificar Registro", MessageBoxButtons.YesNo);
+                    DialogResult resul = MessageBox.Show("¿Seguro que quiere modificar el Registro?", "Modificar Registro", MessageBoxButtons.YesNo);
                     if (resul == DialogResult.Yes)
                     {
                         comando.ExecuteNonQuery();
                         ora.Close();
-                        MessageBox.Show("Exito", "El registro ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Éxito", "El registro ha sido modificado",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.CargarOferta(dgvOferta);
                         txtNombreOferta.Clear();
                         txtTipoOferta.Clear();
@@ -2054,12 +2054,12 @@ namespace LoginUsuario
                 OracleCommand comando = new OracleCommand("ELIMINAR_OFERTA", ora);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
                 comando.Parameters.Add("idofe", OracleType.Number).Value = Convert.ToInt32(txtIdOferta.Text);
-                DialogResult resul = MessageBox.Show("Seguro que quiere eliminar el Registro?", "eliminar Registro", MessageBoxButtons.YesNo);
+                DialogResult resul = MessageBox.Show("¿Seguro que quiere eliminar el Registro?", "Eliminar Registro", MessageBoxButtons.YesNo);
                 if (resul == DialogResult.Yes)
                 {
                     comando.ExecuteNonQuery();
                     ora.Close();
-                    MessageBox.Show("Exito", "El registro ha sido eliminar",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Éxito", "El registro ha sido eliminar",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.CargarOferta(dgvOferta);
                     txtNombreOferta.Clear();
                     txtTipoOferta.Clear();
@@ -2067,7 +2067,7 @@ namespace LoginUsuario
                 }
                 else
                 {
-                    MessageBox.Show("Advertencia", "El registro no ha sido eliminar",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Advertencia", "El registro no ha sido eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.CargarOferta(dgvOferta);
                     txtNombreOferta.Clear();
                     txtTipoOferta.Clear();
@@ -2076,7 +2076,7 @@ namespace LoginUsuario
 
             }catch (Exception )
             {
-                MessageBox.Show("Advertencia", "El registro no ha sido eliminar",  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Advertencia", "El registro no ha sido eliminado",  MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.CargarOferta(dgvOferta);
                 txtNombreOferta.Clear();
                 txtTipoOferta.Clear();
@@ -2117,7 +2117,7 @@ namespace LoginUsuario
             }
             catch (Exception)
             {
-                MessageBox.Show("Los registro no fueron cargador","Error",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Los registro no fueron cargados","Error",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
         }
 
@@ -2228,7 +2228,7 @@ namespace LoginUsuario
                 comando.Parameters.Add("idge", OracleType.Number).Value = Convert.ToInt32(txtBuscarPuesto.Text);
                 if (comando.Parameters != null)
                 {
-                    MessageBox.Show("Informacion encontrada");
+                    MessageBox.Show("Información encontrada");
                     comando.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
                     comando.ExecuteNonQuery();
                     OracleDataAdapter adaptador = new OracleDataAdapter();
@@ -2236,7 +2236,7 @@ namespace LoginUsuario
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
                     dgvPuesto.DataSource = tabla;
-                    MessageBox.Show("El registro ha sido encontrado","Exito",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El registro ha sido encontrado","Éxito",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     ora.Close();
                 }
                 else
@@ -2256,7 +2256,7 @@ namespace LoginUsuario
 
         private void txtprecioPro_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //condición que solo acepte numeros
+            //condición que solo acepte números
             if (char.IsDigit(e.KeyChar))
             {
                 e.Handled = false;
@@ -2272,7 +2272,7 @@ namespace LoginUsuario
             else
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se Admiten numeros", "Validación numeros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se Admiten números", "Validación números", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtprecioPro.SelectAll();
                 txtprecioPro.Focus();
             }
@@ -2296,7 +2296,7 @@ namespace LoginUsuario
             else
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se Admiten numeros", "Validación numeros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se Admiten números", "Validación números", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtPuntajeCliente.SelectAll();
                 txtPuntajeCliente.Focus();
             }
@@ -2320,7 +2320,7 @@ namespace LoginUsuario
             else
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se Admiten numeros", "Validación numeros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se Admiten números", "Validación números", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtPrecioOferta.SelectAll();
                 txtPrecioOferta.Focus();
             }
@@ -2343,7 +2343,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Solo se admiten caracteres","Validación de palabras",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sílo se admiten caracteres","Validación de palabras",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 txtNombreOferta.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
             }
         }
@@ -2365,7 +2365,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtnomPro.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
                 txtnomPro.SelectAll();
                 txtnomPro.Focus();
@@ -2389,7 +2389,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtnomAG.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
                 txtnomAG.SelectAll();
                 txtnomAG.Focus();
@@ -2413,7 +2413,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtNomsucu.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
                 txtNomsucu.SelectAll();
                 txtNomsucu.Focus();
@@ -2437,7 +2437,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtDiresucu.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
                 txtDiresucu.SelectAll();
                 txtDiresucu.Focus();
@@ -2461,7 +2461,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtnomEC.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
                 txtnomEC.SelectAll();
                 txtnomEC.Focus();
@@ -2485,7 +2485,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtNombreCliente.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
                 txtNombreCliente.SelectAll();
                 txtNombreCliente.Focus();
@@ -2509,7 +2509,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Solo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se admiten caracteres", "Validación de palabras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtApellidoCliente.CharacterCasing = CharacterCasing.Upper;//admite mayusculas
                 txtApellidoCliente.SelectAll();
                 txtApellidoCliente.Focus();
@@ -2525,7 +2525,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Dirección de correo electronico no valida", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Dirección de correo electrónico no valida", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo válido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtCorreoCliente.SelectAll();
                 txtCorreoCliente.Focus();
             }
@@ -2540,7 +2540,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Dirección de correo electronico no valida", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Dirección de correo electrónico no válido", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo válido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtcorrEC.SelectAll();
                 txtcorrEC.Focus();
             }
@@ -2555,7 +2555,7 @@ namespace LoginUsuario
             }
             else
             {
-                MessageBox.Show("Dirección de correo electronico no valida", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Dirección de correo electrónico no válido", "el correo debe tener el formato ejemplo@gmail.cl, por favor seleccione un correo válido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtcorrAG.SelectAll();
                 txtcorrAG.Focus();
             }
@@ -2578,7 +2578,7 @@ namespace LoginUsuario
             else
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se Admiten numeros", "Validación numeros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Sólo se Admiten números", "Validación números", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtTelefono.SelectAll();
                 txtTelefono.Focus();
             }
