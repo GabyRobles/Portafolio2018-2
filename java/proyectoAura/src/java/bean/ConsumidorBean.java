@@ -6,15 +6,22 @@
 package bean;
 
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
 import javax.persistence.StoredProcedureQuery;
+import model.Categoria;
 import model.Consumidor;
+import model.Oferta;
 
 /**
  *
@@ -84,4 +91,5 @@ public class ConsumidorBean {
         puntaje += puntos;
         consumidor.setPuntaje(puntaje);
    }
+   
 }

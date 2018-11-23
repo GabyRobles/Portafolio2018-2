@@ -14,7 +14,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Categoria;
+import model.Consumidor;
 import model.Oferta;
+
+
 
 public class ListaInteligente {
     
@@ -41,4 +44,29 @@ public class ListaInteligente {
         
          return mapa;
     }
+    
+    //sobrecargada agregando al consumidor
+    public static HashMap<Categoria,List<Oferta>> cargarOfertas(Consumidor consumidor){
+        HashMap<Categoria,List<Oferta>> mapa = new HashMap<>();
+        try {
+            CategoriaBean cat = new CategoriaBean();
+            OfertaBean ofer = new OfertaBean();
+            List<Oferta> ofertas = new ArrayList<>();
+            
+            for (Categoria i : cat.getCategoriasMasValoradas(consumidor)) {
+                ofertas = new ArrayList<>();
+                for (Oferta o : ofer.getOfertasPopulares(i) ) {
+                    ofertas.add(o);
+                }
+                mapa.put(i, ofertas);
+            }
+
+        } catch (NullPointerException ex) {
+            Logger.getLogger(ListaInteligente.class.getName()).log(Level.SEVERE, null, ex);
+            mapa = null;
+        }
+        
+         return mapa;
+    }
+   
 }

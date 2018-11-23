@@ -147,7 +147,6 @@ public class LoginServlet extends HttpServlet {
             //obtener parametros de entrada
             String correo = request.getParameter("email");
             String contrasena = request.getParameter("psw");
-
             //validar contraseña con el bean
             if (consumidorBean.validarContrasena(correo, contrasena)) {
                 //establecer al usuario como atributo de session

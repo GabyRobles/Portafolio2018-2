@@ -59,22 +59,6 @@
                                                 </div>
                                                 <!--.item-->
                                             </div>
-                                            <div class="carousel-inner">
-                                                <div class="carousel-item">
-                                                    <div class="row">
-                                                        <c:forEach items="${entry.value}" var="oferta" begin="4" end="7">
-                                                        <div class="col-md-3">
-                                                            <a href="#">
-                                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                                                <h3><c:out value="${oferta.nombre}"/></h3>
-                                                            </a>
-                                                        </div>
-                                                        </c:forEach>
-                                                    </div>
-                                                    <!--.row-->
-                                                </div>
-                                                <!--.item-->
-                                            </div>
                                             <!--.carousel-inner-->
                                         </div>
                                         <!--.Carousel-->

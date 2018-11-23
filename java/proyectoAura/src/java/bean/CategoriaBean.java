@@ -5,12 +5,19 @@
  */
 package bean;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureQuery;
 import model.Categoria;
+import model.Consumidor;
+import model.Oferta;
 
 public class CategoriaBean {
     //declarar la Api para manejar la persistencia de JPA
@@ -43,5 +50,37 @@ public class CategoriaBean {
     public List<Categoria> findAll() throws SQLException, NullPointerException{
         return em.createNamedQuery("Categoria.findAll").getResultList();
     }
+    
+    
+   public List<Categoria> getCategoriasMasValoradas(Consumidor consumer){
+       ArrayList<Categoria> fetch = new ArrayList<>();
+       try {
+        StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("ADMAURA.CATEGORIAS_VALORADAS");
+        storedProcedureQuery.registerStoredProcedureParameter("idcon", BigDecimal.class, ParameterMode.IN);
+        storedProcedureQuery.registerStoredProcedureParameter("registros", void.class, ParameterMode.REF_CURSOR);
+        storedProcedureQuery.setParameter("idcon",consumer.getIdConsumidor());
+        
+        
+        List rs = storedProcedureQuery.getResultList();
+        
+        for (int i=0; i<rs.size(); ++i ) {
+            Object row[] = (Object[])rs.get(i);
+            String nCat =(String) row[2];
+            fetch.add(this.findByNombre(nCat));
+        }
+        
+        /*
+        while(rs.next()){
+            System.out.println(rs.getString("cant_val"));
+            Categoria categoria = cat.findByNombre(rs.getString("id_cat"));
+            fetch.add(categoria);
+        } */  
+        } catch (Exception e) {
+            System.out.println("Error en categorias mas valoradas");
+            System.out.println(e.getMessage());
+        }    
+        
+   return  fetch;
+   }
     
 }

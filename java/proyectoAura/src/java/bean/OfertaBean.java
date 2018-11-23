@@ -5,7 +5,10 @@
  */
 package bean;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -154,4 +157,34 @@ public class OfertaBean {
         //ejecutar
         storedProcedureQuery.execute();
     }
+    
+    public List<Oferta> getOfertasPopulares(Categoria category){
+        ArrayList fetch = new ArrayList<>();
+        try {
+        StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("ADMAURA.OFERTAS_POPULARES");
+        storedProcedureQuery.registerStoredProcedureParameter("idcat", BigDecimal.class, ParameterMode.IN);
+        storedProcedureQuery.registerStoredProcedureParameter("registros", void.class, ParameterMode.REF_CURSOR);
+        storedProcedureQuery.setParameter("idcat",category.getIdCategoria());
+        
+        
+        List rs = storedProcedureQuery.getResultList();
+        
+        for (int i=0; i<rs.size(); ++i ) {
+            Object row[] = (Object[])rs.get(i);
+            BigDecimal idOfer = (BigDecimal)row[0];
+            String id = idOfer.toString();
+            fetch.add(this.findById(Integer.parseInt(id)));
+        }
+        /*
+        while(rs.next()){
+            Oferta oferta = ofer.findById(Integer.parseInt(rs.getString("id_cat")));
+            fetch.add(oferta);
+        } */   
+        } catch (SQLException e) {
+            System.out.println("error en ofertas populares");
+        }
+   return  fetch;
+   }
+    
+    
 }

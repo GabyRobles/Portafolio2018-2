@@ -66,9 +66,9 @@ public class ConsumidorServlet extends HttpServlet {
                 this.sumarPuntaje(request, response);
                 break;
             case"cargarOfertas"://accion para carga las ofertas
-                request.setAttribute("mapa", ListaInteligente.cargarOfertas());
+                Consumidor con = (Consumidor)request.getSession().getAttribute("usuario");
+                request.setAttribute("mapa", ListaInteligente.cargarOfertas(con));
                 request.getRequestDispatcher("/Consumidor/Home.jsp").forward(request, response);
-                
         }
     }   
 
