@@ -42,3 +42,6 @@ C:\Users\solita\Desktop\portafolio\Portafolio2018-2\C#\Soluccion_Administrador\S
 C:\Users\Lynch\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\LoginUsuario.exe.config
 C:\Users\Lynch\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.exe
 C:\Users\Lynch\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.pdb
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\bin\Debug\es-CL\LoginUsuario.resources.dll
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\LoginUsuario.Login.es-CL.resources
+C:\Users\Akihiko Sanada\Documents\GitHub\Portafolio2018-2\C#\Soluccion_Administrador\Soluccion_Administrador\LoginUsuario\obj\Debug\es-CL\LoginUsuario.resources.dll
