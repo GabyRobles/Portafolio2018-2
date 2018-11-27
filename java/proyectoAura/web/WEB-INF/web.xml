@@ -29,6 +29,10 @@
         <servlet-class>controller.GeneracionCuponPdfServlet</servlet-class>
     </servlet>
     <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
         <url-pattern>/LoginServlet/*</url-pattern>
@@ -37,10 +41,6 @@
         <servlet-name>ProductoServlet</servlet-name>
         <url-pattern>/ProductoServlet</url-pattern>
         <url-pattern>/ProductoServlet/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConsumidorServlet</servlet-name>
