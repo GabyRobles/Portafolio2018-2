@@ -1,8 +1,15 @@
+<%@page import="model.Trabajador"%>
 <%@page import="model.Consumidor"%>
-<% if (session.getAttribute("usuario") != null ) {
-        if (session.getAttribute("usuario") instanceof Consumidor)
-        response.sendRedirect("Consumidor/Home.jsp");
-        else {
-        response.sendRedirect("Encargado/Home.jsp");
+<% if (session.getAttribute("usuario") != null) {
+        if (session.getAttribute("usuario") instanceof Consumidor) {
+            request.getRequestDispatcher(request.getContextPath()+"/ConsumidorServlet?action=cargarOfertas").forward(request, response);
+        } else {
+            Trabajador t = (Trabajador)session.getAttribute("usuario");
+            if (t.getIdPuesto().getPuesto().equals("Encargado")){
+                response.sendRedirect("Encargado/Home.jsp");
+            } else {
+                response.sendRedirect("Gerente/Home.jsp");
+            }
         }
-}%>
+    }
+%>

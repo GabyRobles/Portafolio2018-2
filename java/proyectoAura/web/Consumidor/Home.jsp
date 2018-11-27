@@ -36,7 +36,7 @@
                                                     <div class="row">
                                                         <c:forEach items="${entry.value}" var="oferta" begin="0" end="3">
                                                             <div class="col-md-3">
-                                                                <a href="#">
+                                                                <a href="${pageContext.request.contextPath}/ConsumidorServlet?action=detalle&idofer=${oferta.idOferta}">
                                                                     <img src="${oferta.imagen}" alt="Image" style="max-width:100%;">
                                                                     <h3><c:out value="${oferta.nombre}"/></h3>
                                                                 </a>

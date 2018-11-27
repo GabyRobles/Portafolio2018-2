@@ -9,6 +9,6 @@
     <button class="botonMenu"><a class="botonMenu2" href="${pageContext.request.contextPath}/Consumidor/ValoracionOferta.jsp" > Recibe tu Descuento</a></button>
     <hr style="width: 73%; margin-left: 25px; border: 1px solid rgb(241, 241, 241);"/>
     <c:forEach items="${mapa}" var="categoria">
-        <a class="catalogo" href="#">${categoria.key.nombre}</a><br><br>
+        <a class="catalogo" href="${pageContext.request.contextPath}/ConsumidorServlet?action=listarPorCategoria&idcat=${categoria.key.idCategoria}">${categoria.key.nombre}</a><br><br>
     </c:forEach>
 </div>

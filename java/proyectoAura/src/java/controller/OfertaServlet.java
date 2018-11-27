@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -70,7 +72,7 @@ public class OfertaServlet extends HttpServlet {
                 showCrear(request, response);
                 break;
             case "Listar"://direccionaminto a la lista de ofertas
-                showListar(request,response);
+                showListar(request, response);
                 break;
             case "Editar"://direccionamiento a la página de editar ofertas
                 showEditar(request, response);
@@ -118,15 +120,15 @@ public class OfertaServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-    
+
     /*
     * Método para direccionar a la creacion de oferta
-    */
+     */
     private void showCrear(HttpServletRequest request, HttpServletResponse response) {
         try {//instanciar el Bean de sucursales
             SucursalBean sucursales = new SucursalBean();
             //instanciar al usuario de la sesion
-            Trabajador user = (Trabajador)request.getSession().getAttribute("usuario");
+            Trabajador user = (Trabajador) request.getSession().getAttribute("usuario");
             //obtener el id de la empresa
             Integer idEmpresa = Integer.valueOf(user.getIdEmpresa().getIdEmpresa().toString());
             //obtener y asignar la lista de sucursales
@@ -137,14 +139,15 @@ public class OfertaServlet extends HttpServlet {
             System.out.println("Error no se pudo obtener la Lista de sucursales: " + e.getMessage());
         }
     }
+
     /*
     * Método para direccionar a la Lista de oferta
-    */
+     */
     private void showListar(HttpServletRequest request, HttpServletResponse response) {
         try {//instanciar el Bean de sucursales
             SucursalBean sucursales = new SucursalBean();
             //instanciar al usuario de la sesion
-            Trabajador user = (Trabajador)request.getSession().getAttribute("usuario");
+            Trabajador user = (Trabajador) request.getSession().getAttribute("usuario");
             //obtener el id de la empresa
             Integer idEmpresa = Integer.valueOf(user.getIdEmpresa().getIdEmpresa().toString());
             //obtener y asignar la lista de sucursales
@@ -159,10 +162,10 @@ public class OfertaServlet extends HttpServlet {
             System.out.println("Error no se pudo obtener la Lista de sucursales: " + e.getMessage());
         }
     }
-    
-     /*
+
+    /*
     * Método para crear la oferta
-    */
+     */
     private void crearOferta(HttpServletRequest request, HttpServletResponse response) {
         try {//instanciar el Bean de la oferta
             OfertaBean oferta = new OfertaBean();
@@ -189,7 +192,8 @@ public class OfertaServlet extends HttpServlet {
     }
 
     private void showEditar(HttpServletRequest request, HttpServletResponse response) {
-        try {OfertaBean bean = new OfertaBean();
+        try {
+            OfertaBean bean = new OfertaBean();
             //obtener el id de la oferta a editar
             Integer idOferta = Integer.valueOf(request.getParameter("idOferta"));//Parseo de String a Integer
             //asignar la oferta a editar

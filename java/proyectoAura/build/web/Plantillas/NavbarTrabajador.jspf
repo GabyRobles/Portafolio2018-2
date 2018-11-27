@@ -1,3 +1,4 @@
+<%@include file="UsuarioActivo.jspf" %>
 <nav class="navbarTrabajador navbar-expand-lg">
     <div class="collapse navbar-collapse" id="navbar1">
         <ul class="navbar-nav ml-auto"> 

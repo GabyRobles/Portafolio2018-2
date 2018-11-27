@@ -6,7 +6,6 @@
 package bean;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,46 +19,47 @@ import model.Categoria;
 import model.Oferta;
 
 public class OfertaBean {
+
     //declarar la Api para manejar la persistencia de JPA
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProyectoAuraPU");
     EntityManager em = factory.createEntityManager();
     //declarar la lista de Ofertas
-    private List<Oferta> lista; 
-    
+    private List<Oferta> lista;
+
     //constructor con la generación de la lista
-    public OfertaBean(){
+    public OfertaBean() {
         try {
             lista = findAll();//búsqueda de todas las Ofertas
         } catch (NullPointerException | SQLException ex) {
             //acción en caso de error
-            System.out.println("Error: "+ex.getMessage());
+            System.out.println("Error: " + ex.getMessage());
         }
     }
-    
+
     /*
     * Método de busqueda unica
-    */
-    public Oferta findById(Integer id) throws SQLException, NullPointerException{
+     */
+    public Oferta findById(Integer id) throws SQLException, NullPointerException {
         return (Oferta) em.createNamedQuery("Oferta.findByIdOferta").setParameter("idOferta", id).getSingleResult();
     }
-    
+
     /*
     * Método de busqueda unica
-    */
-    public Oferta findByNombre(String nombre) throws SQLException, NullPointerException{
+     */
+    public Oferta findByNombre(String nombre) throws SQLException, NullPointerException {
         return (Oferta) em.createNamedQuery("Oferta.findByNombre").setParameter("nombre", nombre).getSingleResult();
     }
-    
+
     /*
     * Método de busqueda de todos los elementos de la base de datos
-    */
-    public List<Oferta> findAll()throws SQLException, NullPointerException{
+     */
+    public List<Oferta> findAll() throws SQLException, NullPointerException {
         return em.createNamedQuery("Oferta.findAll").getResultList();
     }
-    
+
     /*
     * Métodos de getter and setter para la lista
-    */
+     */
     public List<Oferta> getLista() {
         return lista;
     }
@@ -67,21 +67,21 @@ public class OfertaBean {
     public void setLista(List<Oferta> lista) {
         this.lista = lista;
     }
-    
+
     /*
     * Método de búsqueda de todos los elementos segun categoria
-    */
+     */
     public List<Oferta> findByCategoria(Categoria idCategoria) {
         return em.createNamedQuery("Oferta.findByIdCategoria").setParameter("idCategoria", idCategoria).getResultList();
     }
-    
+
     /*
     * Método para insetar oferta en la base de datos
-    */
+     */
     public void create(String nombre, String tipoOferta, String imagen, Integer precioOferta, Date fechaIni, Date fechaTerm, Integer idTrabajador, Integer idSucursal, Integer idProducto, Integer idCategoria)
-    throws SQLException{
+            throws SQLException {
         //definir procedimiento
-        StoredProcedureQuery storedProcedureQuery= em.createStoredProcedureQuery("OPERACIONES_CRUD.INSERTAR_OFERTA");
+        StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("OPERACIONES_CRUD.INSERTAR_OFERTA");
         storedProcedureQuery.registerStoredProcedureParameter("nombre", String.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter("tpo", String.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter("img", String.class, ParameterMode.IN);
@@ -92,7 +92,7 @@ public class OfertaBean {
         storedProcedureQuery.registerStoredProcedureParameter("fechini", Date.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter("fechater", Date.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter("idcat", Integer.class, ParameterMode.IN);
-    
+
         //Asignar valores
         storedProcedureQuery.setParameter("nombre", nombre);
         storedProcedureQuery.setParameter("tpo", tipoOferta);
@@ -104,19 +104,19 @@ public class OfertaBean {
         storedProcedureQuery.setParameter("fechini", fechaIni);
         storedProcedureQuery.setParameter("fechater", fechaTerm);
         storedProcedureQuery.setParameter("idcat", idCategoria);
-        
+
         //ejecutar
         storedProcedureQuery.execute();
-    
+
     }
-    
-     /*
+
+    /*
     * Método para edtiar oferta en la base de datos
-    */
+     */
     public void update(Integer idOfer, String nombre, String tipoOferta, String imagen, Integer precioOferta, Date fechaIni, Date fechaTerm, Integer idTrabajador, Integer idSucursal, Integer idProducto, Integer idCategoria)
-    throws SQLException{
+            throws SQLException {
         //definir procedimiento
-        StoredProcedureQuery storedProcedureQuery= em.createStoredProcedureQuery("OPERACIONES_CRUD.ACTUALIZAR_OFERTA");
+        StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("OPERACIONES_CRUD.ACTUALIZAR_OFERTA");
         storedProcedureQuery.registerStoredProcedureParameter("idpue", Integer.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter("nombre", String.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter("tpo", String.class, ParameterMode.IN);
@@ -142,13 +142,13 @@ public class OfertaBean {
         storedProcedureQuery.setParameter("idcat", idCategoria);
         //ejecutar
         storedProcedureQuery.execute();
-    
+
     }
-    
+
     /*
     * Método para eliminar oferta en la base de datos
-    */
-    public void delete(Integer idOferta) throws SQLException{
+     */
+    public void delete(Integer idOferta) throws SQLException {
         //definir procedimiento
         StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("OPERACIONES_CRUD.ELIMINAR_OFERTA");
         storedProcedureQuery.registerStoredProcedureParameter("idofer", Integer.class, ParameterMode.IN);
@@ -157,34 +157,35 @@ public class OfertaBean {
         //ejecutar
         storedProcedureQuery.execute();
     }
-    
-    public List<Oferta> getOfertasPopulares(Categoria category){
+
+    /*
+    * Método para obtener las ofertas ordenadas segun popularidad
+     */
+    public List<Oferta> getOfertasPopulares(Categoria category) {
+        //Declarar arreglo de salida
         ArrayList fetch = new ArrayList<>();
         try {
-        StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("ADMAURA.OFERTAS_POPULARES");
-        storedProcedureQuery.registerStoredProcedureParameter("idcat", BigDecimal.class, ParameterMode.IN);
-        storedProcedureQuery.registerStoredProcedureParameter("registros", void.class, ParameterMode.REF_CURSOR);
-        storedProcedureQuery.setParameter("idcat",category.getIdCategoria());
-        
-        
-        List rs = storedProcedureQuery.getResultList();
-        
-        for (int i=0; i<rs.size(); ++i ) {
-            Object row[] = (Object[])rs.get(i);
-            BigDecimal idOfer = (BigDecimal)row[0];
-            String id = idOfer.toString();
-            fetch.add(this.findById(Integer.parseInt(id)));
-        }
-        /*
-        while(rs.next()){
-            Oferta oferta = ofer.findById(Integer.parseInt(rs.getString("id_cat")));
-            fetch.add(oferta);
-        } */   
+            //Declarar y llamar al metodo de "OFERTAS_POPULARES"
+            StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("ADMAURA.OFERTAS_POPULARES");
+            storedProcedureQuery.registerStoredProcedureParameter("idcat", BigDecimal.class, ParameterMode.IN);
+            storedProcedureQuery.registerStoredProcedureParameter("registros", void.class, ParameterMode.REF_CURSOR);
+            // ingresar el id de la categoria como paramentro
+            storedProcedureQuery.setParameter("idcat", category.getIdCategoria());
+            // obtener la lista resultante del procedimiento
+            List rs = storedProcedureQuery.getResultList();
+            //recorer la lista resultante de principio a fin
+            for (int i = 0; i < rs.size(); ++i) {
+                Object row[] = (Object[]) rs.get(i); //asignar como objeto cada fila de la lista
+                BigDecimal idOfer = (BigDecimal) row[0]; //obtener el id de la ofertas
+                String id = idOfer.toString(); //parseo a String
+                //Buscar y Agregar la oferta a la lista final
+                fetch.add(this.findById(Integer.parseInt(id)));//parseo a Integer
+            }
         } catch (SQLException e) {
+            //acciones en caso de Error
             System.out.println("error en ofertas populares");
         }
-   return  fetch;
-   }
-    
-    
+        return fetch;
+    }
+
 }

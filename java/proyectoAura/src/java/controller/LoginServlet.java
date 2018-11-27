@@ -5,21 +5,17 @@
  */
 package controller;
 
-import bean.CategoriaBean;
+
 import bean.ConsumidorBean;
-import bean.OfertaBean;
 import bean.TrabajadorBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Categoria;
-import model.Oferta;
 
 
 public class LoginServlet extends HttpServlet {
