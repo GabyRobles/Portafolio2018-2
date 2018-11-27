@@ -29,17 +29,12 @@
                         <img class="estrella5" src="https://s3.amazonaws.com/proyectoaura-storage/img/favourites.png"/>
                     </div>
                     <h1 class="tituloBienvenido">¡Bienvenido!</h1>
-                    <p class="textoBienvenido">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-                        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
-                        ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, 
-                        fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                        justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. 
-                        Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, 
-                        consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. 
-                        Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi 
-                        vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget 
-                        condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit 
-                        vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. </p>
+                    <p class="textoBienvenido">Ésta es la página de valoraciones. Para acceder a nuestros 
+                    descuentos, valora las ofertas que hayas comprado en cualquiera de nuestras tiendas
+                    asociadas. Para ésto, deberas fotografiar la boleta de tu compra, y valorar individualmente
+                    las ofertas que hayas comprado en esa boleta. Por cada valoración de oferta que hagas, recibirás
+                    10 puntos, los cuales se acumularán para poder ser canjeados por descuentos en nuestras categorías
+                    de productos.</p>
                 </div>
 
 
